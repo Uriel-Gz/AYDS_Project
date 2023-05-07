@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Registar</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="https://i.imgur.com/Nl7KAcL.png">
+
+  <!-- <link rel="stylesheet" href="/css/style.css"> -->
+</head>
+<body>
+  <h1>Bienvenido a SUG-MATH</h1>
+  <form action="/authenticate" method="post">
+    <div class="form-group">
+      <label for="uname"><b>Username:</b></label>
+      <input type="text" placeholder="Enter username" name="uname" required>
+    </div>
+    <div class="form-group">
+      <label for="psw"><b>Conseña:</b></label>
+      <input type="password" placeholder="Enter password" name="psw" required>
+    </div>
+    <div class="form-group">
+      <button type="submit">Login</button>
+    </div>
+  </form>
+
+  <div class="login">
+    <a href="/registrar"><button>Registrate</button></a>
+  </div>
+</body>
+</html>
