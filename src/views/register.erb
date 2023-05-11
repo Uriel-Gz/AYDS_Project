@@ -1,29 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>SUG-MATH</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="https://i.imgur.com/Nl7KAcL.png">
+  <meta name="author" content="Giovanni Buchieri">
+  <meta name="author" content="Santiago Vazquez">
+  <meta name="author" content="Uriel Guzman">
+	<meta name="description" content="Our first team app">
+    
+  <title>SUG-MATH</title>
 
-  <!-- <link rel="stylesheet" href="/css/style.css"> -->
-    <style> 
-    h1{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    }
+  <link href="<%= url('/log_without_tm_ICO.ico') %>" rel="icon" type="image/ico"> 
+  <link href="<%= url('/resgister.css') %>" rel="stylesheet" type="text/css"/> 
 
-    .form-group, .login{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    }
-
-    body{
-    background-color: rgb(134, 222, 222);
-    }
-  </style>
 
 </head>
 <body>
@@ -34,8 +24,8 @@
       <input type="text" placeholder="Enter username" name="uname" required>
     </div>
     <div class="form-group">
-      <label for="psw"><b>Conseña:</b></label>
-      <input type="password" placeholder="Enter password" name="psw" required>
+      <label for="psw"><b> Password: </b></label>
+      <input type="password" placeholder="Enter password" name="psw" required id="psw">
     </div>
     <div class="form-group">
       <button type="submit">Registrar</button>

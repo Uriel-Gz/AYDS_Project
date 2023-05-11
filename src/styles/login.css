@@ -1,0 +1,53 @@
+/*
+  Archivo css para dar formato al inicio de la app
+
+*/
+h1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(96, 95, 95);
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.form-group, .login{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body{
+    margin: 210px;
+    background: radial-gradient(rgb(195, 244, 245), rgb(4, 175, 175));
+    font-size: 30px;
+}
+
+label{
+    margin-right: 4px;
+    color: rgb(96, 95, 95);
+}
+
+input{
+    border: inset 2px rgba(208, 178, 7, 0.856);
+    border-radius: 18px;
+    margin-left: 10px;
+    box-shadow: 0px 2px 2px white, 2px 0px 2px white, 0px -2px 2px white, -2px 0px 2px white;
+    overflow: hidden;
+    font-size: 20px;
+}
+
+#psw{
+    margin-left: 16px;
+    margin-top: 2px;
+}
+
+button{
+    margin-top: 6px;
+    margin-left: 150px;
+    width: 100px;
+    border: inset 2px rgba(208, 178, 7, 0.856);
+    border-radius: 18px;
+    box-shadow: 0px 2px 2px white, 2px 0px 2px white, 0px -2px 2px white, -2px 0px 2px white;
+
+}
