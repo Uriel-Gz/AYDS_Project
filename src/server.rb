@@ -30,10 +30,11 @@ class App < Sinatra::Application
   end
 
 
-  get '/game/:name' do
-    logger.info 'USANDO LOGGER INFO EN GAME PATH'
-    name = params[:name]
-    "Bienvenido, #{name}!"
+  get '/game' do
+    # logger.info 'USANDO LOGGER INFO EN GAME PATH'
+    # name = params[:name]
+    # "Bienvenido, #{name}!"
+    erb :'juego'
   end
 
 
@@ -45,7 +46,7 @@ class App < Sinatra::Application
     ##Verifica la existencia del usuario
     isCorrect = User.find_by(name: name, password: password)
     if isCorrect
-      redirect "/game/#{name}"
+      redirect "/game"
     else
       redirect '/login-error'
     end
