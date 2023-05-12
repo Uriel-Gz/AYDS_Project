@@ -7,6 +7,8 @@ require 'sinatra/reloader' if Sinatra::Base.environment == :development
 
 
 require_relative 'models/user'
+require_relative 'models/question'
+require_relative 'models/option'
 
 class App < Sinatra::Application
   def initialize(app = nil)
@@ -33,6 +35,7 @@ class App < Sinatra::Application
     ## PAGINA DE LOGIN Y REGISTER
     set :views, File.join(File.dirname(__FILE__), 'views')
     set :public_folder, File.join(File.dirname(__FILE__), 'styles')
+
 
     get '/' do
       erb :'login'
@@ -116,24 +119,24 @@ class App < Sinatra::Application
   end
 
 
-  #post '/guardarPregunta' do
-    #quest = params[:question]
-    #answer = params[:answer]
+  post '/guardarPregunta' do
+    quest = params[:pregunta]
+    anw = params[:respuesta]
 
-    #q = Question.new(description: quest)
-    #q.value = 1
-    #q.topic_id = NULL
+    q = Question.new(description: quest)
+    q.value = 1
+    q.topic_id = 1
 
-    #a = Option.new(description: answer)
-    #a.isCorrect = true
+    a = Option.new(description: anw)
+    a.isCorrect = true
 
-    #if a.save && q.save
-      #redirect '/game'
-    #else
-      #redirect '/error-pregunta'
-    #end
+    if a.save && q.save
+      redirect '/game'
+    else
+      redirect '/error-pregunta'
+    end
 
-  #end
+  end
 
   get '/perfil' do
     erb :'perfile'

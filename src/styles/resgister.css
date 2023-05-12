@@ -50,3 +50,7 @@ button{
     box-shadow: 0px 2px 2px white, 2px 0px 2px white, 0px -2px 2px white, -2px 0px 2px white;
 
 }
+
+#email{
+    margin-left: 60px;
+}

@@ -46,7 +46,7 @@ button{
     margin-top: 6px;
     margin-left: 150px;
     width: 100px;
-    border: inset 2px rgba(208, 178, 7, 0.856);
+    border: none;
     border-radius: 18px;
     box-shadow: 0px 2px 2px white, 2px 0px 2px white, 0px -2px 2px white, -2px 0px 2px white;
 
