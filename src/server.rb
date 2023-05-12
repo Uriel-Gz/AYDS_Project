@@ -37,20 +37,31 @@ class App < Sinatra::Application
     set :public_folder, File.join(File.dirname(__FILE__), 'styles')
 
 
+
     get '/' do
-      erb :'login'
+      if session[:user_id]
+        redirect '/game';
+      else
+        erb :'login'
+      end
     end
 
 
+   #Configura la sesión para que sea activada en todas las rutas:
+  configure do
+    enable :sessions
+  end
   ## Para autentificar que la cuenta del usuario haya sido creada.
   post '/authenticate' do
     name = params[:uname]
     password = params[:psw]
 
     ##Verifica la existencia del usuario
-    isCorrect = User.find_by(name: name, password: password)
-    if isCorrect
+    usuario = User.find_by(name: name, password: password)
+    if usuario
       logger.info 'USUARIO LOGEADO CORRECTAMENTE'
+      session[:user_id] = usuario.id
+
       redirect "/game"
     else
       logger.info 'ERROR EN LOGIN DE USUARIO'
@@ -112,10 +123,11 @@ class App < Sinatra::Application
 
 
   get '/game' do
-    # logger.info 'USANDO LOGGER INFO EN GAME PATH'
-    # name = params[:name]
-    # "Bienvenido, #{name}!"
-    erb :'juego'
+    if session[:user_id]
+      erb :'juego'
+    else
+      redirect '/'
+    end
   end
 
 
@@ -138,14 +150,43 @@ class App < Sinatra::Application
 
   end
 
-  get '/perfil' do
-    erb :'perfile'
+  post '/perfil' do
+    # Verificar si el usuario ha iniciado sesión
+    if session[:user_id]
+      user_id = session[:user_id]
+      # Realiza las operaciones necesarias para obtener el usuario correspondiente al ID almacenado
+      @user = User.find(user_id)
+      # Resto de tu código...
+      erb :'perfile'
+    else
+      # El usuario no ha iniciado sesión, redirigir a la página de inicio de sesión o mostrar un mensaje de error
+      redirect '/'
+    end
   end
-
 
   get '/logros' do
     erb :'logro'
   end
+
+
+  get '/usuarios' do
+    @users = User.all
+
+    if @users.empty?
+      # No se encontraron usuarios
+      # Realiza una acción apropiada, como redireccionar o mostrar un mensaje de error
+    else
+      erb :'mostrarUsuarios'
+    end
+  end
+
+
+
+  post '/logout' do
+    session[:user_id] = nil;
+    redirect '/'
+  end
+
 
 end
 
