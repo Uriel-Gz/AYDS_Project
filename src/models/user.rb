@@ -1,6 +1,9 @@
 class User < ActiveRecord::Base
-  def self.create_user(name, password)
-    user = User.new(name: name, password: password)
-    user.save
-  end
+
+  #relacion de muchos a muchos con achievement
+  has_and_belongs_to_many :achievement
+
+
+
+
 end

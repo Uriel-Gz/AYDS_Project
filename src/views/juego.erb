@@ -10,26 +10,44 @@
     <title> Menu </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initialinitial-scale=1.0">
-  <link href="<%= url('/juego.css') %>" rel="stylesheet" type="text/css"/> 
+  <link href="<%= url('/juego.css') %>" rel="stylesheet" type="text/css"/>
   </head>
   <body>
     <div class="menu-lateral">
       <ul><center>
-        <li><a><form action="/perfil" method="post">
+        <li><a><form action="/perfil" method="get">
                <button type="submit">Perfil</button>
                </form> </a>
-        <li><a><form action="/Logro" method="post">
+        <li><a><form action="/logros" method="get">
                <button type="submit">Logros</button>
                </form></a>
-        <li><a><form action="/logout" method="post">
+        <li><a><form action="/" method="get">
                <button type="submit">Logout</button>
                </form>
-            </a> 
-            </center>    
+            </a>
+            </center>
       </ul>
     </div>
     <div class="contenido-principal">
       <p><center>Contenido Principal</center></p>
+
+      <div>
+        <form action="/guardarPregunta" method="POST">
+          <div class="form-question">
+            <label for="question"><b>Pregunta:</b></label>
+            <input type="text" placeholder="Ingresa Pregunta" name="question" required>
+          </div>
+
+          <div class="form-question">
+            <label for="answer"><b>Respuesta:</b></label>
+            <input type="text" placeholder="Ingresa Respuesta" name="answer" required>
+          </div>
+
+          <div class="form-question">
+            <button type="submit">Enviar</button>
+          </div>
+        </form>
+      </div>
     </div>
   </body>
 </html>
