@@ -1,4 +1,4 @@
 class Topic < ActiveRecord::Base
-  has_many :question
+  has_many :questions
 end
 

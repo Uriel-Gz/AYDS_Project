@@ -9,6 +9,7 @@ require 'sinatra/reloader' if Sinatra::Base.environment == :development
 require_relative 'models/user'
 require_relative 'models/question'
 require_relative 'models/option'
+require_relative 'models/profile'
 
 class App < Sinatra::Application
   def initialize(app = nil)
@@ -48,9 +49,13 @@ class App < Sinatra::Application
 
 
    #Configura la sesión para que sea activada en todas las rutas:
-  configure do
+   #HSe usa para habilitar las sesiones en todas las rutas utilizando enable :sessions.
+   #Esto permite que Sinatra maneje automáticamente las cookies de sesión
+   #y almacene los datos de sesión en el servidor.
+   configure do
     enable :sessions
   end
+
   ## Para autentificar que la cuenta del usuario haya sido creada.
   post '/authenticate' do
     name = params[:uname]
@@ -60,6 +65,8 @@ class App < Sinatra::Application
     usuario = User.find_by(name: name, password: password)
     if usuario
       logger.info 'USUARIO LOGEADO CORRECTAMENTE'
+      #Guardamos el id del usuario autenticando la clave
+      #:user_id en la sesión
       session[:user_id] = usuario.id
 
       redirect "/game"
@@ -122,7 +129,18 @@ class App < Sinatra::Application
 
 
 
+
+
+
+
+
+
+
+
+
   get '/game' do
+    #verificando si hay un user_id en la sesión
+    #para determinar si el usuario ha iniciado sesión
     if session[:user_id]
       erb :'juego'
     else
@@ -150,12 +168,20 @@ class App < Sinatra::Application
 
   end
 
-  post '/perfil' do
+
+
+
+
+
+  get '/perfil' do
     # Verificar si el usuario ha iniciado sesión
+    #verificando si hay un user_id en la sesión
+    #para determinar si el usuario ha iniciado sesión
     if session[:user_id]
       user_id = session[:user_id]
       # Realiza las operaciones necesarias para obtener el usuario correspondiente al ID almacenado
       @user = User.find(user_id)
+      @profile = @user.profile
       # Resto de tu código...
       erb :'perfile'
     else
@@ -164,9 +190,70 @@ class App < Sinatra::Application
     end
   end
 
+  get '/modificar_perfil' do
+    if session[:user_id]
+      erb :'modificar_perfil'
+    else
+      redirect '/'
+    end
+  end
+
+
+
+  post '/modify_profile' do
+    nuevoName = params[:name]
+
+    user = User.find(session[:user_id])
+    profile = user.profile
+
+    exist = User.find_by(name: nuevoName)
+    if exist
+      redirect '/error_modificar'
+    end
+
+    if params[:name].present?
+      user.name = params[:name]
+      user.save
+    end
+
+    if params[:psw].present?
+      user.password = params[:psw]
+      user.save
+    end
+
+    if params[:email].present?
+      user.email = params[:email]
+      user.save
+    end
+
+    if params[:imagen].present?
+      profile.picture = params[:imagen]
+      profile.save
+    end
+
+    redirect '/perfil'
+
+  end
+
+  get '/error_modificar' do
+    'el usuario ya esta en uso'
+  end
+
+
   get '/logros' do
     erb :'logro'
   end
+
+
+
+  post '/logout' do
+    #Eliminamos el id del usuario para garantizar que esté cerro session
+    session[:user_id] = nil;
+    redirect '/'
+  end
+
+
+
 
 
   get '/usuarios' do
@@ -179,14 +266,6 @@ class App < Sinatra::Application
       erb :'mostrarUsuarios'
     end
   end
-
-
-
-  post '/logout' do
-    session[:user_id] = nil;
-    redirect '/'
-  end
-
 
 end
 
