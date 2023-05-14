@@ -1,42 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Mi Perfil</title>
+  <title>MODIFICAR</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="https://i.imgur.com/Nl7KAcL.png">
-  <!-- <link rel="stylesheet" href="/css/style.css"> -->
 </head>
 <body>
-	<center>
-    <h1> MODIFICAR PERFIL</h1>
-    <form action="/modify_profile" method="post">
+  <div class="container">
+    <h1>Modificar Perfil</h1>
+    <form action="/modify_profile" method="post" enctype="multipart/form-data">
       <div class="form-group">
-        <label for="name"><b>Nuevo Nombre de Usuario: </b></label>
-        <input type="text" placeholder="Ingresa Nuevo Nombre" name="name">
-    </div>
-    <div class="form-group">
-      <label for="psw"><b> Nueva Contraseña: </b></label>
-      <input type="password" placeholder="Ingresa Nueva Contraseña: " name="psw">
-    </div>
-    <div class="form-group">
-      <label for="email"><b> Nuevo Email: </b></label>
-      <input type="email" placeholder="Ingresa Nuevo Email: " name="email">
-    </div>
-    <div class="form-group">
-      <label for="imagen"><b> Cambiar Imagen: </b></label>
-      <input type="file" placeholder="Ingresa Nueva Contraseña: " name="imagen" accept="image/*">
-    </div>
-    <div class="form-group">
-      <button type="submit">Cambiar</button>
-    </div>
-  </form>
+        <label for="name">Nuevo Nombre:</label>
+        <input type="text" id="name" name="name" placeholder="Ingresa el nuevo nombre">
+      </div>
+      <div class="form-group">
+        <label for="password">Nueva Contraseña:</label>
+        <input type="password" id="password" name="password" placeholder="Ingresa la nueva contraseña">
+      </div>
+      <div class="form-group">
+        <label for="email">Nuevo Email:</label>
+        <input type="email" id="email" name="email" placeholder="Ingresa el nuevo email">
+      </div>
+      <div class="form-group">
+        <label for="imagen">Nueva Foto:</label>
+        <input type="file" id="picture" name="imagen" accept="image/*">
+      </div>
+      <button type="submit">Guardar cambios</button>
+    </form>
+  </div>
 
-	</center>
-
-	<div>
+  <div>
 		<a href="/perfil" class="boton">Volver a Perfil</a>
 	</div>
-
 </body>
 </html>
+

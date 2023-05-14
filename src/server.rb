@@ -7,8 +7,10 @@ require 'sinatra/reloader' if Sinatra::Base.environment == :development
 
 
 require_relative 'models/user'
+require_relative 'models/topic'
 require_relative 'models/question'
 require_relative 'models/option'
+
 require_relative 'models/profile'
 
 class App < Sinatra::Application
@@ -41,7 +43,7 @@ class App < Sinatra::Application
 
     get '/' do
       if session[:user_id]
-        redirect '/game';
+        redirect '/principal';
       else
         erb :'login'
       end
@@ -69,7 +71,7 @@ class App < Sinatra::Application
       #:user_id en la sesión
       session[:user_id] = usuario.id
 
-      redirect "/game"
+      redirect "/principal"
     else
       logger.info 'ERROR EN LOGIN DE USUARIO'
       redirect '/login-error'
@@ -111,6 +113,10 @@ class App < Sinatra::Application
       #Si el usuario se guarda entonces es un exito, sino error
       if user.save
         logger.info 'SE REGISTRO CON EXITO'
+
+        profile = Profile.new(user_id: user.id)
+        profile.save
+
         redirect '/'
       else
         logger.info 'NO SE PUDO REGISTRAR USUARIO'
@@ -129,20 +135,12 @@ class App < Sinatra::Application
 
 
 
-
-
-
-
-
-
-
-
-
-  get '/game' do
+  get '/principal' do
     #verificando si hay un user_id en la sesión
     #para determinar si el usuario ha iniciado sesión
     if session[:user_id]
-      erb :'juego'
+      @temas = Topic.all
+      erb :'principal'
     else
       redirect '/'
     end
@@ -151,17 +149,17 @@ class App < Sinatra::Application
 
   post '/guardarPregunta' do
     quest = params[:pregunta]
-    anw = params[:respuesta]
+    answer = params[:respuesta]
 
     q = Question.new(description: quest)
     q.value = 1
-    q.topic_id = 1
+    q.topic_id = params[:topic]
 
-    a = Option.new(description: anw)
+    a = Option.new(description: answer)
     a.isCorrect = true
 
     if a.save && q.save
-      redirect '/game'
+      redirect '/principal'
     else
       redirect '/error-pregunta'
     end
@@ -182,6 +180,8 @@ class App < Sinatra::Application
       # Realiza las operaciones necesarias para obtener el usuario correspondiente al ID almacenado
       @user = User.find(user_id)
       @profile = @user.profile
+      @image_path = @profile.picture.split("\",")[0]
+
       # Resto de tu código...
       erb :'perfile'
     else
@@ -238,6 +238,8 @@ class App < Sinatra::Application
   get '/error_modificar' do
     'el usuario ya esta en uso'
   end
+
+
 
 
   get '/logros' do
