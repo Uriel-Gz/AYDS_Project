@@ -10,7 +10,6 @@ require_relative 'models/user'
 require_relative 'models/topic'
 require_relative 'models/question'
 require_relative 'models/option'
-
 require_relative 'models/profile'
 
 class App < Sinatra::Application
@@ -180,7 +179,6 @@ class App < Sinatra::Application
       # Realiza las operaciones necesarias para obtener el usuario correspondiente al ID almacenado
       @user = User.find(user_id)
       @profile = @user.profile
-      @image_path = @profile.picture.split("\",")[0]
 
       # Resto de tu código...
       erb :'perfile'
@@ -255,7 +253,21 @@ class App < Sinatra::Application
   end
 
 
+  post '/game' do
+    @tema_id = params[:tema]
+    @questions = @tema_id.question
 
+    erb :'pregunta'
+  end
+
+
+  post '/verificar' do
+    respuestaID = params[:opcionElegida]
+    questionID = params[:question]
+
+
+    redirect '/game'
+  end
 
 
   get '/usuarios' do

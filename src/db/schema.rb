@@ -26,10 +26,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_14_001241) do
   create_table "options", force: :cascade do |t|
     t.string "description"
     t.boolean "isCorrect"
+    t.integer "question_id"
+    t.index ["question_id"], name: "index_options_on_question_id"
   end
 
   create_table "profiles", force: :cascade do |t|
-    t.binary "picture"
+    t.string "picture"
     t.integer "user_id", null: false
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
@@ -74,6 +76,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_14_001241) do
 
   add_foreign_key "answers", "options"
   add_foreign_key "answers", "questions"
+  add_foreign_key "options", "questions"
   add_foreign_key "profiles", "users"
   add_foreign_key "questions", "topics"
   add_foreign_key "questions_options", "options"
