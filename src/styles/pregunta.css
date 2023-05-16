@@ -1,0 +1,46 @@
+
+
+
+button{
+    width: 40%;
+    padding: 10px;
+    background-color: rgb(110, 229, 250);
+    border: 1px solid white;
+    border-radius: 8px;
+    display: block;
+    text-align: center;
+}
+
+
+
+li:active{
+    color: blue;
+}
+
+
+
+
+#pregunta-resp-false{
+    animation:wobble-horizontal-bottom .8s linear both
+}
+ @keyframes wobble-horizontal-bottom{
+    0%,100%{
+        transform:translateX(0);
+        transform-origin:50% 50%
+    }
+    15%{
+        transform:translateX(-30px) rotate(-6deg)
+    }
+    30%{
+        transform:translateX(15px) rotate(6deg)
+    }
+    45%{
+        transform:translateX(-15px) rotate(-3.6deg)
+    }
+    60%{
+        transform:translateX(9px) rotate(2.4deg)
+    }
+    75%{
+        transform:translateX(-6px) rotate(-1.2deg)
+    }
+}
