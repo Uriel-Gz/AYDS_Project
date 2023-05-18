@@ -19,7 +19,16 @@
 	<div class="container">
 		<h1>Perfil de <%= @user.name %></h1>
 		<p>Nombre: <%= @user.name %></p>
+		<p>Email: <%=@user.email%></p>
+		
+		<p class="puntuacion">
+  <span class="puntuacion-texto">Score:</span>
+  <span class="puntuacion-numero"><%=@user.total_score%></span>
+</p>
+
 	</div>
+	
+
 	<div>
 		<a href="/modificar_perfil" class="boton">Modificar</a>
 		<a href="/principal" class="boton">Volver Pagina Principal</a>
