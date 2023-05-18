@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_14_001241) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_18_144919) do
   create_table "achievements", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -74,6 +74,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_14_001241) do
     t.index ["user_id"], name: "index_users_achivements_on_user_id"
   end
 
+  create_table "users_questions", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "question_id"
+    t.index ["question_id"], name: "index_users_questions_on_question_id"
+    t.index ["user_id"], name: "index_users_questions_on_user_id"
+  end
+
   add_foreign_key "answers", "options"
   add_foreign_key "answers", "questions"
   add_foreign_key "options", "questions"
@@ -83,4 +90,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_14_001241) do
   add_foreign_key "questions_options", "questions"
   add_foreign_key "users_achivements", "achievements"
   add_foreign_key "users_achivements", "users"
+  add_foreign_key "users_questions", "questions"
+  add_foreign_key "users_questions", "users"
 end

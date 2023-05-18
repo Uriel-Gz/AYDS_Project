@@ -130,7 +130,7 @@ class App < Sinatra::Application
   ## Solamente envia un mensaje
   ## Podriamos cambiarlo y ponerle un boton el cual retorne de vuelta a el register.
   get '/register-error' do
-    'El nombre de usuario ya esta en uso'
+    erb :'errorregister'
   end
 
 
