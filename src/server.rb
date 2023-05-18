@@ -80,7 +80,9 @@ class App < Sinatra::Application
   ## Solamente envia un mensaje
   ## Podriamos cambiarlo y ponerle un boton el cual retorne de vuelta a el login.
   get '/login-error' do
-    'User o Contrseña equivocada'
+
+    erb :'loginerror'
+
   end
 
 
