@@ -5,30 +5,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="https://i.imgur.com/Nl7KAcL.png">
-  <link href="<%= url('/perfil.css') %>" rel="stylesheet" type="text/css"/>
+	 <link href="<%= url('/perfil.css') %>" rel="stylesheet" type="text/css"/>
+</head>
 
-</head>
-<head>
-	<title>Mi Perfil</title>
-</head>
 <body>
 	<center>
-		<img src ="<%= @profile.picture %>">
+		<img class="imagen" src ="<%= @profile.picture %>">
 	</center>
 
 	<div class="container">
 		<h1>Perfil de <%= @user.name %></h1>
 		<p>Nombre: <%= @user.name %></p>
-		<p>Email: <%=@user.email%></p>
-		
-		<p class="puntuacion">
-  <span class="puntuacion-texto">Score:</span>
-  <span class="puntuacion-numero"><%=@user.total_score%></span>
-</p>
-
 	</div>
-	
-
 	<div>
 		<a href="/modificar_perfil" class="boton">Modificar</a>
 		<a href="/principal" class="boton">Volver Pagina Principal</a>

@@ -73,17 +73,17 @@ class App < Sinatra::Application
       redirect "/principal"
     else
       logger.info 'ERROR EN LOGIN DE USUARIO'
-      redirect '/login-error'
+      erb :'loginerror'
     end
   end
 
-  ## Solamente envia un mensaje
-  ## Podriamos cambiarlo y ponerle un boton el cual retorne de vuelta a el login.
-  get '/login-error' do
 
-    erb :'loginerror'
+  #-----------------------------------------------------------------------------------------------------------------------------------------------------
+  #-----------------------------------------------------------------------------------------------------------------------------------------------------
+  #-----------------------------------------------------------------------------------------------------------------------------------------------------
+  #-----------------------------------------------------------------------------------------------------------------------------------------------------
+  #-----------------------------------------------------------------------------------------------------------------------------------------------------
 
-  end
 
 
   get '/registrar' do
@@ -97,6 +97,8 @@ class App < Sinatra::Application
     password = params[:psw]
     email = params[:email]
 
+    #-----------------------------------------------
+    #-----------------------------------------------
 
     ##Verifica si el usuario existe o no
     exist = User.find_by(name: name)
@@ -104,12 +106,15 @@ class App < Sinatra::Application
     ## El usuario existe no lo crea
     if exist
       logger.info 'NO SE PUDO REGISTRAR USUARIO'
-      redirect '/register-error'
+      erb :'errorregister'
     else
       ## El usuario no existe, se crea y lo guarda en user
       user = User.new(name: name, email: email, password: password)
       #Seteo el total score en 0
       user.total_score = 0
+
+    #-----------------------------------------------
+    #-----------------------------------------------
 
       #Si el usuario se guarda entonces es un exito, sino error
       if user.save
@@ -121,18 +126,17 @@ class App < Sinatra::Application
         redirect '/'
       else
         logger.info 'NO SE PUDO REGISTRAR USUARIO'
-        redirect '/register-error'
+        erb :'errorregister'
       end
     end
   end
 
 
-  ## Solamente envia un mensaje
-  ## Podriamos cambiarlo y ponerle un boton el cual retorne de vuelta a el register.
-  get '/register-error' do
-    erb :'errorregister'
-  end
-
+#-----------------------------------------------------------------------------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -141,6 +145,8 @@ class App < Sinatra::Application
     #para determinar si el usuario ha iniciado sesión
     if session[:user_id]
       @temas = Topic.all
+      session[:indice] = 0
+      session[:tema_id] = 0
       erb :'principal'
     else
       redirect '/'
@@ -151,39 +157,42 @@ class App < Sinatra::Application
   post '/guardarPregunta' do
     quest = params[:pregunta]
     answer = params[:respuesta]
-
-    q = Question.new(description: quest)
-    q.value = 1
-    q.topic_id = params[:topic]
-
-    a = Option.new(description: answer)
-    a.isCorrect = true
-
-    if a.save && q.save
-      redirect '/principal'
-    else
-      redirect '/error-pregunta'
-    end
-
+    #-----------------------------------------------
+    #-----------------------------------------------
+    q = Question.new(description: quest)  #Crea una pregunta
+    q.value = 1                           #Setea el valor que tiene al responderse correcta
+    q.topic_id = params[:topic]           #Le otorgo el tipo pasado como parametro que corresponde a la pregunta
+    q.save                                #Lo guardo
+    #-----------------------------------------------
+    #-----------------------------------------------
+    a = Option.new(description: answer)   #Crea una nueva opcion
+    a.isCorrect = true                    # Es Correcta
+    a.question_id = q.id                  #Se le otorga a la respuesta le ID de la pregunta
+    a.save                                #Guarda la opcion
+     #-----------------------------------------------
+     #-----------------------------------------------
+    redirect '/principal'
   end
 
+#-----------------------------------------------------------------------------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-
-
-
-  get '/perfil' do
     # Verificar si el usuario ha iniciado sesión
-    #verificando si hay un user_id en la sesión
-    #para determinar si el usuario ha iniciado sesión
+    # Verificando si hay un user_id en la sesión
+    # Para determinar si el usuario ha iniciado sesión
+  get '/perfil' do
+    # Verificar si un usuario ha iniciado sesión
     if session[:user_id]
-      user_id = session[:user_id]
-      # Realiza las operaciones necesarias para obtener el usuario correspondiente al ID almacenado
-      @user = User.find(user_id)
-      @profile = @user.profile
 
-      # Resto de tu código...
-      erb :'perfile'
+      user_id = session[:user_id]   #Tomamos el id del usuario que inicio sesion
+      @user = User.find(user_id)    #Obtengo el usuario especifico del ID
+      @profile = @user.profile      #Obtengo el perfil especifico del ID
+     #-----------------------------------------------
+     #-----------------------------------------------
+      erb :'perfile'                #Mostramos los datos del usuario y Perfil
     else
       # El usuario no ha iniciado sesión, redirigir a la página de inicio de sesión o mostrar un mensaje de error
       redirect '/'
@@ -201,33 +210,35 @@ class App < Sinatra::Application
 
 
   post '/modify_profile' do
-    nuevoName = params[:name]
 
-    user = User.find(session[:user_id])
-    profile = user.profile
+    nuevoName = params[:name]           #Parametro otorga el nuevo nombre ingresado.
+    user = User.find(session[:user_id]) #Obtiene el usuario correspondiente al ID almacenado en el incio de session.
+    profile = user.profile              #Obtiene el perfil del usuario determinado.
 
     exist = User.find_by(name: nuevoName)
-    if exist
+    if exist                            #Si existe un usuario con ese nuevo Nombre, no lo permite.
       redirect '/error_modificar'
     end
+    #-----------------------------------------------
+    #-----------------------------------------------
 
-    if params[:name].present?
+    if params[:name].present?         #En caso de que no exista un usuario con ese nombre permite modificarlo
       user.name = params[:name]
       user.save
     end
 
-    if params[:psw].present?
-      user.password = params[:psw]
+    if params[:psw].present?         #Si se ingreso una nueva contraseña
+      user.password = params[:psw]   #Cambia la contraseña
       user.save
     end
 
-    if params[:email].present?
-      user.email = params[:email]
+    if params[:email].present?      #Si se ingreso un nuevo email
+      user.email = params[:email]   #Cambia el email
       user.save
     end
 
-    if params[:imagen].present?
-      profile.picture = params[:imagen]
+    if params[:imagen].present?         #Si se otorgo un link de imagen
+      profile.picture = params[:imagen] #Cambia el link de imagen
       profile.save
     end
 
@@ -255,21 +266,59 @@ class App < Sinatra::Application
   end
 
 
-  post '/game' do
-    @tema_id = params[:tema]
-    @questions = @tema_id.question
+  get '/game' do
+    session[:indice]              #Utilizamos session para poder ir almacenando el indice por el cual vamos.
+    @tema_id = params[:tema]      #Consido el id del tema pasado por parametros
+    session[:tema_id] = @tema_id  #Lo guardo en una session para poder utilizarlo
+    tema = Topic.find_by(id: @tema_id)
+    @question = tema.questions[session[:indice]] #Uso la estructura que devuelve las preguntas, con indices que van incrementando.
+    #-----------------------------------------------
+    #-----------------------------------------------
+    user = User.find_by(id: session[:user_id])  #Consigo el USER del usuario de la sesion
 
-    erb :'pregunta'
+    if @question != nil
+      @respondio = user.questions.exists?(@question.id)  # Verifica si el usuario ha respondido la pregunta concreta
+      if !@respondio
+        erb :'pregunta'
+      else
+        redirect '/yaRespondida'
+      end
+    else
+      redirect '/principal'
+    end
   end
 
 
   post '/verificar' do
-    respuestaID = params[:opcionElegida]
-    questionID = params[:question]
+    @respuestaID = params[:opcionElegida] #Parametro que otorga el ID de la respuesta seleccionada
+    questionID = params[:question]        #Parametro que otorga el ID de la pregunta respondida
+      #-----------------------------------------------
+      #-----------------------------------------------
+    session[:indice] += 1                 #Se ingrementa el indice para poder mostrar la siguiente pregunta.
+    respuesta = Option.find_by(id: @respuestaID)  #Obtengo la respuesta concreta que corresponde al ID
+    question = Question.find_by(id: questionID)   #Obtengo la pregunta concreta que corresponde al ID
+      #-----------------------------------------------
+      #-----------------------------------------------
 
+      # Si la respuesta otorgada es la correcta
+    if respuesta.isCorrect
+      user = User.find(session[:user_id])         # Obtengo el usuario correspondiente al id
+      user.total_score += question.value          # Sumo al score almacenado el valor de la respuesta si fue correcta.
+      user.save                                   # Guardo
+      user.questions << question
+      user.save
 
-    redirect '/game'
+    end
+    redirect '/game?tema=' + session[:tema_id].to_s
   end
+
+
+  get '/yaRespondida' do
+    session[:indice] += 1                 #Se ingrementa el indice para poder mostrar la siguiente pregunta.
+    redirect '/game?tema=' + session[:tema_id].to_s
+
+  end
+
 
 
   get '/usuarios' do

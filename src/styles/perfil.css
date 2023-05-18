@@ -2,53 +2,86 @@
   Archivo css para dar formato al perfil del usuario
 
 */
+/* Estilos generales */
+/* Estilos generales */
+body {
+  background: linear-gradient(to bottom, #2d3e50, #1a222e);
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #fff;
+}
 
-h1{
-    color: red;
-    font-weight: bold; 
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 44px;
-}
 .container {
-    display: flex;
-    font-weight: bold; 
-    font-size: 18px;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  margin: 20px auto;
+  max-width: 400px;
+  padding: 20px;
+  text-align: center;
 }
+
+h1 {
+  font-size: 30px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+p {
+  margin-bottom: 20px;
+}
+
+.boton {
+  background-color: #ff6f61;
+  border: none;
+  border-radius: 3px;
+  color: #fff;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 5px;
+  padding: 10px 20px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.boton:hover {
+  background-color: #e15750;
+}
+
+
 img {
-    border-radius: 50%;
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    margin-bottom: 10px;
-    margin-top: 20px;
+  border-radius: 50%;
 }
-.puntuacion {
-    font-family: Arial, sans-serif; /* Cambia la fuente según tus preferencias */
-    font-size: 18px; /* Tamaño de fuente para el texto de puntuación */
-    color: #000000; /* Color del texto de puntuación */
-    display: inline-block;
-    background-color: #afdee2; /* Color de fondo del contenedor */
-    padding: 10px; /* Espacio interno del contenedor */
-    border-radius: 5px; /* Bordes redondeados del contenedor */
-  }
-  
-  .puntuacion-texto {
-    font-weight: bold; /* Texto en negrita para el título "Score" */
-  }
-  
-  .puntuacion-numero {
-    font-weight: bold; /* Texto en negrita para el número de puntuación */
-    color: #0a0a0a; /* Color del número de puntuación */
-  }
-  
-  
- 
-  
-  
-  
-  
-  
-  
+
+.imagen {
+  width: 200px;
+  height: 200px;
+}
+
+/* Estilos adicionales para el fondo degradado */
+html {
+  height: 100%;
+}
+
+body:before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  background: linear-gradient(to bottom, #2d3e50, #1a222e);
+}
+
+/* Estilos adicionales para letras llamativas */
+h1 {
+  font-family: "Impact", sans-serif;
+  font-size: 36px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+p {
+  font-family: "Arial", sans-serif;
+}

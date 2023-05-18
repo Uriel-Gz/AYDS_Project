@@ -1,7 +1,6 @@
 class Question < ActiveRecord::Base
-  #relacion de muchos a muchos con user
+   #relacion de muchos a muchos con user
   has_and_belongs_to_many :users
-
 
   #relacion de muchos a 1 con topic
   belongs_to :topic

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_18_144919) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_18_203455) do
   create_table "achievements", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -26,7 +26,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_18_144919) do
   create_table "options", force: :cascade do |t|
     t.string "description"
     t.boolean "isCorrect"
-    t.integer "question_id"
+    t.integer "question_id", null: false
     t.index ["question_id"], name: "index_options_on_question_id"
   end
 
@@ -46,11 +46,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_18_144919) do
     t.index ["topic_id"], name: "index_questions_on_topic_id"
   end
 
-  create_table "questions_options", force: :cascade do |t|
-    t.integer "question_id"
-    t.integer "option_id"
-    t.index ["option_id"], name: "index_questions_options_on_option_id"
-    t.index ["question_id"], name: "index_questions_options_on_question_id"
+  create_table "questions_users", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "question_id", null: false
+    t.index ["question_id"], name: "index_questions_users_on_question_id"
+    t.index ["user_id"], name: "index_questions_users_on_user_id"
   end
 
   create_table "topics", force: :cascade do |t|
@@ -74,22 +74,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_18_144919) do
     t.index ["user_id"], name: "index_users_achivements_on_user_id"
   end
 
-  create_table "users_questions", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "question_id"
-    t.index ["question_id"], name: "index_users_questions_on_question_id"
-    t.index ["user_id"], name: "index_users_questions_on_user_id"
-  end
-
   add_foreign_key "answers", "options"
   add_foreign_key "answers", "questions"
   add_foreign_key "options", "questions"
   add_foreign_key "profiles", "users"
   add_foreign_key "questions", "topics"
-  add_foreign_key "questions_options", "options"
-  add_foreign_key "questions_options", "questions"
+  add_foreign_key "questions_users", "questions"
+  add_foreign_key "questions_users", "users"
   add_foreign_key "users_achivements", "achievements"
   add_foreign_key "users_achivements", "users"
-  add_foreign_key "users_questions", "questions"
-  add_foreign_key "users_questions", "users"
 end
