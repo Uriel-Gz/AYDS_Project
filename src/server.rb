@@ -247,7 +247,7 @@ class App < Sinatra::Application
   end
 
   get '/error_modificar' do
-    'el usuario ya esta en uso'
+    erb :'error_modificar'
   end
 
 
@@ -284,7 +284,7 @@ class App < Sinatra::Application
         redirect '/yaRespondida'
       end
     else
-      redirect '/principal'
+      erb :'preguntaterminadas'
     end
   end
 
