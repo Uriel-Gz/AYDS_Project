@@ -2,26 +2,25 @@
   Archivo css para dar formato al apartado de juego (la pagina principal) de la app
 
 */
-/* Estilos generales */
-/* Estilos generales */
+
 body {
-  background-color: #f2f2f2;
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
+  background-image: url("https://img.freepik.com/foto-gratis/diseno-espacio-papel-texturado-fondo_53876-34033.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .menu-lateral {
-	background-color: black;
-	color: #fff;
-	height: 100vh;
-	width: 200px;
-	position: fixed;
-	top: 0;
-	left: 0;
-	overflow-y: auto;
-	display: block;
-	padding-block-start: 80%;
+  background-color: #333;
+  color: #fff;
+  width: 200px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 20px;
 }
 
 .menu-lateral ul {
@@ -35,7 +34,7 @@ body {
 }
 
 .menu-lateral ul li a {
-  color:#0AC3BA ;
+  color: #fff;
   text-decoration: none;
   display: block;
   padding: 10px;
@@ -43,13 +42,14 @@ body {
   transition: background-color 0.3s ease;
 }
 
+.menu-lateral ul li a:hover {
+  background-color: #555;
+}
+
 .contenido-principal {
   margin-left: 220px;
   padding: 20px;
 }
- li:hover{
-	background-color: rgb(17, 29, 31);
- }
 
 .contenido-principal p {
   font-size: 24px;
@@ -113,7 +113,6 @@ body {
 }
 
 .contenido-principal {
-  background-color: #fff;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
@@ -142,3 +141,5 @@ body {
 .tema button:hover {
   background-color: #e15750;
 }
+
+/*

@@ -1,46 +1,128 @@
 
 
+body {
+  background-image: url('https://i.imgur.com/7bTMfjb.jpg'); /* Reemplaza 'fondo_lindo.jpg' con la ruta de tu imagen de fondo */
+  background-size: cover;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+#pregunta {
+  background-color: rgba(255, 255, 255, 0.5); /* Fondo más transparente */
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+h3 {
+  text-align: center;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  background-color: #F15656; /* Color de fondo del botón */
+  color: #fff; /* Color del texto del botón */
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #E53935; /* Color de fondo del botón al pasar el mouse */
+}
+
+
+
 
 body {
     font-family: Arial, sans-serif;
-    margin: 0;
+    margin-top:15%;
     padding: 0;
+    background-image: url("https://i.imgur.com/7bTMfjb.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
   }
 
+  img {
+    border-radius: 50%;
+    width: 250px;
+    height: 250px;
+    margin-bottom: 10px;
+    margin-top: 100px;
+  }
+
+
   h3 {
-    margin: 0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    height: 20px;
     padding: 0;
   }
 
   ul {
     list-style-type: none;
     padding: 0;
+    margin-top: 20px;
   }
 
 
   #pregunta {
+    background-color: rgba(82, 80, 68, 0.203); /* Fondo transparente */
     text-align: center;
-    margin-top: 50px;
+    margin-top: 50px auto;
+    padding: 20px;
+    border-radius: 10px;
   }
 
   button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    margin: 5px;
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
     border: none;
-    cursor: pointer;
+    background-color: #6bc2f8; /* Color de fondo del botón */
+    color: #000000; /* Color del texto del botón */
     font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
   }
 
   button:hover {
-    background-color: #45a049;
+    background-color: #ff5050; /* Color de fondo del botón al pasar el mouse */
   }
+
 
   button:focus {
     outline: none;
   }
 
+  #score {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+  }
 
 
 #pregunta-resp-false{

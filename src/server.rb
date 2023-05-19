@@ -53,9 +53,7 @@ class App < Sinatra::Application
    #HSe usa para habilitar las sesiones en todas las rutas utilizando enable :sessions.
    #Esto permite que Sinatra maneje automáticamente las cookies de sesión
    #y almacene los datos de sesión en el servidor.
-   configure do
     enable :sessions
-  end
 
   ## Para autentificar que la cuenta del usuario haya sido creada.
   post '/authenticate' do
@@ -120,7 +118,7 @@ class App < Sinatra::Application
       if user.save
         logger.info 'SE REGISTRO CON EXITO'
 
-        profile = Profile.new(user_id: user.id)
+        profile = Profile.new(user_id: user.id, picture: "https://sublistamp.com/8932-medium_default/camiseta-de-silueta-vegeta.jpg")
         profile.save
 
         redirect '/'
@@ -270,14 +268,14 @@ class App < Sinatra::Application
     session[:indice]              #Utilizamos session para poder ir almacenando el indice por el cual vamos.
     @tema_id = params[:tema]      #Consido el id del tema pasado por parametros
     session[:tema_id] = @tema_id  #Lo guardo en una session para poder utilizarlo
-    tema = Topic.find_by(id: @tema_id)
-    @question = tema.questions[session[:indice]] #Uso la estructura que devuelve las preguntas, con indices que van incrementando.
+    @tema = Topic.find_by(id: @tema_id)
+    @question = @tema.questions[session[:indice]] #Uso la estructura que devuelve las preguntas, con indices que van incrementando.
     #-----------------------------------------------
     #-----------------------------------------------
-    user = User.find_by(id: session[:user_id])  #Consigo el USER del usuario de la sesion
+    @user = User.find_by(id: session[:user_id])  #Consigo el USER del usuario de la sesion
 
     if @question != nil
-      @respondio = user.questions.exists?(@question.id)  # Verifica si el usuario ha respondido la pregunta concreta
+      @respondio = @user.questions.exists?(@question.id)  # Verifica si el usuario ha respondido la pregunta concreta
       if !@respondio
         erb :'pregunta'
       else
@@ -295,21 +293,20 @@ class App < Sinatra::Application
       #-----------------------------------------------
       #-----------------------------------------------
     session[:indice] += 1                 #Se ingrementa el indice para poder mostrar la siguiente pregunta.
-    respuesta = Option.find_by(id: @respuestaID)  #Obtengo la respuesta concreta que corresponde al ID
-    question = Question.find_by(id: questionID)   #Obtengo la pregunta concreta que corresponde al ID
+    @respuesta = Option.find_by(id: @respuestaID)  #Obtengo la respuesta concreta que corresponde al ID
+    @question = Question.find_by(id: questionID)   #Obtengo la pregunta concreta que corresponde al ID
       #-----------------------------------------------
       #-----------------------------------------------
 
       # Si la respuesta otorgada es la correcta
-    if respuesta.isCorrect
-      user = User.find(session[:user_id])         # Obtengo el usuario correspondiente al id
-      user.total_score += question.value          # Sumo al score almacenado el valor de la respuesta si fue correcta.
-      user.save                                   # Guardo
-      user.questions << question
-      user.save
-
+    if @respuesta.isCorrect
+      @user = User.find(session[:user_id])         # Obtengo el usuario correspondiente al id
+      @user.total_score += @question.value          # Sumo al score almacenado el valor de la respuesta si fue correcta.
+      @user.save                                   # Guardo
+      @user.questions << @question
+      @user.save
     end
-    redirect '/game?tema=' + session[:tema_id].to_s
+    erb :'respuesta'
   end
 
 

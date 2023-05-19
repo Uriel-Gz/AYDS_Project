@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="https://i.imgur.com/Nl7KAcL.png">
+
+  <title>SUG-MATH</title>
+
+  <link href="<%= url('/log_without_tm_ICO.ico') %>" rel="icon" type="image/ico">
+  <link href="<%= url('/pregunta.css') %>" rel="stylesheet" type="text/css"/>
+  </head>
+<body>
+  <center>
+  <%if @respuesta.isCorrect%>
+    <img class="imagen" src ="https://media.tenor.com/u_IPtHNqxhoAAAAd/vegeta-pulgar-arriba.gif">
+    <h1>Respuesta Correcta</h1>
+  <%else%>
+    <img class="imagen" src ="https://media.tenor.com/TPm5pDK5FmIAAAAC/hu006.gif">
+    <h1>Respuesta Incorrecta</h1>
+    <% options = Option.where(question_id: @question.id) %>
+      <% options.each do |option| %>
+        <%if option.isCorrect%>
+        <p name ="opcionCorrecta"> La respuesta correcta era: <%= option.description %> </p>
+        <%end%>
+    <% end %>
+  <%end%>
+  <a href="/game?tema=<%=session[:tema_id]%>">
+    <button class="fancy-button">Siguiente</button>
+  </a>
+  <center>
+</body>
+</html>
