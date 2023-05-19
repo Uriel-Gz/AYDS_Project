@@ -118,7 +118,7 @@ class App < Sinatra::Application
       if user.save
         logger.info 'SE REGISTRO CON EXITO'
 
-        profile = Profile.new(user_id: user.id, picture: "https://sublistamp.com/8932-medium_default/camiseta-de-silueta-vegeta.jpg")
+        profile = Profile.new(user_id: user.id, picture: "https://image.freepik.com/vector-gratis/avatar-cara-monstruo-dibujos-animados-monstruo-halloween_6996-1111.jpg")
         profile.save
 
         redirect '/'

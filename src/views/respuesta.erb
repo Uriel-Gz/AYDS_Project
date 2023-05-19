@@ -13,10 +13,10 @@
 <body>
   <center>
   <%if @respuesta.isCorrect%>
-    <img class="imagen" src ="https://media.tenor.com/u_IPtHNqxhoAAAAd/vegeta-pulgar-arriba.gif">
+    <img class="imagen" id="pregunta-resp-true" src ="https://th.bing.com/th/id/R.18cb277b7c1e705816512368ebfc7d84?rik=4OWiSaviHuiRQA&riu=http%3a%2f%2fihyaauddeen.co.za%2fwp-content%2fuploads%2f2014%2f05%2fcorrect-order.png&ehk=AMSDXh4%2fRJ3Xf6BgS5i04WR5IOKtzqoh62mpTNJnTD4%3d&risl=&pid=ImgRaw&r=0">
     <h1>Respuesta Correcta</h1>
   <%else%>
-    <img class="imagen" src ="https://media.tenor.com/TPm5pDK5FmIAAAAC/hu006.gif">
+    <img class="imagen" id="pregunta-resp-false" src ="https://static.vecteezy.com/system/resources/previews/001/194/357/large_2x/no-sign-cross-png.png">
     <h1>Respuesta Incorrecta</h1>
     <% options = Option.where(question_id: @question.id) %>
       <% options.each do |option| %>

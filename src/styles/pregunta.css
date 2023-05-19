@@ -1,20 +1,5 @@
 
 
-body {
-  background-image: url('https://i.imgur.com/7bTMfjb.jpg'); /* Reemplaza 'fondo_lindo.jpg' con la ruta de tu imagen de fondo */
-  background-size: cover;
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-}
-
-#pregunta {
-  background-color: rgba(255, 255, 255, 0.5); /* Fondo más transparente */
-  max-width: 600px;
-  margin: 50px auto;
-  padding: 20px;
-  border-radius: 10px;
-}
 
 h3 {
   text-align: center;
@@ -52,9 +37,9 @@ button:hover {
 
 body {
     font-family: Arial, sans-serif;
-    margin-top:15%;
+    margin-top:12%;
     padding: 0;
-    background-image: url("https://i.imgur.com/7bTMfjb.jpg");
+    background-image: url("https://i.pinimg.com/originals/ab/7b/5d/ab7b5d60e8f7458465c42f1493c8b7ce.jpg");
     background-repeat: no-repeat;
     background-size: cover;
   }
@@ -64,16 +49,26 @@ body {
     width: 250px;
     height: 250px;
     margin-bottom: 10px;
-    margin-top: 100px;
+    /* margin-top: 80px;} */
   }
 
 
   h3 {
-    margin-top: 10px;
-    margin-bottom: 10px;
     text-align: center;
-    height: 20px;
-    padding: 0;
+    align-items: center;
+    color: rgb(252, 252, 252);
+    border-radius: 10px;
+    margin-bottom: 40px;
+    text-shadow: 0 0 5px #000000;
+  }
+
+  h2 {
+    align-content: right;
+    align-items: center;
+    color: rgb(252, 252, 252);
+    border-radius: 10px;
+    margin-bottom: 40px;
+    text-shadow: 0 0 5px #87a315;
   }
 
   ul {
@@ -84,9 +79,9 @@ body {
 
 
   #pregunta {
-    background-color: rgba(82, 80, 68, 0.203); /* Fondo transparente */
-    text-align: center;
-    margin-top: 50px auto;
+    background-color: rgba(10, 190, 245, 0.203); /* Fondo transparente */
+    max-width: 600px;
+    margin: 50px auto;
     padding: 20px;
     border-radius: 10px;
   }
@@ -97,7 +92,7 @@ body {
     padding: 10px;
     margin-top: 10px;
     border: none;
-    background-color: #6bc2f8; /* Color de fondo del botón */
+    background-color: #6bd5f8; /* Color de fondo del botón */
     color: #000000; /* Color del texto del botón */
     font-size: 16px;
     font-weight: bold;
@@ -109,7 +104,7 @@ body {
   }
 
   button:hover {
-    background-color: #ff5050; /* Color de fondo del botón al pasar el mouse */
+    background-color: #10add8; /* Color de fondo del botón al pasar el mouse */
   }
 
 
@@ -118,15 +113,92 @@ body {
   }
 
   #score {
-    position: fixed;
+    /* position: ; */
+    margin-right: 20px;
     bottom: 0;
     left: 0;
-    text-align: center;
+    text-align: right;
+    /* margin-block-start: 80]%; */
+  }
+
+     h1, p{
+      color: white;
+      text-shadow: 0 0 20px white;
+    }
+
+    #h1{
+      margin-top: 250px;
+    }
+
+    p{
+      font-size: 20px;
+    }
+  a.boton{
+    display: block;
+    text-decoration: none;
+    color: #b8e4f3;
+    background-color: #03b6e87d;
+    height: 30px;
+    width: 150px;
+    padding-top: 8px;
+    padding-bottom: -1px;
+    border-radius: 5px;
+    margin-top: 50px;
+  }
+
+  a.boton:hover{
+    background-color: #00c8ff89;
+  }
+
+  .fancy-button{
+    margin-top: 50px;
+    width: 500px;
+    text-decoration: none;
+  }
+
+  #pregunta-resp-true{
+    box-shadow: 0 0 20px rgb(13, 225, 13);
+    animation:bounce-top .8s linear both
+  }
+
+  @keyframes bounce-top{
+    0%{
+      transform:translateY(-45px);
+      animation-timing-function:ease-in;opacity:1
+    }
+    24%{
+      opacity:1
+    }
+    40%{
+      transform:translateY(-24px);
+      animation-timing-function:ease-in
+    }
+    65%{
+      transform:translateY(-12px);
+      animation-timing-function:ease-in
+    }
+    82%{
+      transform:translateY(-6px);
+      animation-timing-function:ease-in
+    }
+    93%{
+      transform:translateY(-4px);
+      animation-timing-function:ease-in
+    }
+    25%,55%,75%,87%{
+      transform:translateY(0);
+      animation-timing-function:ease-out
+    }
+    100%{
+      transform:translateY(0);
+      animation-timing-function:ease-out;opacity:1
+    }
   }
 
 
 #pregunta-resp-false{
-    animation:wobble-horizontal-bottom .8s linear both
+  box-shadow: 0 0 20px red;
+  animation:wobble-horizontal-bottom .8s linear both
 }
  @keyframes wobble-horizontal-bottom{
     0%,100%{
