@@ -15,7 +15,7 @@ body {
 	opacity: 0.9;
 	color: white;
   }
-  
+
   .menu-lateral {
 	  background-color: black;
 	  color: #fff;
@@ -28,7 +28,7 @@ body {
 	  display: block;
 	  padding-block-start: 40%;
   }
-  
+
   #hds {
   background-color: inherit;
   color: #06eade;
@@ -36,21 +36,21 @@ body {
   cursor: pointer;
   font-size: 16px ;
   }
-  
+
   a{
 	cursor: pointer;
   }
-  
+
   .menu-lateral ul {
 	list-style-type: none;
 	padding: 0;
 	margin: 0;
   }
-  
+
   .menu-lateral ul li {
 	margin-bottom: 10px;
   }
-  
+
   .menu-lateral ul li a {
 	color:#09dfd4 ;
 	text-decoration: none;
@@ -59,7 +59,7 @@ body {
 	border-radius: 3px;
 	transition: background-color 0.3s ease;
   }
-  
+
   .contenido-principal {
 	color: white;
 	background-color: #037a926d;
@@ -72,20 +72,20 @@ body {
    li:hover{
 	  background-color: rgb(17, 29, 31);
    }
-  
+
   .contenido-principal p {
 	font-size: 24px;
 	margin-bottom: 20px;
   }
-  
+
   .form-question {
 	margin-bottom: 20px;
   }
-  
+
   .form-question label {
 	font-weight: bold;
   }
-  
+
   .form-question input[type="text"] {
 	width: 50%;
 	padding: 10px;
@@ -93,14 +93,14 @@ body {
 	border: 1px solid #ccc;
 	align-self: end;
   }
-  
+
   .topic {
 	width: 10%;
 	padding: 10px;
 	border-radius: 3px;
 	border: 1px solid #ccc;
   }
-  
+
   .tema button {
 	background-color: #ff6f61;
 	border: none;
@@ -114,11 +114,11 @@ body {
 	cursor: pointer;
 	font-weight: bold;
   }
-  
+
   .tema button:hover {
 	background-color: #e15750;
   }
-  
+
   /* Estilos adicionales */
   .menu-lateral ul {
 	display: flex;
@@ -126,7 +126,7 @@ body {
 	align-items: center;
 	justify-content: center;
   }
-  
+
   .menu-lateral ul li a {
 	display: inline-block;
 	width: 150px;
@@ -134,19 +134,19 @@ body {
 	font-size: 16px;
 	padding: 12px;
   }
-  
+
   .contenido-principal {
 	/* background-color: inherit; */
 	border-radius: 5px;
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 	}
-  
+
   .form-question input[type="text"],
   .topic {
 	background-color: #f9f9f9;
 	color: #1e1d1d;
   }
-  
+
   .tema button {
 	background-color: #ff6f61;
 	border: none;
@@ -161,13 +161,58 @@ body {
 	font-weight: bold;
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   }
-  
+
   .tema button:hover {
 	background-color: #e15750;
   }
-  
+
   select.tema{
 	width: 10%;
 	padding: 10px;
   }
-  
+
+
+
+
+
+	.tema-button {
+		display: block;
+		padding: 20px 3px; /* Ajusta el padding vertical y horizontal */
+		border: 2px solid #ccc;
+		border-radius: 4px;
+		cursor: pointer;
+		text-decoration: none;
+		color: #333;
+		width: 310px;
+	}
+
+	.tema-button:hover {
+		background-color: #f2f2f2;
+	}
+
+	.tema-content {
+		height: 50%; /* Agrega esta propiedad para ajustar la altura */
+		padding: 1px; /* Ajusta el valor del padding según tu preferencia */
+
+		color: #3fe2ff;
+		text-align: center;
+	}
+
+	.tema-content h3 {
+		margin: 0;
+	}
+
+	.tema-content p {
+		margin: 5px 0;
+	}
+
+
+	.tema-item {
+		display: inline-block;
+		margin-right: 10px; /* Ajusta el margen derecho según tu preferencia */
+	}
+
+	/* El último elemento no tendrá margen derecho para evitar espacios adicionales */
+	.tema-item:last-child {
+		margin-right: 0;
+	}

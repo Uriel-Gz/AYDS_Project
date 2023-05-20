@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_18_203455) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_20_112148) do
   create_table "achievements", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -67,11 +67,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_18_203455) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "users_achivements", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "achievement_id"
-    t.index ["achievement_id"], name: "index_users_achivements_on_achievement_id"
-    t.index ["user_id"], name: "index_users_achivements_on_user_id"
+  create_table "users_achievements", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "achievement_id", null: false
+    t.index ["achievement_id"], name: "index_users_achievements_on_achievement_id"
+    t.index ["user_id"], name: "index_users_achievements_on_user_id"
   end
 
   add_foreign_key "answers", "options"
@@ -81,6 +81,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_18_203455) do
   add_foreign_key "questions", "topics"
   add_foreign_key "questions_users", "questions"
   add_foreign_key "questions_users", "users"
-  add_foreign_key "users_achivements", "achievements"
-  add_foreign_key "users_achivements", "users"
+  add_foreign_key "users_achievements", "achievements"
+  add_foreign_key "users_achievements", "users"
 end

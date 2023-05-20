@@ -8,6 +8,9 @@
     <link href="<%= url('/pregunta.css') %>" rel="stylesheet" type="text/css"/>
 </head>
 <body>
+    <div id="salir">
+        <a href="/seleccionar" class="boton-salir">Salir</a>
+    </div>
     <div id="pregunta">
     <form action="/verificar" method="post">
             <h3><%= @question.description %></h3>

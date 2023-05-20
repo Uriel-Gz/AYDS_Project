@@ -34,7 +34,6 @@ button:hover {
 
 
 
-
 body {
     font-family: Arial, sans-serif;
     margin-top:12%;
@@ -220,4 +219,19 @@ body {
     75%{
         transform:translateX(-6px) rotate(-1.2deg)
     }
+}
+
+
+#salir {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.boton-salir {
+  background-color: red;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
 }

@@ -252,7 +252,9 @@ class App < Sinatra::Application
 
 
   get '/logros' do
-    erb :'logro'
+    @user = User.find(session[:user_id])
+
+    erb :logro
   end
 
 
@@ -263,6 +265,16 @@ class App < Sinatra::Application
     redirect '/'
   end
 
+  get '/seleccionar' do
+    if session[:user_id]
+      @temas = Topic.all
+      session[:indice] = 0
+      session[:tema_id] = 0
+      erb :'seleccionar'
+    else
+      redirect '/'
+    end
+  end
 
   get '/game' do
     session[:indice]              #Utilizamos session para poder ir almacenando el indice por el cual vamos.

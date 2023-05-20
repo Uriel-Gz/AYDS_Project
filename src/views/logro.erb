@@ -10,7 +10,16 @@
 </head>
 <head>
 <body>
-<h1><center>Logros</center></h1>
+  <h1><center>Logros</center></h1>
+  <% if @logros = nil %>
+    <ul>
+      <% @logros.each do |logro| %>
+        <li><%= logro.name %></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>No tienes Logros</p>
+  <% end %>
 	<div>
 		<a href="/principal" class="boton">Volver Principal</a>
 	</div>
