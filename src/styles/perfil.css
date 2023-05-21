@@ -7,6 +7,7 @@ html{
   background-image: url('https://th.bing.com/th/id/R.5cf725699a41fe28493e5ecb69c0eb95?rik=vgMoBRbbhJ9LPw&riu=http%3a%2f%2fblogfiles.naver.net%2f20140813_188%2fthinkingbug_1407866288755v2daK_JPEG%2f%C8%B2%25B1%DD%BA%25F12.jpg&ehk=YBlRTnpdYqzGz280mDtWxTTbSx4o3f6YfImjiveWFyk%3d&risl=&pid=ImgRaw&r=0');
   background-size: 80%;
   background-position: center;
+  height: 100%;
 }
 
 h1, p{

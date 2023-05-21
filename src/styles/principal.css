@@ -5,6 +5,8 @@
 
 html{
 	background-image: url('https://static.vecteezy.com/system/resources/previews/000/830/913/original/dark-background-with-aqua-overlapping-layers-vector.jpg');
+	background-size: 130%;
+	height: 100%;
 }
 
 body {
@@ -26,7 +28,7 @@ body {
 	  left: 0;
 	  overflow-y: auto;
 	  display: block;
-	  padding-block-start: 40%;
+	  padding-block-start: 35%;
   }
 
   #hds {
