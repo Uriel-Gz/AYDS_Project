@@ -15,7 +15,11 @@
     <form action="/verificar" method="post">
             <h3><%= @question.description %></h3>
             <ul>
-                <% options = Option.where(question_id: @question.id) %>
+                <!--El método shuffle en Ruby se utiliza para mezclar aleatoriamente los elementos de un arreglo.
+                    Cuando se llama al método shuffle en un arreglo, se reorganizan los elementos en un orden aleatorio.
+                    Esto significa que los elementos del arreglo original se mezclarán de forma aleatoria,
+                    creando un nuevo arreglo con el orden aleatorio. El arreglo original no se modifica. -->
+                <% options = Option.where(question_id: @question.id).shuffle %>
                 <% options.each do |option| %>
                     <input type="hidden" name="question" value="<%= @question.id %>">
                     <input type="hidden" name="indice" value="<%= @indice %>">

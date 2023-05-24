@@ -39,7 +39,6 @@ class App < Sinatra::Application
     set :public_folder, File.join(File.dirname(__FILE__), 'styles')
 
 
-
     get '/' do
       if session[:user_id]
         redirect '/principal';
@@ -277,21 +276,18 @@ class App < Sinatra::Application
   end
 
   get '/game' do
-    session[:indice]              #Utilizamos session para poder ir almacenando el indice por el cual vamos.
-    @tema_id = params[:tema]      #Consido el id del tema pasado por parametros
-    session[:tema_id] = @tema_id  #Lo guardo en una session para poder utilizarlo
-    @tema = Topic.find_by(id: @tema_id)
-    @question = @tema.questions[session[:indice]] #Uso la estructura que devuelve las preguntas, con indices que van incrementando.
-    #-----------------------------------------------
-    #-----------------------------------------------
+    session[:tema_id] = params[:tema]  #Lo guardo en una session para poder utilizarlo
+    @tema = Topic.find_by(id: params[:tema])
     @user = User.find_by(id: session[:user_id])  #Consigo el USER del usuario de la sesion
+    #-----------------------------------------------
+    #-----------------------------------------------
+    @respondidas = @user.questions.pluck(:id)  #Permite obtener los id de las preguntas que respondio
+    @questions = @tema.questions.where.not(id: @respondidas)  #Obtengo preguntas no respondidas
 
-    if @question != nil
-      @respondio = @user.questions.exists?(@question.id)  # Verifica si el usuario ha respondido la pregunta concreta
-      if !@respondio
+    if @questions.any?                #Pregnta si contiene algun elemento.
+      @question = @questions.sample   #Se utiliza para seleccionar de forma aleatoria un elemento de una colección, como un arreglo o un conjunto.
+      if @question != nil             #Es igual a nil?
         erb :'pregunta'
-      else
-        redirect '/yaRespondida'
       end
     else
       erb :'preguntaterminadas'
@@ -304,7 +300,6 @@ class App < Sinatra::Application
     questionID = params[:question]        #Parametro que otorga el ID de la pregunta respondida
       #-----------------------------------------------
       #-----------------------------------------------
-    session[:indice] += 1                 #Se ingrementa el indice para poder mostrar la siguiente pregunta.
     @respuesta = Option.find_by(id: @respuestaID)  #Obtengo la respuesta concreta que corresponde al ID
     @question = Question.find_by(id: questionID)   #Obtengo la pregunta concreta que corresponde al ID
       #-----------------------------------------------
@@ -323,9 +318,7 @@ class App < Sinatra::Application
 
 
   get '/yaRespondida' do
-    session[:indice] += 1                 #Se ingrementa el indice para poder mostrar la siguiente pregunta.
     redirect '/game?tema=' + session[:tema_id].to_s
-
   end
 
 
