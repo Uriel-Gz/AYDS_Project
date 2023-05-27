@@ -1,5 +1,6 @@
 require "./server"
 
+
 #Creacion de temas
 Topic.create(nombre: "Suma" , descripcion: "La adición o suma es la operación matemática de composición que consiste en combinar o añadir dos números o más para obtener una cantidad final o total.")
 Topic.create(nombre: "Resta" , descripcion: "La resta o sustracción es una operación matemática que consiste en sacar, quitar, reducir o separar algo de un todo.")
@@ -90,9 +91,9 @@ Option.create(description: "$60", isCorrect: false, question_id: 10)
 
 
 #Creacion de Preguntas de Multiplicacion
-Question.create(value: 1, description: "¿Cuánto es 9 * 5?", nivel_q: 1, topic: 3)
+Question.create(value: 1, description: "¿Cuánto es 9 * 5?", nivel_q: 1, topic_id: 3)
 Question.create(value: 1, description: "Si tienes 8 amigos y cada uno de ellos tiene 3 caramelos, ¿cuántos caramelos hay en total? ", nivel_q: 1, topic_id: 3)
-Question.create(value: 1, description: "Si tienes 10 billetes de $20 y 5 monedas de $1, ¿cuánto dinero tienes en total?", nivel_q: 1, topic_id: topic_id: 3)
+Question.create(value: 1, description: "Si tienes 10 billetes de $20 y 5 monedas de $1, ¿cuánto dinero tienes en total?", nivel_q: 1, topic_id: 3)
 
 #Respuestas
 Option.create(description: "20", isCorrect: false, question_id: 11)
@@ -104,3 +105,10 @@ Option.create(description: "$205", isCorrect: true, question_id: 12)
 Option.create(description: "$150", isCorrect: false, question_id: 12)
 Option.create(description: "$250", isCorrect: false, question_id: 12)
 Option.create(description: "$250", isCorrect: false, question_id: 12)
+
+#Logros
+Achievement.create(name: "Primera Correcta",description: "Respondiste tu primer pregunta bien", point: 1)
+Achievement.create(name: "Bien jugado",description: " Respondiste 5 respuestas correctas", point: 5)
+Achievement.create(name: "Dominio de matematicas",description: "Respondiste 50 respuestas correctas", point: 50)
+Achievement.create(name: "Ya podes dar clases",description: "Respondiste 100 respuestas correctas", point: 100)
+

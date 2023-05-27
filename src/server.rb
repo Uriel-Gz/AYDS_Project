@@ -11,6 +11,7 @@ require_relative 'models/topic'
 require_relative 'models/question'
 require_relative 'models/option'
 require_relative 'models/profile'
+require_relative 'models/achievement'
 
 class App < Sinatra::Application
   def initialize(app = nil)
@@ -252,7 +253,7 @@ class App < Sinatra::Application
 
   get '/logros' do
     @user = User.find(session[:user_id])
-
+    @logros = Achievement.all
     erb :logro
   end
 

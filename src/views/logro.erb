@@ -8,18 +8,21 @@
   <link href="<%= url('/logros.css') %>" rel="stylesheet" type="text/css"/>
   <!-- <link rel="stylesheet" href="/css/style.css"> -->
 </head>
-<head>
 <body>
   <h1><center>Logros</center></h1>
-  <% if @logros = nil %>
+  <% if @logros != nil %>
     <ul>
       <% @logros.each do |logro| %>
         <li><%= logro.name %></li>
+        <p><%= logro.description%><p>
+        <progress value="<%= @user.total_score %>" max="<%= logro.point  %>"></progress>
       <% end %>
     </ul>
   <% else %>
     <p>No tienes Logros</p>
   <% end %>
+
+  
 	<div>
 		<a href="/principal" class="boton">Volver Principal</a>
 	</div>

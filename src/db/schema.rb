@@ -14,6 +14,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_20_112148) do
   create_table "achievements", force: :cascade do |t|
     t.string "name"
     t.string "description"
+    t.integer "point"
   end
 
   create_table "answers", force: :cascade do |t|

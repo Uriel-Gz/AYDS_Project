@@ -4,6 +4,7 @@ class CreateAchievement < ActiveRecord::Migration[7.0]
       # aL ID lo crea automaticamente
       t.string :name
       t.string :description
+      t.integer :point
 
     end
   end
