@@ -18,9 +18,18 @@
 </head>
 
 <body>
-  <center>
-  <h3>No se pudo registrar el usuario</h3>
-  <p>El nombre de usuario ya existe</p>
-  <a href="/registrar" class="boton">Volver a intentarlo</a>
-  </center>
+  <%if @exist%>
+    <center>
+    <h3>No se pudo registrar el usuario</h3>
+    <p>El nombre de usuario ya existe</p>
+    <a href="/registrar" class="boton">Volver a intentarlo</a>
+    </center>
+  <%end%>
+  <%if !@sonIguales%>
+    <center>
+    <h3>No se pudo registrar el usuario</h3>
+    <p>Las contraseñas no coinciden</p>
+    <a href="/registrar" class="boton">Volver a intentarlo</a>
+    </center>
+  <%end%>
 </body>

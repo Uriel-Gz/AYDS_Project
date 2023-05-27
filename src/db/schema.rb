@@ -17,6 +17,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_20_112148) do
     t.integer "point"
   end
 
+  create_table "achievements_users", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "achievement_id", null: false
+    t.index ["achievement_id"], name: "index_achievements_users_on_achievement_id"
+    t.index ["user_id"], name: "index_achievements_users_on_user_id"
+  end
+
   create_table "answers", force: :cascade do |t|
     t.integer "option_id"
     t.integer "question_id"
@@ -68,13 +75,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_20_112148) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "users_achievements", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "achievement_id", null: false
-    t.index ["achievement_id"], name: "index_users_achievements_on_achievement_id"
-    t.index ["user_id"], name: "index_users_achievements_on_user_id"
-  end
-
+  add_foreign_key "achievements_users", "achievements"
+  add_foreign_key "achievements_users", "users"
   add_foreign_key "answers", "options"
   add_foreign_key "answers", "questions"
   add_foreign_key "options", "questions"
@@ -82,6 +84,4 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_20_112148) do
   add_foreign_key "questions", "topics"
   add_foreign_key "questions_users", "questions"
   add_foreign_key "questions_users", "users"
-  add_foreign_key "users_achievements", "achievements"
-  add_foreign_key "users_achievements", "users"
 end

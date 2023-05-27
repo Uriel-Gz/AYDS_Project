@@ -10,21 +10,32 @@
 </head>
 <body>
   <h1><center>Logros</center></h1>
-  <% if @logros != nil %>
+  <% if @logros_usuario != nil %>
     <ul>
-      <% @logros.each do |logro| %>
-        <li><%= logro.name %></li>
-        <p><%= logro.description%><p>
-        <progress value="<%= @user.total_score %>" max="<%= logro.point  %>"></progress>
+      <% @logros_usuario.each do |logro| %>
+        <li>
+          <h2><%= logro.name %></h2>
+          <p><%= logro.description%><p>
+          <progress value="<%= @user.total_score %>" max="<%= logro.point  %>"></progress>
+          <p> LOGRO DESBLOQUEADO </p>
+        </li>
       <% end %>
+
+      <% @logrosNO_obtenidos.each do |logro| %>
+        <li class="locked">
+          <h2 class="locked-text"><%= logro.name %></h2>
+          <p class="locked-text"><%= logro.description %></p>
+          <progress value="<%= @user.total_score %>" max="<%= logro.point %>"></progress>
+          <p> Te faltan <%=logro.point - @user.total_score%> puntos </p>
+        </li>
+      <% end %>
+
     </ul>
-  <% else %>
-    <p>No tienes Logros</p>
   <% end %>
 
-  
 	<div>
 		<a href="/principal" class="boton">Volver Principal</a>
 	</div>
 
 </body>
+</head>

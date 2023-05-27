@@ -13,6 +13,7 @@ require_relative 'models/option'
 require_relative 'models/profile'
 require_relative 'models/achievement'
 
+
 class App < Sinatra::Application
   def initialize(app = nil)
     super()
@@ -93,38 +94,44 @@ class App < Sinatra::Application
   post '/register' do
     name = params[:uname]
     password = params[:psw]
+    repPassword = params[:psw2]
     email = params[:email]
 
     #-----------------------------------------------
     #-----------------------------------------------
 
     ##Verifica si el usuario existe o no
-    exist = User.find_by(name: name)
+    @exist = User.find_by(name: name)
 
     ## El usuario existe no lo crea
-    if exist
+    if @exist
       logger.info 'NO SE PUDO REGISTRAR USUARIO'
       erb :'errorregister'
     else
-      ## El usuario no existe, se crea y lo guarda en user
-      user = User.new(name: name, email: email, password: password)
-      #Seteo el total score en 0
-      user.total_score = 0
-
-    #-----------------------------------------------
-    #-----------------------------------------------
-
-      #Si el usuario se guarda entonces es un exito, sino error
-      if user.save
-        logger.info 'SE REGISTRO CON EXITO'
-
-        profile = Profile.new(user_id: user.id, picture: "https://image.freepik.com/vector-gratis/avatar-cara-monstruo-dibujos-animados-monstruo-halloween_6996-1111.jpg")
-        profile.save
-
-        redirect '/'
-      else
-        logger.info 'NO SE PUDO REGISTRAR USUARIO'
+      @sonIguales = (password == repPassword)
+      if !@sonIguales
         erb :'errorregister'
+      else
+        ## El usuario no existe, se crea y lo guarda en user
+        user = User.new(name: name, email: email, password: password)
+        #Seteo el total score en 0
+        user.total_score = 0
+
+      #-----------------------------------------------
+      #-----------------------------------------------
+
+        #Si el usuario se guarda entonces es un exito, sino error
+        if user.save
+          logger.info 'SE REGISTRO CON EXITO'
+
+          profile = Profile.new(user_id: user.id, picture: "https://image.freepik.com/vector-gratis/avatar-cara-monstruo-dibujos-animados-monstruo-halloween_6996-1111.jpg")
+          profile.save
+
+          redirect '/'
+        else
+          logger.info 'NO SE PUDO REGISTRAR USUARIO'
+          erb :'errorregister'
+        end
       end
     end
   end
@@ -249,16 +256,6 @@ class App < Sinatra::Application
   end
 
 
-
-
-  get '/logros' do
-    @user = User.find(session[:user_id])
-    @logros = Achievement.all
-    erb :logro
-  end
-
-
-
   post '/logout' do
     #Eliminamos el id del usuario para garantizar que esté cerro session
     session[:user_id] = nil;
@@ -275,6 +272,27 @@ class App < Sinatra::Application
       redirect '/'
     end
   end
+
+  get '/logros' do
+    @user = User.find(session[:user_id])
+    @logros = Achievement.all
+    @logrosObtenidos = @user.achievements.pluck(:id)
+    @logrosNO_obtenidos = Achievement.where.not(id: @logrosObtenidos)
+
+    @logrosNO_obtenidos.each do |logro|
+      if @user.total_score >= logro.point
+        @user.achievements << logro
+        @user.save
+      end
+    end
+
+    @logrosObtenidos = @user.achievements.pluck(:id)
+    @logrosNO_obtenidos = Achievement.where.not(id: @logrosObtenidos)
+
+    @logros_usuario = @user.achievements
+    erb :logro
+  end
+
 
   get '/game' do
     session[:tema_id] = params[:tema]  #Lo guardo en una session para poder utilizarlo
@@ -333,6 +351,11 @@ class App < Sinatra::Application
     else
       erb :'mostrarUsuarios'
     end
+  end
+
+  get '/cargar' do
+
+
   end
 
 end
