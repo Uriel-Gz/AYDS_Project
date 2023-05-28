@@ -10,7 +10,7 @@
     <title> Menu </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initialinitial-scale=1.0">
-  <link href="<%= url('/selecionar.css') %>" rel="stylesheet" type="text/css"/>
+  <link href="<%= url('/seleccionar.css') %>" rel="stylesheet" type="text/css"/>
   </head>
   <body>
 
@@ -20,7 +20,7 @@
       <div class="tema-list">
         <% @temas.each do |topic|  %>
         <div class="tema-item">
-          <a href="/game?tema=<%= topic.id %>" class="tema-button">
+          <a href="/niveles?tema=<%= topic.id %>" class="tema-button">
           <div class="tema-content">
             <h3><%= topic.nombre %></h3>
             <p><%= topic.descripcion %></p>

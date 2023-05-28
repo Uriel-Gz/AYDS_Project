@@ -265,7 +265,6 @@ class App < Sinatra::Application
   get '/seleccionar' do
     if session[:user_id]
       @temas = Topic.all
-      session[:indice] = 0
       session[:tema_id] = 0
       erb :'seleccionar'
     else
@@ -273,31 +272,22 @@ class App < Sinatra::Application
     end
   end
 
-  get '/logros' do
-    @user = User.find(session[:user_id])
-    @logros = Achievement.all
-    @logrosObtenidos = @user.achievements.pluck(:id)
-    @logrosNO_obtenidos = Achievement.where.not(id: @logrosObtenidos)
-
-    @logrosNO_obtenidos.each do |logro|
-      if @user.total_score >= logro.point
-        @user.achievements << logro
-        @user.save
-      end
-    end
-
-    @logrosObtenidos = @user.achievements.pluck(:id)
-    @logrosNO_obtenidos = Achievement.where.not(id: @logrosObtenidos)
-
-    @logros_usuario = @user.achievements
-    erb :logro
+  get '/niveles' do
+    session[:tema_id] = params[:tema]
+    @tema = Topic.find_by(id: session[:tema_id]) #Consigo el TEMA de las preguntas
+    @user = User.find_by(id: session[:user_id])  #Consigo el USER del usuario de la sesion
+    @respondidas = @user.questions.pluck(:id)    #Permite obtener los id de las preguntas que respondio
+    @niveles_tema = @tema.questions.distinct.pluck(:nivel_q).count #Cantidad niveles del tema
+    session[:nivel] = nil
+    erb :'niveles'
   end
 
-
+=begin
   get '/game' do
     session[:tema_id] = params[:tema]  #Lo guardo en una session para poder utilizarlo
     @tema = Topic.find_by(id: params[:tema])
     @user = User.find_by(id: session[:user_id])  #Consigo el USER del usuario de la sesion
+    @nivel = params[:nivel]
     #-----------------------------------------------
     #-----------------------------------------------
     @respondidas = @user.questions.pluck(:id)  #Permite obtener los id de las preguntas que respondio
@@ -312,7 +302,28 @@ class App < Sinatra::Application
       erb :'preguntaterminadas'
     end
   end
+=end
 
+  get '/game' do
+    session[:tema_id] = params[:tema]  #Lo guardo en una session para poder utilizarlo
+    @tema = Topic.find_by(id: params[:tema])
+    @user = User.find_by(id: session[:user_id])  #Consigo el USER del usuario de la sesion
+    session[:nivel] = params[:nivel]
+    #-----------------------------------------------
+    #-----------------------------------------------
+    @respondidas = @user.questions.pluck(:id)  #Permite obtener los id de las preguntas que respondio
+    @preguntas_nivel = Question.where(nivel_q: session[:nivel], topic_id: session[:tema_id])
+    @questions = @preguntas_nivel.where.not(id: @respondidas) #Obtengo preguntas no respondidas
+
+    if @questions.any?                #Pregnta si contiene algun elemento.
+      @question = @questions.sample   #Se utiliza para seleccionar de forma aleatoria un elemento de una colección, como un arreglo o un conjunto.
+      if @question != nil             #Es igual a nil?
+        erb :'pregunta'
+      end
+    else
+      erb :'preguntaterminadas'
+    end
+  end
 
   post '/verificar' do
     @respuestaID = params[:opcionElegida] #Parametro que otorga el ID de la respuesta seleccionada
@@ -336,10 +347,25 @@ class App < Sinatra::Application
   end
 
 
-  get '/yaRespondida' do
-    redirect '/game?tema=' + session[:tema_id].to_s
-  end
+  get '/logros' do
+    @user = User.find(session[:user_id])
+    @logros = Achievement.all
+    @logrosObtenidos = @user.achievements.pluck(:id)
+    @logrosNO_obtenidos = Achievement.where.not(id: @logrosObtenidos)
 
+    @logrosNO_obtenidos.each do |logro|
+      if @user.total_score >= logro.point
+        @user.achievements << logro
+        @user.save
+      end
+    end
+
+    @logrosObtenidos = @user.achievements.pluck(:id)
+    @logrosNO_obtenidos = Achievement.where.not(id: @logrosObtenidos)
+
+    @logros_usuario = @user.achievements
+    erb :logro
+  end
 
 
   get '/usuarios' do
@@ -351,11 +377,6 @@ class App < Sinatra::Application
     else
       erb :'mostrarUsuarios'
     end
-  end
-
-  get '/cargar' do
-
-
   end
 
 end

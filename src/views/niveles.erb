@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <title>SUG-MATH</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://i.imgur.com/Nl7KAcL.png">
+    <title>Niveles</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initialinitial-scale=1.0">
+    <link href="<%= url('/niveles.css') %>" rel="stylesheet" type="text/css"/>
+
+  </head>
+  <body>
+    <div id="salir">
+      <a href="/seleccionar" class="boton-salir">Salir</a>
+    </div>
+
+    <div class="niveles">
+      <h1> Niveles de <%= @tema.nombre %></h1>
+
+        <ul>
+          <% for i in (1..@niveles_tema) %>
+            <% preguntas_nivel = Question.where(nivel_q: i).where.not(id: @respondidas) %>
+
+            <% if preguntas_nivel.any? %>
+              <li>
+                <a href="/game?tema=<%= session[:tema_id] %>&nivel=<%= i %>" class="tema-link">Nivel <%= i %></a>
+              </li>
+              <% break %>
+            <% else %>
+              <li>
+                <a href="/game?tema=<%= session[:tema_id] %>&nivel=<%= i %>" class="tema-link">Nivel <%= i %></a>
+              </li>
+              <% total = i %>
+            <% end %>
+
+            <% end %>
+
+          <% if total == @niveles_tema %>
+            <li>
+              <p> Terminaste todas las preguntas de este tema </p>
+            </li>
+          <% end %>
+        </ul>
+</div>
+
+
+  </body>
+</html>

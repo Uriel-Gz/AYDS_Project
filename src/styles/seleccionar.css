@@ -15,7 +15,7 @@ label{
     font-weight: bold;
     font-family: 'Times New Roman', Times, serif;
     font-size: 35px;
-    text-shadow: 0 0 20px rgba(254, 254, 254, 0.473), 
+    text-shadow: 0 0 20px rgba(254, 254, 254, 0.473),
                  0 0 10px rgba(255, 255, 255, 0.829);
     text-align: center;
     padding-top: 30px;
@@ -83,8 +83,7 @@ p{
         align-self: flex-end;
         width: 100px;
       }
-    
+
       .boton:hover {
         background-color: #028db3;
       }
-    

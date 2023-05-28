@@ -43,11 +43,39 @@ Option.create(description: "41", isCorrect: true, question_id: 5)
 
 
 
-#Question.create(value: 5, description: "¿Cuánto es 648 + 527?", nivel_q: 2, topic_id: 1)
-#Question.create(value: 5, description: "¿Cuánto es 3214 + 4987?", nivel_q: 2, topic_id: 1)
-#Question.create(value: 5, description: "¿Cuánto es 15487 + 26934?", nivel_q: 2, topic_id: 1)
-#Question.create(value: 5, description: "¿Cuánto es 123 + 89?", nivel_q: 2, topic_id: 1)
-#Question.create(value: 5, description: "¿Cuánto es 532 + 187?", nivel_q: 2, topic_id: 1)
+Question.create(value: 5, description: "¿Cuánto es 648 + 527?", nivel_q: 2, topic_id: 1)
+Question.create(value: 5, description: "¿Cuánto es 3214 + 4987?", nivel_q: 2, topic_id: 1)
+Question.create(value: 5, description: "¿Cuánto es 15487 + 26934?", nivel_q: 2, topic_id: 1)
+Question.create(value: 5, description: "¿Cuánto es 123 + 89?", nivel_q: 2, topic_id: 1)
+Question.create(value: 5, description: "¿Cuánto es 532 + 187?", nivel_q: 2, topic_id: 1)
+
+
+Option.create(description: 1175, isCorrect: true, question_id: 6)
+Option.create(description: 1170, isCorrect: false, question_id: 6)
+Option.create(description: 1100, isCorrect: false, question_id: 6)
+Option.create(description: 1180, isCorrect: false, question_id: 6)
+
+
+Option.create(description: 8201, isCorrect: true, question_id: 7)
+Option.create(description: 8202, isCorrect: false, question_id: 7)
+Option.create(description: 8203, isCorrect: false, question_id: 7)
+Option.create(description: 8200, isCorrect: false, question_id: 7)
+
+
+Option.create(description: 42421, isCorrect: true, question_id: 8)
+Option.create(description: 42400, isCorrect: false, question_id: 8)
+Option.create(description: 42550, isCorrect: false, question_id: 8)
+Option.create(description: 41691, isCorrect: false, question_id: 8)
+
+Option.create(description: 212, isCorrect: true, question_id: 9)
+Option.create(description: 211, isCorrect: false, question_id: 9)
+Option.create(description: 210, isCorrect: false, question_id: 9)
+Option.create(description: 213, isCorrect: false, question_id: 9)
+
+Option.create(description: 719, isCorrect: true, question_id: 10)
+Option.create(description: 718, isCorrect: false, question_id: 10)
+Option.create(description: 716, isCorrect: false, question_id: 10)
+Option.create(description: 712, isCorrect: false, question_id: 10)
 
 #Question.create(value: 10, description: "En una fiesta, se reparten 4 galletas a cada niño. Si hay 12 niños en total, ¿cuántas galletas se necesitan en total?", nivel_q: 3, topic_id: 1)
 #Question.create(value: 10, description: "Un vendedor compró 10 cajas de lápices. Cada caja contiene 24 lápices. ¿Cuántos lápices compró en total?", nivel_q: 3, topic_id: 1)
