@@ -12,7 +12,7 @@
   </head>
 <body>
     <div id="salir">
-        <a href="/principal" class="boton-salir">Salir</a>
+        <a href="/niveles?tema=<%= @tema_id %>" class="boton-salir">Salir</a>
     </div>
   <center>
   <%if @respuesta.isCorrect%>
@@ -28,9 +28,12 @@
         <%end%>
     <% end %>
   <%end%>
-  <a href="/game?tema=<%= session[:tema_id] %>&nivel=<%= session[:nivel] %>">
-    <button class="fancy-button">Siguiente</button>
-  </a>
+  <form action="/game" method="POST">
+      <input type="hidden" name="tema" value="<%= @tema_id %>">
+      <input type="hidden" name="nivel" value="<%= @nivel %>">
+      <button type="submit">siguiente</button>
+    </a>
+  </form>
   <center>
 </body>
 </html>

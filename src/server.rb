@@ -54,7 +54,7 @@ class App < Sinatra::Application
    #HSe usa para habilitar las sesiones en todas las rutas utilizando enable :sessions.
    #Esto permite que Sinatra maneje automáticamente las cookies de sesión
    #y almacene los datos de sesión en el servidor.
-    enable :sessions
+  enable :sessions
 
   ## Para autentificar que la cuenta del usuario haya sido creada.
   post '/authenticate' do
@@ -215,40 +215,42 @@ class App < Sinatra::Application
 
 
   post '/modify_profile' do
+    if session[:user_id]
+      nuevoName = params[:name]           #Parametro otorga el nuevo nombre ingresado.
+      user = User.find(session[:user_id]) #Obtiene el usuario correspondiente al ID almacenado en el incio de session.
+      profile = user.profile              #Obtiene el perfil del usuario determinado.
 
-    nuevoName = params[:name]           #Parametro otorga el nuevo nombre ingresado.
-    user = User.find(session[:user_id]) #Obtiene el usuario correspondiente al ID almacenado en el incio de session.
-    profile = user.profile              #Obtiene el perfil del usuario determinado.
-
-    exist = User.find_by(name: nuevoName)
-    if exist                            #Si existe un usuario con ese nuevo Nombre, no lo permite.
-      redirect '/error_modificar'
-    end
+      exist = User.find_by(name: nuevoName)
+      if exist                            #Si existe un usuario con ese nuevo Nombre, no lo permite.
+        redirect '/error_modificar'
+      end
     #-----------------------------------------------
     #-----------------------------------------------
 
-    if params[:name].present?         #En caso de que no exista un usuario con ese nombre permite modificarlo
-      user.name = params[:name]
-      user.save
+      if params[:name].present?         #En caso de que no exista un usuario con ese nombre permite modificarlo
+        user.name = params[:name]
+        user.save
+      end
+
+      if params[:psw].present?         #Si se ingreso una nueva contraseña
+        user.password = params[:psw]   #Cambia la contraseña
+        user.save
+      end
+
+      if params[:email].present?      #Si se ingreso un nuevo email
+        user.email = params[:email]   #Cambia el email
+        user.save
+      end
+
+      if params[:imagen].present?         #Si se otorgo un link de imagen
+        profile.picture = params[:imagen] #Cambia el link de imagen
+        profile.save
+      end
+
+      redirect '/perfil'
+    else
+      redirect '/'
     end
-
-    if params[:psw].present?         #Si se ingreso una nueva contraseña
-      user.password = params[:psw]   #Cambia la contraseña
-      user.save
-    end
-
-    if params[:email].present?      #Si se ingreso un nuevo email
-      user.email = params[:email]   #Cambia el email
-      user.save
-    end
-
-    if params[:imagen].present?         #Si se otorgo un link de imagen
-      profile.picture = params[:imagen] #Cambia el link de imagen
-      profile.save
-    end
-
-    redirect '/perfil'
-
   end
 
   get '/error_modificar' do
@@ -273,13 +275,17 @@ class App < Sinatra::Application
   end
 
   get '/niveles' do
-    session[:tema_id] = params[:tema]
-    @tema = Topic.find_by(id: session[:tema_id]) #Consigo el TEMA de las preguntas
-    @user = User.find_by(id: session[:user_id])  #Consigo el USER del usuario de la sesion
-    @respondidas = @user.questions.pluck(:id)    #Permite obtener los id de las preguntas que respondio
-    @niveles_tema = @tema.questions.distinct.pluck(:nivel_q).count #Cantidad niveles del tema
-    session[:nivel] = nil
-    erb :'niveles'
+    if session[:user_id]
+      session[:tema_id] = params[:tema]
+      @tema = Topic.find_by(id: session[:tema_id]) #Consigo el TEMA de las preguntas
+      @user = User.find_by(id: session[:user_id])  #Consigo el USER del usuario de la sesion
+      @respondidas = @user.questions.pluck(:id)    #Permite obtener los id de las preguntas que respondio
+      @niveles_tema = @tema.questions.distinct.pluck(:nivel_q).count #Cantidad niveles del tema
+      session[:nivel] = nil
+      erb :'niveles'
+    else
+      redirect '/'
+    end
   end
 
 =begin
@@ -304,15 +310,14 @@ class App < Sinatra::Application
   end
 =end
 
-  get '/game' do
-    session[:tema_id] = params[:tema]  #Lo guardo en una session para poder utilizarlo
+  post '/game' do
     @tema = Topic.find_by(id: params[:tema])
     @user = User.find_by(id: session[:user_id])  #Consigo el USER del usuario de la sesion
-    session[:nivel] = params[:nivel]
+    @nivel = params[:nivel]
     #-----------------------------------------------
     #-----------------------------------------------
     @respondidas = @user.questions.pluck(:id)  #Permite obtener los id de las preguntas que respondio
-    @preguntas_nivel = Question.where(nivel_q: session[:nivel], topic_id: session[:tema_id])
+    @preguntas_nivel = Question.where(nivel_q: @nivel, topic_id: @tema.id)
     @questions = @preguntas_nivel.where.not(id: @respondidas) #Obtengo preguntas no respondidas
 
     if @questions.any?                #Pregnta si contiene algun elemento.
@@ -328,6 +333,8 @@ class App < Sinatra::Application
   post '/verificar' do
     @respuestaID = params[:opcionElegida] #Parametro que otorga el ID de la respuesta seleccionada
     questionID = params[:question]        #Parametro que otorga el ID de la pregunta respondida
+    @tema_id = params[:tema]
+    @nivel = params[:nivel]
       #-----------------------------------------------
       #-----------------------------------------------
     @respuesta = Option.find_by(id: @respuestaID)  #Obtengo la respuesta concreta que corresponde al ID

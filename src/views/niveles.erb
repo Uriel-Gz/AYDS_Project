@@ -17,34 +17,42 @@
       <a href="/seleccionar" class="boton-salir">Salir</a>
     </div>
 
-    <div class="niveles">
-      <h1> Niveles de <%= @tema.nombre %></h1>
+<div class="niveles">
+  <h1> Niveles de <%= @tema.nombre %></h1>
 
-        <ul>
-          <% for i in (1..@niveles_tema) %>
-            <% preguntas_nivel = Question.where(nivel_q: i).where.not(id: @respondidas) %>
+  <ul>
+    <% for i in (1..@niveles_tema) %>
+      <% preguntas_nivel = Question.where(nivel_q: i).where.not(id: @respondidas) %>
 
-            <% if preguntas_nivel.any? %>
-              <li>
-                <a href="/game?tema=<%= session[:tema_id] %>&nivel=<%= i %>" class="tema-link">Nivel <%= i %></a>
-              </li>
-              <% break %>
-            <% else %>
-              <li>
-                <a href="/game?tema=<%= session[:tema_id] %>&nivel=<%= i %>" class="tema-link">Nivel <%= i %></a>
-              </li>
-              <% total = i %>
-            <% end %>
+      <% if preguntas_nivel.any? %>
+        <li>
+          <form action="/game" method="post">
+            <input type="hidden" name="tema" value="<%= session[:tema_id] %>">
+            <input type="hidden" name="nivel" value="<%= i %>">
+            <button type="submit" class="tema-link">Nivel <%= i %></button>
+          </form>
+        </li>
+        <% break %>
+      <% else %>
+        <li>
+          <form action="/game" method="post">
+            <input type="hidden" name="tema" value="<%= session[:tema_id] %>">
+            <input type="hidden" name="nivel" value="<%= i %>">
+            <button type="submit" class="tema-link">Nivel <%= i %></button>
+          </form>
+        </li>
+        <% total = i %>
+      <% end %>
+    <% end %>
 
-            <% end %>
-
-          <% if total == @niveles_tema %>
-            <li>
-              <p> Terminaste todas las preguntas de este tema </p>
-            </li>
-          <% end %>
-        </ul>
+    <% if total == @niveles_tema %>
+      <li>
+        <p> Terminaste todas las preguntas de este tema </p>
+      </li>
+    <% end %>
+  </ul>
 </div>
+
 
 
   </body>

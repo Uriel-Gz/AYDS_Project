@@ -9,7 +9,7 @@
 </head>
 <body>
     <div id="salir">
-        <a href="/niveles?tema=<%= session[:tema_id] %>" class="boton-salir">Salir</a>
+        <a href="/niveles?tema=<%= @tema.id %>" class="boton-salir">Salir</a>
     </div>
     <div id="pregunta">
     <form action="/verificar" method="post">
@@ -22,7 +22,8 @@
                 <% options = Option.where(question_id: @question.id).shuffle %>
                 <% options.each do |option| %>
                     <input type="hidden" name="question" value="<%= @question.id %>">
-                    <input type="hidden" name="indice" value="<%= @indice %>">
+                    <input type="hidden" name="tema" value="<%= @tema.id %>">
+                    <input type="hidden" name="nivel" value="<%= @nivel%>">
                     <button type="submit" name ="opcionElegida" value="<%= option.id %>"> <%= option.description %> </button>
                 <% end %>
             </ul>
