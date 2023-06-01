@@ -12,7 +12,7 @@
         <a href="/niveles?tema=<%= @tema.id %>" class="boton-salir">Salir</a>
     </div>
     <div id="pregunta">
-    <form action="/verificar" method="post">
+        <form action="/verificar" method="post">
             <h3><%= @question.description %></h3>
             <ul>
                 <!--El método shuffle en Ruby se utiliza para mezclar aleatoriamente los elementos de un arreglo.
@@ -27,11 +27,10 @@
                     <button type="submit" name ="opcionElegida" value="<%= option.id %>"> <%= option.description %> </button>
                 <% end %>
             </ul>
-    <form>
+        <form>
     </div>
     <div id="score">
         <h2>Score de <%= @user.name%>: <%= @user.total_score%></h2>
     </div>
 </body>
-</html
->
+</html>

@@ -2,10 +2,10 @@ require "./server"
 
 
 #Creacion de temas
-Topic.create(nombre: "Suma" , descripcion: "La adición o suma es la operación matemática de composición que consiste en combinar o añadir dos números o más para obtener una cantidad final o total.")
+Topic.create(nombre: "Suma" , descripcion: "La adición o suma es la operación matemática de composición que consiste en combinar o añadir dos números o más para obtener una cantidad final o total.", guia: "https://drive.google.com/file/d/1PAJy1qcRKOGUecZQIo3xA_wK_R5gzIGp/view?usp=sharing")
 Topic.create(nombre: "Resta" , descripcion: "La resta o sustracción es una operación matemática que consiste en sacar, quitar, reducir o separar algo de un todo.")
-Topic.create(nombre: "Multiplicacion" , descripcion: "La multiplicación es la operación matemática que consiste en hallar el resultado de sumar un número tantas veces como indique otro.")
-Topic.create(nombre: "Division" , descripcion: "Operación matemática que consiste en separar una cantidad en partes iguales, es decir, se trata de realizar una distribución equitativa del objeto o cosa que se quiere repartir")
+Topic.create(nombre: "Multiplicacion" , descripcion: "La multiplicación es la operación matemática que consiste en hallar el resultado de sumar un número tantas veces como indique otro.", guia: "https://drive.google.com/file/d/1PAJy1qcRKOGUecZQIo3xA_wK_R5gzIGp/view?usp=sharing")
+Topic.create(nombre: "Division" , descripcion: "Operación matemática que consiste en separar una cantidad en partes iguales, es decir, se trata de realizar una distribución equitativa del objeto o cosa que se quiere repartir", guia: "https://drive.google.com/file/d/1PAJy1qcRKOGUecZQIo3xA_wK_R5gzIGp/view?usp=sharing")
 
 
 # Creación de preguntas de suma

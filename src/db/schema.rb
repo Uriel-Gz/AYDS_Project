@@ -64,6 +64,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_20_112148) do
   create_table "topics", force: :cascade do |t|
     t.string "nombre"
     t.string "descripcion"
+    t.string "guia"
   end
 
   create_table "users", force: :cascade do |t|

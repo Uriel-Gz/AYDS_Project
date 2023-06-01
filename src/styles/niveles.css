@@ -85,3 +85,25 @@ li {
   transform: scale(1.1);
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3); /* Aumenta la sombra al pasar el cursor sobre el botón */
 }
+
+#guia {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.boton-guia {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #4fcbe1;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.boton-guia:hover {
+  background-color: #028db3;
+  transform: scale(1.1);
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+}

@@ -264,15 +264,6 @@ class App < Sinatra::Application
     redirect '/'
   end
 
-  get '/seleccionar' do
-    if session[:user_id]
-      @temas = Topic.all
-      session[:tema_id] = 0
-      erb :'seleccionar'
-    else
-      redirect '/'
-    end
-  end
 
   get '/niveles' do
     if session[:user_id]
@@ -385,6 +376,5 @@ class App < Sinatra::Application
       erb :'mostrarUsuarios'
     end
   end
-
 end
 
