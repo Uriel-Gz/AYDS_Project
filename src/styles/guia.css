@@ -1,0 +1,54 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 40px;
+}
+
+h1 {
+  text-align:center;
+  color:  #F15656;
+}
+
+h2 {
+  color: #F15656;
+  margin-top: 30px;
+}
+
+p {
+  color: #000;
+  line-height: 1,5;
+
+}
+
+iframe {
+  width: 80%;
+  height: 500px;
+  margin-bottom: 20px;
+}
+
+.boton {
+  display: block;
+  width: 10%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  background-color: #F15656; /* Color de fondo del botón */
+  color: #fff; /* Color del texto del botón */
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+  
+ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+li {
+  color: #000;
+  margin-bottom: 10px;
+}

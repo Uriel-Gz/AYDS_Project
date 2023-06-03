@@ -365,6 +365,22 @@ class App < Sinatra::Application
     erb :logro
   end
 
+  post '/Suma'do
+    erb :'suma' 
+  end
+
+  post '/Resta'do
+    erb :'resta'
+  end
+
+  post '/Multiplicacion' do
+    erb :'mltiplicacion'
+  end
+
+  post '/Division' do
+    erb :'division'
+  end
+
 
   get '/usuarios' do
     @users = User.all

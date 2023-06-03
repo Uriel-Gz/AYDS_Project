@@ -17,14 +17,20 @@
     </div>
 
     <div id="guia">
-      <a href="<%=@tema.guia%>" target="_blank" class="boton-guia">Guia</a>
+
+    <% for i in (1..4)%>
+      <%if @tema.id == i %>
+      <form action="<%=@tema.nombre %>" method="post">
+      <button type="submit" class="boton-guia">Guia </button>
+      <%end%>
+     <%end%>
     </div>
 
     <div class="niveles">
       <h1> Niveles de <%= @tema.nombre %></h1>
       <ul>
         <% for i in (1..@niveles_tema) %>
-          <% preguntas_nivel = Question.where(nivel_q: i).where.not(id: @respondidas) %>
+          <% preguntas_nivel = Question.where(topic_id: @tema.id,nivel_q: i).where.not(id: @respondidas) %>
 
           <% if preguntas_nivel.any? %>
             <li>
