@@ -320,14 +320,24 @@ class App < Sinatra::Application
       erb :'preguntaterminadas'
     end
   end
+  
+  before do
+    response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+    response.headers['Pragma'] = 'no-cache'
+    response.headers['Expires'] = '0'
+  end
+
+
 
   post '/verificar' do
+   
+
     @respuestaID = params[:opcionElegida] #Parametro que otorga el ID de la respuesta seleccionada
     questionID = params[:question]        #Parametro que otorga el ID de la pregunta respondida
     @tema_id = params[:tema]
     @nivel = params[:nivel]
-      #-----------------------------------------------
-      #-----------------------------------------------
+    #-----------------------------------------------
+    #-----------------------------------------------
     @respuesta = Option.find_by(id: @respuestaID)  #Obtengo la respuesta concreta que corresponde al ID
     @question = Question.find_by(id: questionID)   #Obtengo la pregunta concreta que corresponde al ID
       #-----------------------------------------------
@@ -340,7 +350,7 @@ class App < Sinatra::Application
       @user.save                                   # Guardo
       @user.questions << @question
       @user.save
-    end
+    end      
     erb :'respuesta'
   end
 
@@ -350,7 +360,6 @@ class App < Sinatra::Application
     @logros = Achievement.all
     @logrosObtenidos = @user.achievements.pluck(:id)
     @logrosNO_obtenidos = Achievement.where.not(id: @logrosObtenidos)
-
     @logrosNO_obtenidos.each do |logro|
       if @user.total_score >= logro.point
         @user.achievements << logro
@@ -365,19 +374,19 @@ class App < Sinatra::Application
     erb :logro
   end
 
-  post '/Suma'do
+  get '/Suma'do
     erb :'suma' 
   end
 
-  post '/Resta'do
+  get '/Resta'do
     erb :'resta'
   end
 
-  post '/Multiplicacion' do
+  get '/Multiplicacion' do
     erb :'mltiplicacion'
   end
 
-  post '/Division' do
+  get '/Division' do
     erb :'division'
   end
 
@@ -393,4 +402,6 @@ class App < Sinatra::Application
     end
   end
 end
+
+
 

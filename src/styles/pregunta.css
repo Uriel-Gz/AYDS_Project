@@ -87,6 +87,24 @@ body {
 
   button {
     display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    background-color: #6bd5f8; /* Color de fondo del botón */
+    color: #000000; /* Color del texto del botón */
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+
+  .button-sig {
+    display: block;
     width: 50%;
     padding: 10px;
     margin-top: 10px;
@@ -101,6 +119,7 @@ body {
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
+
 
   button:hover {
     background-color: #10add8; /* Color de fondo del botón al pasar el mouse */

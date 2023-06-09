@@ -17,14 +17,15 @@
     </div>
 
     <div id="guia">
-
     <% for i in (1..4)%>
       <%if @tema.id == i %>
-      <form action="<%=@tema.nombre %>" method="post">
-      <button type="submit" class="boton-guia">Guia </button>
+      <a href ="<%=@tema.nombre %>" class="boton-guia">Guia</a>
       <%end%>
      <%end%>
     </div>
+
+
+
 
     <div class="niveles">
       <h1> Niveles de <%= @tema.nombre %></h1>

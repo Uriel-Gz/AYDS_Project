@@ -10,6 +10,8 @@
   <link href="<%= url('/log_without_tm_ICO.ico') %>" rel="icon" type="image/ico">
   <link href="<%= url('/pregunta.css') %>" rel="stylesheet" type="text/css"/>
   </head>
+
+
   <body>
     <div id="salir">
       <a href="/niveles?tema=<%= @tema_id %>" class="boton-salir">Salir</a>
@@ -31,9 +33,9 @@
   <form action="/game" method="POST">
       <input type="hidden" name="tema" value="<%= @tema_id %>">
       <input type="hidden" name="nivel" value="<%= @nivel %>">
-      <button type="submit">siguiente</button>
+      <button type="submit" class="button-sig">siguiente</button>
     </a>
   </form>
-  <center>
+  <center>  
 </body>
 </html>
