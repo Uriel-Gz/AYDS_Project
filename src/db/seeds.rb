@@ -9,8 +9,8 @@ Topic.create(nombre: "Division" , descripcion: "Operación matemática que consi
 
 
 # Creación de preguntas de suma
-Question.create(value: 1, description: "¿Cuánto es 2 + 2?", nivel_q: 1, topic_id: 1)
-Question.create(value: 1, description: "Cuanto es 2 + 8?", nivel_q: 1, topic_id: 1)
+Question.create(value: 1, description: "¿Cuánto es 🍎🍎  +  🍎🍎?", nivel_q: 1, topic_id: 1)
+Question.create(value: 1, description: "Cuanto es 👾👾 + 👾👾 👾👾 👾👾 👾👾?", nivel_q: 1, topic_id: 1)
 Question.create(value: 1, description: "¿Cuánto es 10 + 7?", nivel_q: 1, topic_id: 1)
 Question.create(value: 1, description: "¿Cuánto es 15 + 9?", nivel_q: 1, topic_id: 1)
 Question.create(value: 1, description: "¿Cuánto es 27 + 14?", nivel_q: 1, topic_id: 1)

@@ -124,7 +124,7 @@ class App < Sinatra::Application
         if user.save
           logger.info 'SE REGISTRO CON EXITO'
 
-          profile = Profile.new(user_id: user.id, picture: "https://image.freepik.com/vector-gratis/avatar-cara-monstruo-dibujos-animados-monstruo-halloween_6996-1111.jpg")
+          profile = Profile.new(user_id: user.id, picture: "https://i.pinimg.com/originals/71/11/1f/71111f93d4fda96b241ace2ca4a102f3.png")
           profile.save
 
           redirect '/'
@@ -391,16 +391,6 @@ class App < Sinatra::Application
   end
 
 
-  get '/usuarios' do
-    @users = User.all
-
-    if @users.empty?
-      # No se encontraron usuarios
-      # Realiza una acción apropiada, como redireccionar o mostrar un mensaje de error
-    else
-      erb :'mostrarUsuarios'
-    end
-  end
 end
 
 
