@@ -57,11 +57,11 @@ Topic.create(nombre: "Division" , descripcion: "Operación matemática que consi
 
 
 # Creación de preguntas de suma
-Question.create(value: 1, description: "¿Cuánto es 🍎🍎  +  🍎🍎?", nivel_q: 1, topic_id: 1)
-Question.create(value: 1, description: "Cuanto es 👾👾 + 👾👾 👾👾 👾👾 👾👾?", nivel_q: 1, topic_id: 1)
-Question.create(value: 1, description: "¿Cuánto es 10 + 7?", nivel_q: 1, topic_id: 1)
-Question.create(value: 1, description: "¿Cuánto es 15 + 9?", nivel_q: 1, topic_id: 1)
-Question.create(value: 1, description: "¿Cuánto es 27 + 14?", nivel_q: 1, topic_id: 1)
+Question.create(value: 1, description: "¿Si tengo 🍎🍎 y me regalan otras 🍎🍎, cuántas manzanas tengo ahora?", nivel_q: 1, topic_id: 1)
+Question.create(value: 1, description: "Si en un juego hay 👾👾 y estos llaman a 👾👾 👾👾 👾👾 👾👾 más, ¿cuántos hay ahora?", nivel_q: 1, topic_id: 1)
+Question.create(value: 1, description: "En un acuario viven 10 🐟, en otro 5 🐠 y otro 2 🐡, ¿cuántos peces hay si sumamos los 3 acuarios?", nivel_q: 1, topic_id: 1)
+Question.create(value: 1, description: "En una granja hay 15 🐣 y despues de una semana el granjero trae otros 9 🐣 más, ¿cuántos pollitos viven ahora en la granja?", nivel_q: 1, topic_id: 1)
+Question.create(value: 1, description: "En la escuela dos aulas que estan encargadas de un acto, unos alumnos acomodan 🪑 y los otros decoran 🎍🎊. Los que decoran son 27 y los que acomodan son 14, ¿cuántos alumnos 👨🏻‍🎓 estan a cargo del acto?", nivel_q: 1, topic_id: 1)
 
 #Nivel 1
 
