@@ -43,6 +43,12 @@ p{
 .tema-button:hover {
 	background-color: #0b6d945c;
 }
+
+a.tema-button{
+  width: 280px;
+  height: 220px;
+}
+
 .tema-content {
 	height: 50%; /* Agrega esta propiedad para ajustar la altura */
 	padding: 1px; /* Ajusta el valor del padding según tu preferencia */
