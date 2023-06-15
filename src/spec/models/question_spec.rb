@@ -1,4 +1,5 @@
-require_relative 'spec_helper'
+require_relative '../../models/init.rb'
+require 'sinatra/activerecord'
 
 describe Question do
 

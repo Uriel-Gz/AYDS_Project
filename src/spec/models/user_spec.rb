@@ -1,10 +1,10 @@
-require_relative 'spec_helper'
-
+require 'sinatra/activerecord'
+require_relative '../../models/init.rb'
 
 describe User do
 
     it "is valid with a name, email and pasword" do
-      user = User.new(name:"Santioo", email:"santiago010@mail.com", password:"pas1234") 
+      user = User.new(name:"Santioo", email:"santiago010@mail.com", password:"pas1234")
       expect(user.valid?).to eq(true)
     end
 
@@ -24,18 +24,18 @@ describe User do
     end
 
     it "is invalid with a duplicate email address" do
-      user_one = User.create(name: "Hola", email: "hola@gmail.com", password: "pas1234") 
+      user_one = User.create(name: "Hola", email: "hola@gmail.com", password: "pas1234")
       user = User.new(name: "Chau", email: "hola@gmail.com", password: "pp111")
       expect(user.valid?).to eq(false)
     end
 
-    it "returns a contact's full name as a string" do 
+    it "returns a contact's full name as a string" do
       user = User.new(name: "Santioo", email: "santiagovazquez010@gmail.com")
       user_name = user.name
       expect(user_name).to eq("Santioo")
     end
 end
-  
+
 #  describe 'User' do
 #  describe 'valid' do
 #   describe 'when there is no name' do

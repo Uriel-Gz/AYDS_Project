@@ -40,13 +40,27 @@ class App < Sinatra::Application
     set :views, File.join(File.dirname(__FILE__), 'views')
     set :public_folder, File.join(File.dirname(__FILE__), 'styles')
 
+    ##Establece la configuración session_expire_after a 7200 segundos (2 horas).
+    ##Esta configuración define el tiempo de expiración de las sesiones.
+    set :session_expire_after, 7200
+
+
+    before do
+      ##lista de rutas restringidas
+      ##Estas rutas requerirán que el usuario haya iniciado sesión para acceder a ellas.
+      restricted_paths = ['/principal', '/perfil', '/logros', '/niveles', '/modificar_perfil', '/guia']
+      ##Si la ruta actual (restricted_paths) esta incluida en la lista y no se inicio session, se vuelve al login
+      if restricted_paths.include?(request.path_info) && !session[:user_id]
+        redirect '/'
+      end
+      ##Si la ruta actual es la pagina '/' y hay una session activa, lo lleva a la principal
+      if (request.path_info == '/') && session[:user_id]
+        redirect '/principal'
+      end
+    end
 
     get '/' do
-      if session[:user_id]
-        redirect '/principal';
-      else
-        erb :'login'
-      end
+      erb :'login'
     end
 
 
@@ -146,16 +160,10 @@ class App < Sinatra::Application
 
 
   get '/principal' do
-    #verificando si hay un user_id en la sesión
-    #para determinar si el usuario ha iniciado sesión
-    if session[:user_id]
-      @temas = Topic.all
-      session[:indice] = 0
-      session[:tema_id] = 0
-      erb :'principal'
-    else
-      redirect '/'
-    end
+    @temas = Topic.all
+    session[:indice] = 0
+    session[:tema_id] = 0
+    erb :'principal'
   end
 
 
@@ -184,73 +192,49 @@ class App < Sinatra::Application
 #-----------------------------------------------------------------------------------------------------------------------------------------------------
 #-----------------------------------------------------------------------------------------------------------------------------------------------------
 
-
-    # Verificar si el usuario ha iniciado sesión
-    # Verificando si hay un user_id en la sesión
-    # Para determinar si el usuario ha iniciado sesión
   get '/perfil' do
     # Verificar si un usuario ha iniciado sesión
-    if session[:user_id]
-
-      user_id = session[:user_id]   #Tomamos el id del usuario que inicio sesion
-      @user = User.find(user_id)    #Obtengo el usuario especifico del ID
-      @profile = @user.profile      #Obtengo el perfil especifico del ID
-     #-----------------------------------------------
-     #-----------------------------------------------
-      erb :'perfile'                #Mostramos los datos del usuario y Perfil
-    else
-      # El usuario no ha iniciado sesión, redirigir a la página de inicio de sesión o mostrar un mensaje de error
-      redirect '/'
-    end
+    user_id = session[:user_id]   #Tomamos el id del usuario que inicio sesion
+    @user = User.find(user_id)    #Obtengo el usuario especifico del ID
+    @profile = @user.profile      #Obtengo el perfil especifico del ID
+   #-----------------------------------------------
+   #-----------------------------------------------
+    erb :'perfile'                #Mostramos los datos del usuario y Perfil
   end
 
   get '/modificar_perfil' do
-    if session[:user_id]
-      erb :'modificar_perfil'
-    else
-      redirect '/'
-    end
+    erb :'modificar_perfil'
   end
 
 
 
   post '/modify_profile' do
-    if session[:user_id]
-      nuevoName = params[:name]           #Parametro otorga el nuevo nombre ingresado.
-      user = User.find(session[:user_id]) #Obtiene el usuario correspondiente al ID almacenado en el incio de session.
-      profile = user.profile              #Obtiene el perfil del usuario determinado.
-
-      exist = User.find_by(name: nuevoName)
-      if exist                            #Si existe un usuario con ese nuevo Nombre, no lo permite.
-        redirect '/error_modificar'
-      end
-    #-----------------------------------------------
-    #-----------------------------------------------
-
-      if params[:name].present?         #En caso de que no exista un usuario con ese nombre permite modificarlo
-        user.name = params[:name]
-        user.save
-      end
-
-      if params[:psw].present?         #Si se ingreso una nueva contraseña
-        user.password = params[:psw]   #Cambia la contraseña
-        user.save
-      end
-
-      if params[:email].present?      #Si se ingreso un nuevo email
-        user.email = params[:email]   #Cambia el email
-        user.save
-      end
-
-      if params[:imagen].present?         #Si se otorgo un link de imagen
-        profile.picture = params[:imagen] #Cambia el link de imagen
-        profile.save
-      end
-
-      redirect '/perfil'
-    else
-      redirect '/'
+    nuevoName = params[:name]           #Parametro otorga el nuevo nombre ingresado.
+    user = User.find(session[:user_id]) #Obtiene el usuario correspondiente al ID almacenado en el incio de session.
+    profile = user.profile              #Obtiene el perfil del usuario determinado.
+    exist = User.find_by(name: nuevoName)
+    if exist                            #Si existe un usuario con ese nuevo Nombre, no lo permite.
+      redirect '/error_modificar'
     end
+  #-----------------------------------------------
+  #-----------------------------------------------
+    if params[:name].present?         #En caso de que no exista un usuario con ese nombre permite modificarlo
+      user.name = params[:name]
+      user.save
+    end
+    if params[:psw].present?         #Si se ingreso una nueva contraseña
+      user.password = params[:psw]   #Cambia la contraseña
+      user.save
+    end
+    if params[:email].present?      #Si se ingreso un nuevo email
+      user.email = params[:email]   #Cambia el email
+      user.save
+    end
+    if params[:imagen].present?         #Si se otorgo un link de imagen
+      profile.picture = params[:imagen] #Cambia el link de imagen
+      profile.save
+    end
+    redirect '/perfil'
   end
 
   get '/error_modificar' do
@@ -266,40 +250,15 @@ class App < Sinatra::Application
 
 
   get '/niveles' do
-    if session[:user_id]
-      session[:tema_id] = params[:tema]
-      @tema = Topic.find_by(id: session[:tema_id]) #Consigo el TEMA de las preguntas
-      @user = User.find_by(id: session[:user_id])  #Consigo el USER del usuario de la sesion
-      @respondidas = @user.questions.pluck(:id)    #Permite obtener los id de las preguntas que respondio
-      @niveles_tema = @tema.questions.distinct.pluck(:nivel_q).count #Cantidad niveles del tema
-      session[:nivel] = nil
-      erb :'niveles'
-    else
-      redirect '/'
-    end
-  end
-
-=begin
-  get '/game' do
-    session[:tema_id] = params[:tema]  #Lo guardo en una session para poder utilizarlo
-    @tema = Topic.find_by(id: params[:tema])
+    session[:tema_id] = params[:tema]
+    @tema = Topic.find_by(id: session[:tema_id]) #Consigo el TEMA de las preguntas
     @user = User.find_by(id: session[:user_id])  #Consigo el USER del usuario de la sesion
-    @nivel = params[:nivel]
-    #-----------------------------------------------
-    #-----------------------------------------------
-    @respondidas = @user.questions.pluck(:id)  #Permite obtener los id de las preguntas que respondio
-    @questions = @tema.questions.where.not(id: @respondidas)  #Obtengo preguntas no respondidas
-
-    if @questions.any?                #Pregnta si contiene algun elemento.
-      @question = @questions.sample   #Se utiliza para seleccionar de forma aleatoria un elemento de una colección, como un arreglo o un conjunto.
-      if @question != nil             #Es igual a nil?
-        erb :'pregunta'
-      end
-    else
-      erb :'preguntaterminadas'
-    end
+    @respondidas = @user.questions.pluck(:id)    #Permite obtener los id de las preguntas que respondio
+    @niveles_tema = @tema.questions.distinct.pluck(:nivel_q).count #Cantidad niveles del tema
+    session[:nivel] = nil
+    erb :'niveles'
   end
-=end
+
 
   post '/game' do
     @tema = Topic.find_by(id: params[:tema])
@@ -320,7 +279,7 @@ class App < Sinatra::Application
       erb :'preguntaterminadas'
     end
   end
-  
+
   before do
     response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
     response.headers['Pragma'] = 'no-cache'
@@ -330,8 +289,6 @@ class App < Sinatra::Application
 
 
   post '/verificar' do
-   
-
     @respuestaID = params[:opcionElegida] #Parametro que otorga el ID de la respuesta seleccionada
     questionID = params[:question]        #Parametro que otorga el ID de la pregunta respondida
     @tema_id = params[:tema]
@@ -350,7 +307,7 @@ class App < Sinatra::Application
       @user.save                                   # Guardo
       @user.questions << @question
       @user.save
-    end      
+    end
     erb :'respuesta'
   end
 
@@ -374,22 +331,10 @@ class App < Sinatra::Application
     erb :logro
   end
 
-  get '/Suma'do
-    erb :'suma' 
+  get '/guia'do
+    @tema = Topic.find_by(id: session[:tema_id])
+    erb :'guia'
   end
-
-  get '/Resta'do
-    erb :'resta'
-  end
-
-  get '/Multiplicacion' do
-    erb :'mltiplicacion'
-  end
-
-  get '/Division' do
-    erb :'division'
-  end
-
 
 end
 

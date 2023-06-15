@@ -1,11 +1,59 @@
 require "./server"
 
+guiaSum =
+"
+Definicion
+--DIVISION-- La suma es la acción de añadir, juntar o agregar elementos, cuando realizamos esta acción estamos uniendo cantidades o conjuntos y para ello siempre debe haber un mínimo de dos elementos.
+--PARTES-- Partes de la suma
+--DIVISION-- A los números que intervienen en una suma se les denomina sumandos, al resultado de la operación lo llamamos suma o resultado. Por ejemplo, en el caso de la operación 2+8 = 10 , el 2 y el 8 son sumandos y el 10 es la suma o resultado.
+"
+guiaRes =
+'Definicion
+--DIVISION-- La resta o la sustracción es una operación aritmética que se representa con el signo "-" y representa la operación de eliminación de objetos de una colección.
+--PARTES-- Partes de la resta
+--DIVISION-- Los números que intervienen en la resta también reciben nombres para poderlos identificar. Al número que se le quita o se le sustrae es denominado minuendo, el número que resta o sustrae es llamado sustraendo y, finalmente, al resultado se le conoce como resta o diferencia de los números. En el caso de la resta:8-3 = 5 , el ocho es el minuendo, el tres es el sustraendo y la diferencia es cinco.
+'
+
+guiamult = "
+Definicion:
+--DIVISION-- La multiplicación es aquella operación mediante la cual se suma un número por sí mismo tantas veces como lo señala otro número.
+--PARTES-- Partes:
+--DIVISION-- Factores: Los factores son los números que se multiplican.
+--DIVISION-- Producto: El producto es el resultado de la multiplicación.
+--DIVISION-- Multiplicando: El multiplicando es el factor que se encuentra arriba en la multiplicación.
+--DIVISION-- Multiplicador: El multiplicador es el factor que se encuentra debajo del multiplicando.
+--PARTES-- Propiedades:
+--DIVISION-- Propiedad conmutativa: Significa que el orden de los factores no altera el producto. Es decir, 11×3 es igual que 3×11, no importa cuál de los factores va primero, el resultado no se va a alterar.
+--DIVISION-- Propiedad asociativa: Significa que si tenemos que hacer la siguiente operación 5×3 y el resultado lo multiplicamos ×4, el resultado final es el mismo que multiplicar 3×4 y el resultado multiplicarlo ×5. En ambos casos el resultado es 60.
+--DIVISION-- Propiedad distributiva: La propiedad distributiva nos señala que, si multiplicamos el resultado de una suma (o resta) por un número x, obtenemos el mismo resultado que si multiplicamos cada uno de los términos que se están sumando (o restando) por x y luego los sumáramos (o restáramos).
+--DIVISION-- Multiplicar por cero: Cualquier número multiplicado por cero es igual a cero.
+--DIVISION-- Multiplicar por uno: Un número multiplicado por 1 es igual al mismo número.
+--DIVISION-- Multiplicar por diez: El producto de cualquier número n multiplicado por diez, o una potencia de diez, es igual a n más el número de ceros que posee el multiplicador a la derecha. En este sentido, si multiplico 4×100, el resultado será 4, más dos ceros a la derecha. Es decir, 400. De igual modo, 7×1.000 será igual a 7 más tres ceros a la derecha. Por tanto, 7.000.
+"
+
+guiaDiv= "
+Definicion
+--DIVISION-- Definimos la división como aquella operación matemática que consiste en separar una cantidad en partes iguales, es decir, se trata de realizar una distribución equitativa del objeto o cosa que se quiere repartir.
+--PARTES-- Partes de la división
+--DIVISION-- Dividendo es el número que se va a dividir.
+--DIVISION-- Divisor es el número que divide.
+--DIVISION-- Cociente es el resultado de la división.
+--DIVISION-- Resto es lo que ha quedado del dividendo, que no se ha podido dividir porque es más pequeño que el diviso
+--DIVISION-- Sus términos cumplen esta relación: Dividendo = divisor * cociente + resto.
+--PARTES-- Propiedades
+--DIVISION-- Cero dividido entre cualquier número siempre da cero: 0 / n = 0
+--DIVISION-- No se puede dividir entre cero: n / 0 = error
+--DIVISION-- La división no es asociativa
+--DIVISION-- La división no es conmutativa
+"
 
 #Creacion de temas
-Topic.create(nombre: "Suma" , descripcion: "La adición o suma es la operación matemática de composición que consiste en combinar o añadir dos números o más para obtener una cantidad final o total.", guia: "https://drive.google.com/file/d/1PAJy1qcRKOGUecZQIo3xA_wK_R5gzIGp/view?usp=sharing")
-Topic.create(nombre: "Resta" , descripcion: "La resta o sustracción es una operación matemática que consiste en sacar, quitar, reducir o separar algo de un todo.")
-Topic.create(nombre: "Multiplicacion" , descripcion: "La multiplicación es la operación matemática que consiste en hallar el resultado de sumar un número tantas veces como indique otro.", guia: "https://drive.google.com/file/d/1PAJy1qcRKOGUecZQIo3xA_wK_R5gzIGp/view?usp=sharing")
-Topic.create(nombre: "Division" , descripcion: "Operación matemática que consiste en separar una cantidad en partes iguales, es decir, se trata de realizar una distribución equitativa del objeto o cosa que se quiere repartir", guia: "https://drive.google.com/file/d/1PAJy1qcRKOGUecZQIo3xA_wK_R5gzIGp/view?usp=sharing")
+Topic.create(nombre: "Suma" , descripcion: "La adición o suma es la operación matemática de composición que consiste en combinar o añadir dos números o más para obtener una cantidad final o total.", img:'https://i.imgur.com/rMA2PnT.png', guia: guiaSum, video: 'https://www.youtube.com/embed/oF-rZLIShC8')
+Topic.create(nombre: "Resta" , descripcion: "La resta o sustracción es una operación matemática que consiste en sacar, quitar, reducir o separar algo de un todo.", img:'https://i.imgur.com/vpFobkj.png', guia: guiaRes, video: 'https://www.youtube.com/embed/L6NOkLq6kHk')
+Topic.create(nombre: "Multiplicacion" , descripcion: "La multiplicación es la operación matemática que consiste en hallar el resultado de sumar un número tantas veces como indique otro.", img:'https://i.imgur.com/9rrOc8V.png', guia: guiamult, video: "https://www.youtube.com/embed/AE4B0hgnz0E")
+Topic.create(nombre: "Division" , descripcion: "Operación matemática que consiste en separar una cantidad en partes iguales, es decir, se trata de realizar una distribución equitativa del objeto o cosa que se quiere repartir", img:'https://i.imgur.com/Gq65i6z.png', guia: guiaDiv, video: "https://www.youtube.com/embed/0D1wxxlBN-0")
+
+
 
 
 # Creación de preguntas de suma
@@ -472,8 +520,15 @@ Option.create(description: "46,9", isCorrect: false, question_id: 69)
 
 
 
+
 #Logros
+Achievement.create(name: "SUG-MATH",description: "Creaste una cuenta en SUG-MATH", point: 0)
 Achievement.create(name: "Primera Correcta",description: "Respondiste tu primer pregunta bien", point: 1)
 Achievement.create(name: "Bien jugado",description: " Respondiste 5 respuestas correctas", point: 5)
+Achievement.create(name: "Sobre Marcha",description: "Respondiste 25 respuestas correctas", point: 25)
+Achievement.create(name: "3̵̠̟͇͑̿͘3̸̻̺̦͒͛̀3̴̺͑͊͜͜͝3̴̡̢̦̓͌͘3̴̡̠͚͋̐̕3̵̘͎̪̿̈́͋3̴͔͉͔͑̈́3̵̼̠̙́̈́̚3̵͔̦̒͒̕",description: "333", point: 33)
 Achievement.create(name: "Dominio de matematicas",description: "Respondiste 50 respuestas correctas", point: 50)
-Achievement.create(name: "Ya podes dar clases",description: "Respondiste 100 respuestas correctas", point: 100)
+Achievement.create(name: "Mid Matematico",description: "Respondiste 50 respuestas correctas", point: 100)
+Achievement.create(name: "Capo Matematico",description: "Respondiste 50 respuestas correctas", point: 200)
+Achievement.create(name: "Ya podes dar clases",description: "Respondiste 100 respuestas correctas", point: 5000)
+

@@ -16,12 +16,13 @@
   </head>
   <body>
     <div>
-      <label>Selecciona un tema:</label>
+      <label>SELECCION DE TEMA</label>
       <div class="tema-list">
         <% @temas.each do |topic|  %>
         <div class="tema-item">
           <a href="/niveles?tema=<%= topic.id %>" class="tema-button">
           <div class="tema-content">
+            <img src="<%=topic.img%>" alt="Imagen del tema" style="width: 100px; margin-bottom: 10px; border: none;">
             <h3><%= topic.nombre %></h3>
             <p><%= topic.descripcion %></p>
           </div>

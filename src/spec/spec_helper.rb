@@ -2,18 +2,12 @@
   require 'sinatra/base'
   require 'sinatra/activerecord'
 
+
   ENV['RACK_ENV'] ||= 'test'
   ENV['APP_ENV'] ||= 'test'
 
   ActiveRecord::Base.logger.level = 1
-
-  
-  #require File.expand_path('../../config/environment.rb', __FILE__)
-
-  # Carga los modelos de la aplicación
-  Dir[File.expand_path('../../models/*.rb', __FILE__)].each { |file| require file }
-
- 
+  require File.expand_path('../config/environment.rb', __FILE__)
 
   RSpec.configure do |config|
     config.expect_with :rspec do |expectations|

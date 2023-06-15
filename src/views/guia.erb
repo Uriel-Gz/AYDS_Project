@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia</title>
+    <link rel="icon" href="https://i.imgur.com/Nl7KAcL.png">
+    <link href="<%= url('/guia.css') %>" rel="stylesheet" type="text/css"/>
+  <!-- <link rel="stylesheet" href="/css/style.css"> -->
+</head>
+<html>
+<head>
+  <title>Página de aprendizaje</title>
+</head>
+<body>
+  <h1><%= @tema.nombre %></h1>
+  <% secciones = @tema.guia.split("--PARTES--") %>
+
+  <% secciones.each do |seccion| %>
+    <% contenido = seccion.split("--DIVISION--") %>
+    <h2><%= contenido[0] %></h2>
+    <ul>
+      <% contenido[1..-1].each do |division| %>
+        <li><%= division %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <h2>Video explicativo</h2>
+  <div class="video-container">
+    <iframe width="727" height="409" src="<%=@tema.video%>" title="Video Explicativo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  </div>
+  <a href="/niveles?tema=<%= session[:tema_id]%>" class="boton">Volver</a>
+
+</body>
+</html>
