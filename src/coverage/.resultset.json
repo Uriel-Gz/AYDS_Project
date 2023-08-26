@@ -9,12 +9,17 @@
           1
         ]
       },
-      "/src/spec/models/question_spec.rb": {
+      "/src/spec/models/achievement_spec.rb": {
         "lines": [
           1,
           1,
           null,
           1,
+          null,
+          1,
+          1,
+          1,
+          null,
           null,
           1,
           1,
@@ -41,6 +46,8 @@
       },
       "/src/models/init.rb": {
         "lines": [
+          1,
+          1,
           1,
           1,
           1,
@@ -117,6 +124,127 @@
           1,
           null,
           1,
+          null,
+          1,
+          null,
+          1,
+          null,
+          null
+        ]
+      },
+      "/src/models/achievement.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          1,
+          null,
+          1,
+          null,
+          1,
+          null,
+          null
+        ]
+      },
+      "/src/models/option.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          null,
+          null,
+          1,
+          null,
+          null,
+          1,
+          null,
+          null,
+          null,
+          1,
+          null,
+          1,
+          null,
+          1,
+          null,
+          null,
+          null
+        ]
+      },
+      "/src/spec/models/answer_spec.rb": {
+        "lines": [
+
+        ]
+      },
+      "/src/spec/models/option_spec.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          1,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/src/spec/models/question_spec.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          1,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
           null
         ]
       },
@@ -224,6 +352,6 @@
         ]
       }
     },
-    "timestamp": 1692902631
+    "timestamp": 1693057087
   }
 }
