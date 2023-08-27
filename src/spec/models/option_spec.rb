@@ -23,13 +23,13 @@ describe Option do
       option = Option.new(description: "4",question_id: 1)
       expect(option.valid?).to eq(false)
     end
-   
+
     it "is not valid if the identifier of the question to which it corresponds is not number" do
       option = Option.new(description: "4", isCorrect: true, question_id:"N")
       expect(option.valid?).to eq(false)
     end
 
-    
+
     it "is invalid without the identifier to the question that corresponds" do
       option = Option.new(description: "4", isCorrect:"F", question_id: 1)
       expect(option.valid?).to eq(false)

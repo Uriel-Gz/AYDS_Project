@@ -7,6 +7,10 @@ class Topic < ActiveRecord::Base
 
   validates :guia, presence: true, length: { minimum: 10 }, uniqueness: true
 
+  validates :img, presence: true
+
+  validates :video, presence: true, uniqueness: true
+
 end
 
 

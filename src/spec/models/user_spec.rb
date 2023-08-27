@@ -24,13 +24,13 @@ describe User do
     end
 
     it "is invalid with a duplicate email address" do
-      user_one = User.create(name: "Juan", email: "juan@gmail.com", password: "pas1234") 
+      user_one = User.create(name: "Juan", email: "juan@gmail.com", password: "pas1234")
       user = User.new(name: "Lucas", email: "juan@gmail.com", password: "pp111")
       expect(user.valid?).to eq(false)
     end
 
     it "is invalid with a duplicate name" do
-      user_one = User.create(name: "Luis", email: "luis@gmail.com", password: "pas1234") 
+      user_one = User.create(name: "Luis", email: "luis@gmail.com", password: "pas1234")
       user = User.new(name: "Luis", email: "pedro@gmail.com", password: "pp111")
       expect(user.valid?).to eq(false)
     end

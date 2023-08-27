@@ -1,11 +1,15 @@
-require_relative '../../models/init.rb'
 require 'sinatra/activerecord'
+require_relative '../../models/init.rb'
 
 describe Question do
 
   it "is valid with a description, value and level" do
-    question = Question.new(description: "2+2?", value: 12, nivel_q: 1)
+    topic = Topic.new(nombre: "Samess", descripcion: "pruebaasdsadsad asd a", guia: "asdasdasd asd asd asdasdasdas")
+    question = Question.new(description: "2+2?", value: 12, nivel_q: 1, topic_id: 1)
+    user = User.create(name: "Vegeta")
+    question.users << user  # Asignar el usuario a la pregunta
     expect(question.valid?).to eq(true)
+    expect(question.users).to include(user)
   end
 
   it "is invalid without a description" do
@@ -21,6 +25,15 @@ describe Question do
   it "is invalid without a level" do
     question = Question.new(description: "2+2?", value: 12)
     expect(question.valid?).to eq(false)
+  end
+
+  it "can have associated users" do
+    question = Question.new(description: "What is 2+2?", value: 12, nivel_q: 1)
+    user = User.create(name: "Vegeta")
+    question.users << user
+
+    expect(question.users).to include(user)
+
   end
 
 end

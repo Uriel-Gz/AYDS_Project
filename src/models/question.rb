@@ -11,11 +11,15 @@ class Question < ActiveRecord::Base
   #relacion de uno a uno con answer
   has_one :answer
 
-  validates :description, presence: true
-
   validates :value, numericality: true, presence: true
 
+  validates :description, presence: true
+
   validates :nivel_q, numericality: true, presence: true
-  
+
+  validates :topic_id, presence: true, numericality: true
+
+  validates :users, presence: true
+
 end
 

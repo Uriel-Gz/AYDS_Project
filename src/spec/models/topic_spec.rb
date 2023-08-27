@@ -1,13 +1,12 @@
-require_relative '../../models/init.rb'
 require 'sinatra/activerecord'
+require_relative '../../models/init.rb'
 
-describe Topic do
-
-  it "is valid with a name, description and guide" do
-    topic = Topic.new(nombre: "Samess", descripcion: "prueba nro1", guia: "clasificados")
+RSpec.describe Topic, type: :model do
+  it "is valid with a name, description, and guide" do
+    topic = Topic.new(nombre: "Tema de Prueba", descripcion: "Descripción de prueba para validar", guia: "Guía de prueba", img: "imagen pro", video: "video pro")
     expect(topic.valid?).to eq(true)
   end
-  
+
   it "is invalid without descritcion" do
     topic = Topic.new(nombre: "Multiplos", guia: "clasificados2")
     expect(topic.valid?).to eq(false)
