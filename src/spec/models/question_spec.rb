@@ -6,8 +6,8 @@ describe Question do
   it "is valid with a description, value and level" do
     topic = Topic.new(nombre: "Samess", descripcion: "pruebaasdsadsad asd a", guia: "asdasdasd asd asd asdasdasdas")
     question = Question.new(description: "2+2?", value: 12, nivel_q: 1, topic_id: 1)
-    user = User.create(name: "Vegeta")
-    question.users << user  # Asignar el usuario a la pregunta
+    user = User.create(name: "Vegeta", email:"o010@mail.com", password:"pa00034")
+    question.users.append(user)  # Asignar el usuario a la pregunta
     expect(question.valid?).to eq(true)
     expect(question.users).to include(user)
   end
