@@ -2,11 +2,12 @@
   require 'sinatra/base'
   require 'sinatra/activerecord'
   require 'simplecov'
+  require 'rack/test'
   SimpleCov.start
 
-
-  ENV['RACK_ENV'] ||= 'test'
-  ENV['APP_ENV'] ||= 'test'
+RSpec.configure do |config|
+  config.include Rack::Test::Methods
+end
 
   ActiveRecord::Base.logger.level = 1
   require File.expand_path('../../config/environment.rb', __FILE__)

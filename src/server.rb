@@ -48,7 +48,7 @@ class App < Sinatra::Application
     before do
       ##lista de rutas restringidas
       ##Estas rutas requerirán que el usuario haya iniciado sesión para acceder a ellas.
-      restricted_paths = ['/principal', '/perfil', '/logros', '/niveles', '/modificar_perfil', '/guia']
+      restricted_paths = ['/principal', '/perfil', '/logros', '/niveles', '/modificar_perfil', '/guia', '/game']
       ##Si la ruta actual (restricted_paths) esta incluida en la lista y no se inicio session, se vuelve al login
       if restricted_paths.include?(request.path_info) && !session[:user_id]
         redirect '/'
@@ -78,14 +78,12 @@ class App < Sinatra::Application
     ##Verifica la existencia del usuario
     usuario = User.find_by(name: name, password: password)
     if usuario
-      logger.info 'USUARIO LOGEADO CORRECTAMENTE'
       #Guardamos el id del usuario autenticando la clave
       #:user_id en la sesión
       session[:user_id] = usuario.id
 
       redirect "/principal"
     else
-      logger.info 'ERROR EN LOGIN DE USUARIO'
       erb :'loginerror'
     end
   end
@@ -119,7 +117,6 @@ class App < Sinatra::Application
 
     ## El usuario existe no lo crea
     if @exist
-      logger.info 'NO SE PUDO REGISTRAR USUARIO'
       erb :'errorregister'
     else
       @sonIguales = (password == repPassword)
@@ -136,14 +133,11 @@ class App < Sinatra::Application
 
         #Si el usuario se guarda entonces es un exito, sino error
         if user.save
-          logger.info 'SE REGISTRO CON EXITO'
-
           profile = Profile.new(user_id: user.id, picture: "https://i.pinimg.com/originals/71/11/1f/71111f93d4fda96b241ace2ca4a102f3.png")
           profile.save
 
           redirect '/'
         else
-          logger.info 'NO SE PUDO REGISTRAR USUARIO'
           erb :'errorregister'
         end
       end
@@ -164,27 +158,6 @@ class App < Sinatra::Application
     session[:indice] = 0
     session[:tema_id] = 0
     erb :'principal'
-  end
-
-
-  post '/guardarPregunta' do
-    quest = params[:pregunta]
-    answer = params[:respuesta]
-    #-----------------------------------------------
-    #-----------------------------------------------
-    q = Question.new(description: quest)  #Crea una pregunta
-    q.value = 1                           #Setea el valor que tiene al responderse correcta
-    q.topic_id = params[:topic]           #Le otorgo el tipo pasado como parametro que corresponde a la pregunta
-    q.save                                #Lo guardo
-    #-----------------------------------------------
-    #-----------------------------------------------
-    a = Option.new(description: answer)   #Crea una nueva opcion
-    a.isCorrect = true                    # Es Correcta
-    a.question_id = q.id                  #Se le otorga a la respuesta le ID de la pregunta
-    a.save                                #Guarda la opcion
-     #-----------------------------------------------
-     #-----------------------------------------------
-    redirect '/principal'
   end
 
 #-----------------------------------------------------------------------------------------------------------------------------------------------------
