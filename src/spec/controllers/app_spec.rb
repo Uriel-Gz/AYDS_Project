@@ -21,8 +21,8 @@ RSpec.describe 'Sinatra App' do
       expect(last_response.status).to eq(200)
     end
 
-    it 'register' do
-      post '/register', {uname: 'Santiooo', psw: 'pas1234', psw2: 'pas1234', email: 'santiago010@mail.com'}
+    it 'register correct' do
+      post '/register', {uname: 'Santi', psw: 'pas1234', psw2: 'pas1234', email: 'santiago010@mail.com'}
       expect(last_response.status).to eq(200)
     end
 
@@ -37,62 +37,20 @@ RSpec.describe 'Sinatra App' do
       expect(last_response.status).to eq(200)
     end
 
+
+    it 'authenticate of user' do
+      user = User.new(name:"Santioo", email:"santiago010@mail.com", password:"pas1234")
+      post '/authenticate', { uname: 'Santioo', psw: 'pas1234' }
+      expect(last_response.status).to eq(302)
+      follow_redirect!
+      expect(last_request.path_info).to eq('/principal')
+    end
+
+
     it 'not authenticate of user' do
       user = User.new(name:"Santioo", email:"santiago010@mail.com", password:"pas1234")
       post '/authenticate', { uname: 'Santioo', psw: 'pas12345' }
       expect(last_response.status).to eq(200)
-    end
-
-    it 'testing the route profile' do
-      get '/perfil' # Accede a la ruta '/perfil'
-      expect(last_response.status).to eq(302) # Verifica el código de respuesta HTTP
-      follow_redirect!
-      expect(last_request.path_info).to eq('/')
-    end
-
-    it 'testing /guia' do
-      topic = Topic.new(nombre: "Samess", descripcion: "pruebaasdsadsad asd a", guia: "asdasdasd asd asd asdasdasdas")
-      get '/guia'
-      expect(last_response.status).to eq(302)
-      follow_redirect!
-      expect(last_request.path_info).to eq('/')
-    end
-
-
-    it 'testing the path modify /game' do
-      get '/game'
-      expect(last_response.status).to eq(302)
-      follow_redirect!
-      expect(last_request.path_info).to eq('/')
-    end
-
-    it 'testing the route /niveles' do
-      get '/niveles' # Accede a la ruta '/niveles'
-      expect(last_response.status).to eq(302)
-      follow_redirect!
-      expect(last_request.path_info).to eq('/')
-    end
-
-
-    it 'testing the route modify profile' do
-      get '/modificar_perfil'
-      expect(last_response.status).to eq(302)
-      follow_redirect!
-      expect(last_request.path_info).to eq('/')
-    end
-
-    it 'testing the path achievements' do
-      get '/logros' # Accede a la ruta '/logros'
-      expect(last_response.status).to eq(302)
-      follow_redirect!
-      expect(last_request.path_info).to eq('/')
-    end
-
-    it 'testing the main route' do
-      get '/principal' # Accede a la ruta '/principal'
-      expect(last_response.status).to eq(302)
-      follow_redirect!
-      expect(last_request.path_info).to eq('/')
     end
 
     it 'testing the POST /logout route' do
@@ -104,19 +62,64 @@ RSpec.describe 'Sinatra App' do
       follow_redirect!
       expect(last_request.path_info).to eq('/')
     end
-
   end
 
-  it 'should redirect to error_modificar if user with new name already exists' do
-    # Simula una sesión de usuario iniciada
-    session = { user_id: 1 }
-    user = User.new(name:"Santioo", email:"santiago010@mail.com", password:"pas1234")
-    # Realiza una solicitud POST a la ruta '/modify_profile' con un nuevo nombre que ya existe
-    post '/modify_profile', { name: 'Santioo' }, 'rack.session' => session
 
-    # Verifica que el código de estado sea 302 (redirección) hacia '/error_modificar'
-    follow_redirect!
-    expect(last_request.path_info).to eq('/error_modificar')
+  context 'probando perfil' do
+
+    it 'trying to modify level with user verification' do
+      # Simula una sesión de usuario iniciada
+      session = { user_id: 1 }
+      # Realiza una solicitud GET a una ruta protegida (por ejemplo, '/principal')
+      get '/modificar_perfil', {}, 'rack.session' => session
+      expect(last_response.status).to eq(200)
+    end
+
+    it 'should redirect to error_modificar if user with new name already exists' do
+      # Simula una sesión de usuario iniciada
+      session = { user_id: 1 }
+      user = User.new(name:"Santioo", email:"santiago010@mail.com", password:"pas1234")
+      # Realiza una solicitud POST a la ruta '/modify_profile' con un nuevo nombre que ya existe
+      post '/modify_profile', { name: 'Santioo' }, 'rack.session' => session
+
+      # Verifica que el código de estado sea 302 (redirección) hacia '/error_modificar'
+      follow_redirect!
+      expect(last_request.path_info).to eq('/error_modificar')
+    end
+
+      #COMO AL INGRESAR A / y ya hay un usuario registrado te lleva a /principal
+      it 'testing the login route with a logged in user' do
+        session = { user_id: 1 }
+        get '/', {}, 'rack.session' => session
+        # Verifica que se haya redireccionado
+        expect(last_response.status).to eq(302)
+        # Verifica que la redirección haya sido '/principal'
+        follow_redirect!
+        expect(last_request.path_info).to eq('/principal')
+      end
+
+    it 'Testing the profile route with user verification' do
+      # Simula una sesión de usuario iniciada
+      session = { user_id: 1 }
+      # Realiza una solicitud GET a una ruta
+      get '/perfil', {}, 'rack.session' => session
+      # Verifica que el código de estado sea 200 (éxito) o el que uses para indicar una sesión iniciada
+      expect(last_response.status).to eq(200)
+    end
+
+
+    it 'should allow modifying the profile if the new name is unique' do
+      # Simula una sesión de usuario iniciada
+      session = { user_id: 1 }
+        user = User.new(name:"Santioo", email:"santiago010@mail.com", password:"pas1234")
+        # Realiza una solicitud POST a la ruta '/modify_profile' con nuevos valores
+        post '/modify_profile', { name: 'NombreUnico', psw:'pass1234', email:'santiago01@mail.com', imagen:'lolero.jpg' }, 'rack.session' => session
+        # Verifica que el código de estado sea 302 osea que direccione.
+        expect(last_response.status).to eq(302)
+        follow_redirect!
+        expect(last_request.path_info).to eq('/perfil')
+      end
+
   end
 
   context 'Testing routes with user verification' do
@@ -135,14 +138,6 @@ RSpec.describe 'Sinatra App' do
       expect(last_response.status).to eq(200)
     end
 
-    it 'trying to modify level with user verification' do
-      # Simula una sesión de usuario iniciada
-      session = { user_id: 1 }
-      # Realiza una solicitud GET a una ruta protegida (por ejemplo, '/principal')
-      get '/modificar_perfil', {}, 'rack.session' => session
-      expect(last_response.status).to eq(200)
-    end
-
     it 'testing the route /niveles' do
       # Simula una sesión de usuario iniciada
       session = { user_id: 1, tema_id: 1}
@@ -158,53 +153,41 @@ RSpec.describe 'Sinatra App' do
       get '/guia', {}, 'rack.session' => session
       expect(last_response.status).to eq(200)
     end
-
-
-
-      #COMO AL INGRESAR A / y ya hay un usuario registrado te lleva a /principal
-    it 'testing the login route with a logged in user' do
-      session = { user_id: 1 }
-      get '/', {}, 'rack.session' => session
-      # Verifica que se haya redireccionado
-      expect(last_response.status).to eq(302)
-      # Verifica que la redirección haya sido '/principal'
-      follow_redirect!
-      expect(last_request.path_info).to eq('/principal')
-    end
-
-
-    it 'authenticate of user' do
-      user = User.new(name:"Santioo", email:"santiago010@mail.com", password:"pas1234")
-      post '/authenticate', { uname: 'Santioo', psw: 'pas1234' }
-      expect(last_response.status).to eq(302)
-      follow_redirect!
-      expect(last_request.path_info).to eq('/principal')
-    end
-
-    it 'Testing the profile route with user verification' do
-      # Simula una sesión de usuario iniciada
-      session = { user_id: 1 }
-      # Realiza una solicitud GET a una ruta
-      get '/perfil', {}, 'rack.session' => session
-      # Verifica que el código de estado sea 200 (éxito) o el que uses para indicar una sesión iniciada
-      expect(last_response.status).to eq(200)
-    end
-
-
-    it 'should allow modifying the profile if the new name is unique' do
-      # Simula una sesión de usuario iniciada
-      session = { user_id: 1 }
-      user = User.new(name:"Santioo", email:"santiago010@mail.com", password:"pas1234")
-      # Realiza una solicitud POST a la ruta '/modify_profile' con nuevos valores
-      post '/modify_profile', { name: 'NombreUnicooo', psw:'pass1234', email:'santiago01@mail.com', imagen:'lolero.jpg' }, 'rack.session' => session
-      # Verifica que el código de estado sea 302 osea que direccione.
-      expect(last_response.status).to eq(302)
-      follow_redirect!
-      expect(last_request.path_info).to eq('/perfil')
-    end
-
   end
 
 
+  context 'prob game' do
+
+    it 'testing the path modify /game' do
+      get '/game'
+      expect(last_response.status).to eq(302)
+      follow_redirect!
+      expect(last_request.path_info).to eq('/')
+    end
+
+    it 'probando las preguntas del juego' do
+      session = { user_id: 1 }
+      user = User.new(name:"Santioo", email:"santiago010@mail.com", password:"pas1234")
+      topic = Topic.new(nombre: "Samess", descripcion: "pruebaasdsadsad asd a", guia: "asdasdasd asd asd asdasdasdas")
+      question = Question.new(description: "2+2?", value: 12, nivel_q: 1, topic_id: 1)
+      question = Question.new(description: "3+3?", value: 12, nivel_q: 1, topic_id: 1)
+      post '/game', { tema: 1, nivel: 1}, 'rack.session' => session
+      expect(last_response.status).to eq(200)
+    end
+
+    it 'probando la verificacion de respuestas del juego' do
+      session = { user_id: 1 }
+      user = User.new(name:"Santioo", email:"santiago010@mail.com", password:"pas1234")
+      topic = Topic.new(nombre: "Samess", descripcion: "pruebaasdsadsad asd a", guia: "asdasdasd asd asd asdasdasdas")
+      question = Question.new(description: "2+2?", value: 12, nivel_q: 1, topic_id: 1)
+      Option.create(description: "4", isCorrect: true, question_id: 1)
+      Option.create(description: "3", isCorrect: false, question_id: 1)
+      Option.create(description: "2", isCorrect: false, question_id: 1)
+      Option.create(description: "6", isCorrect: false, question_id: 1)
+      post '/verificar', { opcionElegida: 1, question: 1, tema: 1, nivel: 1}, 'rack.session' => session
+      expect(last_response.status).to eq(200)
+    end
+
+  end
 
 end
