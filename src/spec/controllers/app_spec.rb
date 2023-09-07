@@ -32,14 +32,14 @@ RSpec.describe 'Sinatra App' do
     end
 
     it 'register user exist' do
-      user = User.new(name:"Santioo", email:"santiago010@mail.com", password:"pas1234")
+      user = User.new(name:"Santioo", email:"santiago010@mail.com", password:"pas1234", total_score: 5)
       post '/register', {uname: 'Santioo', psw: 'lolero123', psw2: 'lolero123', email: 'santiago0100@mail.com'}
       expect(last_response.status).to eq(200)
     end
 
 
     it 'authenticate of user' do
-      user = User.new(name:"Santioo", email:"santiago010@mail.com", password:"pas1234")
+      user = User.new(name:"Santioo", email:"santiago010@mail.com", password:"pas1234", total_score: 5)
       post '/authenticate', { uname: 'Santioo', psw: 'pas1234' }
       expect(last_response.status).to eq(302)
       follow_redirect!
@@ -48,7 +48,7 @@ RSpec.describe 'Sinatra App' do
 
 
     it 'not authenticate of user' do
-      user = User.new(name:"Santioo", email:"santiago010@mail.com", password:"pas1234")
+      user = User.new(name:"Santioo", email:"santiago010@mail.com", password:"pas1234", total_score: 5)
       post '/authenticate', { uname: 'Santioo', psw: 'pas12345' }
       expect(last_response.status).to eq(200)
     end
@@ -78,7 +78,7 @@ RSpec.describe 'Sinatra App' do
     it 'should redirect to error_modificar if user with new name already exists' do
       # Simula una sesión de usuario iniciada
       session = { user_id: 1 }
-      user = User.new(name:"Santioo", email:"santiago010@mail.com", password:"pas1234")
+      user = User.new(name:"Santioo", email:"santiago010@mail.com", password:"pas1234", total_score: 5)
       # Realiza una solicitud POST a la ruta '/modify_profile' con un nuevo nombre que ya existe
       post '/modify_profile', { name: 'Santioo' }, 'rack.session' => session
 
@@ -111,7 +111,7 @@ RSpec.describe 'Sinatra App' do
     it 'should allow modifying the profile if the new name is unique' do
       # Simula una sesión de usuario iniciada
       session = { user_id: 1 }
-        user = User.new(name:"Santioo", email:"santiago010@mail.com", password:"pas1234")
+        user = User.new(name:"Santioo", email:"santiago010@mail.com", password:"pas1234", total_score: 5)
         # Realiza una solicitud POST a la ruta '/modify_profile' con nuevos valores
         post '/modify_profile', { name: 'NombreUnico', psw:'pass1234', email:'santiago01@mail.com', imagen:'lolero.jpg' }, 'rack.session' => session
         # Verifica que el código de estado sea 302 osea que direccione.
@@ -126,7 +126,9 @@ RSpec.describe 'Sinatra App' do
     it 'testing /logros with user verification' do
       # Simula una sesión de usuario iniciada
       session = { user_id: 1 }
+      user = User.new(name:"Santii", email:"santiago01000@mail.com", password:"pas1234", total_score: 5)
       # Realiza una solicitud GET a la ruta /logros
+      achievement = Achievement.new(name: "Campeon", description: "completa 16 lecciones", point: 1)
       get '/logros', {}, 'rack.session' => session
       expect(last_response.status).to eq(200)
     end
@@ -143,7 +145,7 @@ RSpec.describe 'Sinatra App' do
       session = { user_id: 1, tema_id: 1}
       topic = Topic.new(nombre: "Samess", descripcion: "pruebaasdsadsad asd a", guia: "asdasdasd asd asd asdasdasdas")
       question = Question.new(description: "2+2?", value: 12, nivel_q: 1, topic_id: 1)
-      user = User.new(name:"Santioo", email:"santiago010@mail.com", password:"pas1234")
+      user = User.new(name:"Santioo", email:"santiago010@mail.com", password:"pas1234", total_score: 5)
       get '/niveles', {tema: 1}, 'rack.session' => session
       expect(last_response.status).to eq(200)
     end
@@ -167,7 +169,7 @@ RSpec.describe 'Sinatra App' do
 
     it 'probando las preguntas del juego' do
       session = { user_id: 1 }
-      user = User.new(name:"Santioo", email:"santiago010@mail.com", password:"pas1234")
+      user = User.new(name:"Santioo", email:"santiago010@mail.com", password:"pas1234", total_score: 5)
       topic = Topic.new(nombre: "Samess", descripcion: "pruebaasdsadsad asd a", guia: "asdasdasd asd asd asdasdasdas")
       question = Question.new(description: "2+2?", value: 12, nivel_q: 1, topic_id: 1)
       question = Question.new(description: "3+3?", value: 12, nivel_q: 1, topic_id: 1)
@@ -177,7 +179,7 @@ RSpec.describe 'Sinatra App' do
 
     it 'probando la verificacion de respuestas del juego' do
       session = { user_id: 1 }
-      user = User.new(name:"Santioo", email:"santiago010@mail.com", password:"pas1234")
+      user = User.new(name:"Santioo", email:"santiago010@mail.com", password:"pas1234", total_score: 5)
       topic = Topic.new(nombre: "Samess", descripcion: "pruebaasdsadsad asd a", guia: "asdasdasd asd asd asdasdasdas")
       question = Question.new(description: "2+2?", value: 12, nivel_q: 1, topic_id: 1)
       Option.create(description: "4", isCorrect: true, question_id: 1)
