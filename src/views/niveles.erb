@@ -22,40 +22,46 @@
 
 
 
+  <div class="niveles">
+    <h1> Niveles de <%= @tema.nombre %></h1>
+    <ul>
+      <% for i in (1..@niveles_tema) %>
+        <% preguntas_nivel = Question.where(topic_id: @tema.id, nivel_q: i).where.not(id: @respondidas) %>
 
-    <div class="niveles">
-      <h1> Niveles de <%= @tema.nombre %></h1>
-      <ul>
-        <% for i in (1..@niveles_tema) %>
-          <% preguntas_nivel = Question.where(topic_id: @tema.id,nivel_q: i).where.not(id: @respondidas) %>
-
-          <% if preguntas_nivel.any? %>
-            <li>
-              <form action="/game" method="post">
-                <input type="hidden" name="tema" value="<%= session[:tema_id] %>">
-                <input type="hidden" name="nivel" value="<%= i %>">
-                <button type="submit" class="tema-link">Nivel <%= i %></button>
-              </form>
-            </li>
-            <% break %>
-          <% else %>
-            <li>
-              <form action="/game" method="post">
-                <input type="hidden" name="tema" value="<%= session[:tema_id] %>">
-                <input type="hidden" name="nivel" value="<%= i %>">
-                <button type="submit" class="tema-link">Nivel <%= i %></button>
-              </form>
-            </li>
-            <% total = i %>
-          <% end %>
-        <% end %>
-
-        <% if total == @niveles_tema %>
+        <li>
+          <form action="/game" method="post">
+            <input type="hidden" name="tema" value="<%= session[:tema_id] %>">
+            <input type="hidden" name="nivel" value="<%= i %>">
+            <button type="submit" class="tema-link">Nivel <%= i %> (Modo Juego)</button>
+          </form>
+        </li>
+        <% respond = Question.where(topic_id: @tema.id, nivel_q: i).where(id: @respondidas) %>
+        <% if respond.any? %>
           <li>
-            <p> Terminaste todas las preguntas de este tema </p>
+            <form action="/practica" method="post">
+              <input type="hidden" name="tema" value="<%= session[:tema_id] %>">
+              <input type="hidden" name="nivel" value="<%= i %>">
+              <button type="submit" class="tema-link">Nivel <%= i %> ( Practica)</button>
+            </form>
           </li>
         <% end %>
-      </ul>
-    </div>
+
+
+
+        <% if preguntas_nivel.any? %>
+          <% break %>
+        <% else %>
+          <% total = i %>
+        <% end %>
+      <% end %>
+
+      <% if total == @niveles_tema %>
+        <li>
+          <p> Terminaste todas las preguntas de este tema </p>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
   </body>
 </html>

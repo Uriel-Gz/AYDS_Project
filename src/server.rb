@@ -253,6 +253,28 @@ class App < Sinatra::Application
     end
   end
 
+
+  post '/practica' do
+    @tema = Topic.find_by(id: params[:tema])
+    @user = User.find_by(id: session[:user_id])  #Consigo el USER del usuario de la sesion
+    @nivel = params[:nivel]
+
+    @answered = @user.questions.pluck(:id)  #Permite obtener los id de las preguntas que respondio
+    @question_level = Question.where(nivel_q: @nivel, topic_id: @tema.id)
+    @questions = @question_level.where(id: @answered)
+
+    if @questions.any?
+      @question = @questions.sample
+      if @question != nil
+        erb :''
+      end
+    else
+      erb :''
+    end
+
+  end
+
+
   before do
     response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
     response.headers['Pragma'] = 'no-cache'
