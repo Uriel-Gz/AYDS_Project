@@ -60,7 +60,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_20_112148) do
     t.index ["question_id"], name: "index_questions_users_on_question_id"
     t.index ["user_id"], name: "index_questions_users_on_user_id"
   end
-
+  
   create_table "topics", force: :cascade do |t|
     t.string "nombre"
     t.string "descripcion"
@@ -76,6 +76,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_20_112148) do
     t.integer "total_score"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+  
+  
+  create_table "ranking", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.index ["user_id"], name: "index_ranking_on_user_id"
   end
 
   add_foreign_key "achievements_users", "achievements"
