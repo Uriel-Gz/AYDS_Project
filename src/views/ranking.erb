@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ranking</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="https://i.imgur.com/Nl7KAcL.png">
+
+  <!-- <link rel="stylesheet" href="/css/style.css"> -->
+</head>
+<body>
+  <h1><center>Ranking</center></h1>
+  <ol>
+
+    <% @ord.each do |ord| %>
+     <li><%=ord.name  %> <%=ord.score  %></li>
+    <%end%>
+  
+  </ol>
+  <div>
+  <a href="/principal" class="boton">Volver Principal</a>
+  </div>
+</body>
+
