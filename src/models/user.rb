@@ -7,6 +7,10 @@ class User < ActiveRecord::Base
 
   #relacion de uno a uno con profile
   has_one :profile
+    
+  #relacion de muchos a 1 con rancking  
+  belongs_to :ranking
+
   
   ## validacion
   validates :name, presence: true, length: { minimum: 2 }, uniqueness: true

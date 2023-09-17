@@ -12,6 +12,7 @@ require_relative 'models/question'
 require_relative 'models/option'
 require_relative 'models/profile'
 require_relative 'models/achievement'
+require_relative 'models/ranking'
 
 
 class App < Sinatra::Application
@@ -306,6 +307,27 @@ class App < Sinatra::Application
     erb :'respuesta'
   end
 
+  get '/ranking' do
+    @user = User.find(session[:user_id])
+    
+    if Ranking.exists?(name:@user.name)
+      @rank = Ranking.find_by(name:@user.name)
+      @rank.update(score:@user.total_score)
+    else  
+      Ranking.create(name:@user.name, score:@user.total_score)
+    end 
+    
+    @rank=Ranking.all     
+    @ord = @rank.order(score: :desc)
+    
+    @var = 1
+    j = 0
+    while @ord[j].name != @user.name 
+        @var += 1
+        j += 1
+    end 
+    erb :ranking 
+  end
 
   get '/logros' do
     @user = User.find(session[:user_id])
