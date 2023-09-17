@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="https://i.imgur.com/Nl7KAcL.png">
+
+  <title>SUG-MATH</title>
+
+  <link href="<%= url('/log_without_tm_ICO.ico') %>" rel="icon" type="image/ico">
+  <link href="<%= url('/pregunta.css') %>" rel="stylesheet" type="text/css"/>
+  </head>
+
+
+  <body>
+    <div id="salir">
+      <a href="/niveles?tema=<%= @tema_id %>" class="boton-salir">Salir</a>
+    </div>
+  <center>
+  <%if @respuesta.isCorrect%>
+    <img class="imagen" id="pregunta-resp-true" src ="https://th.bing.com/th/id/R.18cb277b7c1e705816512368ebfc7d84?rik=4OWiSaviHuiRQA&riu=http%3a%2f%2fihyaauddeen.co.za%2fwp-content%2fuploads%2f2014%2f05%2fcorrect-order.png&ehk=AMSDXh4%2fRJ3Xf6BgS5i04WR5IOKtzqoh62mpTNJnTD4%3d&risl=&pid=ImgRaw&r=0">
+    <h1>Respuesta Correcta</h1>
+  <%else%>
+    <img class="imagen" id="pregunta-resp-false" src ="https://static.vecteezy.com/system/resources/previews/001/194/357/large_2x/no-sign-cross-png.png">
+    <h1>Respuesta Incorrecta</h1>
+    <% options = Option.where(question_id: @question.id) %>
+      <% options.each do |option| %>
+        <%if option.isCorrect%>
+        <p name ="opcionCorrecta"> La respuesta correcta era: <%= option.description %> </p>
+        <%end%>
+    <% end %>
+  <%end%>
+  <form action="/practica" method="POST">
+      <input type="hidden" name="tema" value="<%= @tema_id %>">
+      <input type="hidden" name="nivel" value="<%= @nivel %>">
+      <button type="submit" class="button-sig">siguiente</button>
+    </a>
+  </form>
+  <center>
+</body>
+</html>

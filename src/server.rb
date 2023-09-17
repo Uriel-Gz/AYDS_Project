@@ -12,6 +12,7 @@ require_relative 'models/question'
 require_relative 'models/option'
 require_relative 'models/profile'
 require_relative 'models/achievement'
+require_relative 'models/ranking'
 
 
 class App < Sinatra::Application
@@ -134,6 +135,7 @@ class App < Sinatra::Application
         #Si el usuario se guarda entonces es un exito, sino error
         if user.save
           profile = Profile.new(user_id: user.id, picture: "https://i.pinimg.com/originals/71/11/1f/71111f93d4fda96b241ace2ca4a102f3.png")
+          Ranking.create(score: user.total_score, user_id: user.id) #Agrega el usuario al ranking
           profile.save
 
           redirect '/'
@@ -266,14 +268,25 @@ class App < Sinatra::Application
     if @questions.any?
       @question = @questions.sample
       if @question != nil
-        erb :''
+        erb :'modopractica'
       end
-    else
-      erb :''
     end
 
   end
 
+  post '/verificarPract' do
+    @respuestaID = params[:opcionElegida] #Parametro que otorga el ID de la respuesta seleccionada
+    questionID = params[:question]        #Parametro que otorga el ID de la pregunta respondida
+    @tema_id = params[:tema]
+    @nivel = params[:nivel]
+    #-----------------------------------------------
+    #-----------------------------------------------
+    @respuesta = Option.find_by(id: @respuestaID)  #Obtengo la respuesta concreta que corresponde al ID
+    @question = Question.find_by(id: questionID)   #Obtengo la pregunta concreta que corresponde al ID
+      #-----------------------------------------------
+      #-----------------------------------------------
+    erb :'respuestaPract'
+  end
 
   before do
     response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
@@ -304,6 +317,24 @@ class App < Sinatra::Application
       @user.save
     end
     erb :'respuesta'
+  end
+
+  get '/ranking' do
+    @ranking = actualizar_ranking
+    erb :ranking
+  end
+
+  def actualizar_ranking
+    # ordenamos por score
+    @rankings = Ranking.order(score: :desc)
+    position = 1  # posiciones pe
+    # cada usuario tiene su posicion
+    @rankings.each do |ranking|
+      ranking.update(position: position)
+      position += 1
+    end
+
+    @rankings
   end
 
 

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ranking</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="https://i.imgur.com/Nl7KAcL.png">
+
+  <!-- <link rel="stylesheet" href="/css/style.css"> -->
+</head>
+<body>
+  <h1><center>Ranking</center></h1>
+  <ol>
+
+    <% count = 0 %>
+    <% @ranking.each do |rank| %>
+      <%user = User.find_by(id: rank.user_id)%>
+      <p>Usuario: <%= user.name %> Score: <%=user.total_score%></p>
+      <% count += 1 %>
+    <% break if count >= 5 %>
+    <% end %>
+
+  <% (5 - count).times do %>
+    <p>Usuario: ??????? Score: ???????</p>
+  <% end %>
+
+
+
+  <%pos = Ranking.find_by(user_id: session[:user_id])%>
+  <%userr = User.find_by(id: session[:user_id])%>
+
+  <!-- Esto es para ver la posicion del usuario -_- -->
+  <p>
+    Tu Posición:
+    <% if pos.position != nil %>
+      <%= pos.position%>
+    <% else %>
+      ???
+    <% end %>
+    Score: <%= userr.total_score %>
+</p>
+
+  </ol>
+  <div>
+  <a href="/principal" class="boton">Volver Principal</a>
+  </div>
+</body>
+
