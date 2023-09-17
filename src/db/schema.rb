@@ -62,8 +62,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_16_001626) do
   end
 
   create_table "rankings", force: :cascade do |t|
-    t.string "name"
+    t.integer "position"
     t.integer "score"
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_rankings_on_user_id"
   end
 
   create_table "topics", force: :cascade do |t|
@@ -92,4 +94,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_16_001626) do
   add_foreign_key "questions", "topics"
   add_foreign_key "questions_users", "questions"
   add_foreign_key "questions_users", "users"
+  add_foreign_key "rankings", "users"
 end
