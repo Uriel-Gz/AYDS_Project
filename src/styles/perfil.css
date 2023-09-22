@@ -4,26 +4,18 @@
 */
 
 html{
-  background-image: url('https://i.pinimg.com/originals/b3/08/98/b308981c87432eb7ba3433480e72f14d.png');
-  background-size: 80%;
+  background-image: url('https://p4.wallpaperbetter.com/wallpaper/546/923/740/gradient-wallpaper-preview.jpg');
+  background-size: cover;
   background-position: center;
   height: 100%;width: 100%;
 }
 
-h1, p{
+p{
   color: rgb(244, 244, 244);
   font-weight: bold;
   margin: 10px;
-  font-family: 'Times New Roman', Times, serif;
-  font-size: 44px;
-  text-shadow: 0 0 20px rgba(0, 242, 255, 0.879),
-               0 0 20px rgba(88, 242, 250, 0.879),
-               0 0 20px rgba(178, 242, 245, 0.879);
-}
-
-p{
-  color: rgb(230, 230, 228);
-  font-family: 'Arial Black', Times, serif;
+  /* font-family: 'Times New Roman', Times, serif; */
+  font-family: Verdana,'Arial Black', Times, serif;
   font-size: 25px;
   text-shadow: 0 0 20px rgba(0, 242, 255, 0.879),
                0 0 20px rgba(88, 242, 250, 0.879),
@@ -31,38 +23,48 @@ p{
 }
 
 .container {
-background-color: rgba(231, 240, 247, 0.201);
-border-top-left-radius: 100px;
-border-bottom-right-radius: 100px;
+background-color: rgba(153, 204, 243, 0.311);
+border-top-left-radius: 300px 100px;
+border-bottom-right-radius: 200px 70px;
+border-bottom-left-radius: 200px 70px;
+border-top-right-radius: 300px 100px;
 margin: 20px auto;
 max-width: 400px;
 padding: 20px;
 text-align: center;
-display: block;
+display: grid;
+position: relative;
+top: 50px;
 }
+
 img {
   border-radius: 50%;
   width: 250px;
   height: 250px;
   object-fit: cover;
   margin-bottom: 10px;
-  margin-top: 50px;
+  /* margin-top: 50px; */
+  position: relative;
+  top: 50px;
 }
 
-/* p {
-margin-bottom: 20px;
-} */
+#but {
+  display: grid;
+  justify-content: center;
+  position: relative;
+  top: 50px;
+}
+  
 
 .boton {
-background-color: #08b5d8;
-border: none;
-border-radius: 20px;
-color: #fff;
-font-size: 18px;
-margin: 5px 5px;
-padding: 10px 20px;
-text-decoration: none;
-transition: background-color 0.3s ease;
+  background-color: #08b5d8;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 18px;
+  margin: 5px 5px;
+  padding: 10px 20px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
 }
 
 .boton:hover {
