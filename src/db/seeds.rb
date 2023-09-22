@@ -63,8 +63,8 @@ Question.create(value: 1, description: "En un acuario viven 10 🐟, en otro 5 �
 Question.create(value: 1, description: "En una granja hay 15 🐣 y despues de una semana el granjero trae otros 9 🐣 más, ¿cuántos pollitos viven ahora en la granja?", nivel_q: 1, topic_id: 1)
 Question.create(value: 1, description: "En la escuela dos aulas que estan encargadas de un acto, unos alumnos acomodan 🪑 y los otros decoran 🎍🎊. Los que decoran son 27 y los que acomodan son 14, ¿cuántos alumnos 👨🏻‍🎓 estan a cargo del acto?", nivel_q: 1, topic_id: 1)
 
-#Nivel 1
 
+#Nivel 1
 Option.create(description: "4", isCorrect: true, question_id: 1)
 Option.create(description: "3", isCorrect: false, question_id: 1)
 Option.create(description: "2", isCorrect: false, question_id: 1)

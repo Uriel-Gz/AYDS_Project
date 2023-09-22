@@ -12,6 +12,7 @@ require_relative 'models/question'
 require_relative 'models/option'
 require_relative 'models/profile'
 require_relative 'models/achievement'
+require_relative 'models/ranking'
 
 
 class App < Sinatra::Application
@@ -134,6 +135,7 @@ class App < Sinatra::Application
         #Si el usuario se guarda entonces es un exito, sino error
         if user.save
           profile = Profile.new(user_id: user.id, picture: "https://i.pinimg.com/originals/71/11/1f/71111f93d4fda96b241ace2ca4a102f3.png")
+          Ranking.create(score: user.total_score, user_id: user.id) #Agrega el usuario al ranking
           profile.save
 
           redirect '/'
@@ -228,7 +230,6 @@ class App < Sinatra::Application
     @user = User.find_by(id: session[:user_id])  #Consigo el USER del usuario de la sesion
     @respondidas = @user.questions.pluck(:id)    #Permite obtener los id de las preguntas que respondio
     @niveles_tema = @tema.questions.distinct.pluck(:nivel_q).count #Cantidad niveles del tema
-    session[:nivel] = nil
     erb :'niveles'
   end
 
@@ -251,6 +252,39 @@ class App < Sinatra::Application
     else
       erb :'preguntaterminadas'
     end
+  end
+
+
+  post '/practica' do
+    @tema = Topic.find_by(id: params[:tema])
+    @user = User.find_by(id: session[:user_id])  #Consigo el USER del usuario de la sesion
+    @nivel = params[:nivel]
+
+    @answered = @user.questions.pluck(:id)  #Permite obtener los id de las preguntas que respondio
+    @question_level = Question.where(nivel_q: @nivel, topic_id: @tema.id)
+    @questions = @question_level.where(id: @answered)
+
+    if @questions.any?
+      @question = @questions.sample
+      if @question != nil
+        erb :'modopractica'
+      end
+    end
+
+  end
+
+  post '/verificarPract' do
+    @respuestaID = params[:opcionElegida] #Parametro que otorga el ID de la respuesta seleccionada
+    questionID = params[:question]        #Parametro que otorga el ID de la pregunta respondida
+    @tema_id = params[:tema]
+    @nivel = params[:nivel]
+    #-----------------------------------------------
+    #-----------------------------------------------
+    @respuesta = Option.find_by(id: @respuestaID)  #Obtengo la respuesta concreta que corresponde al ID
+    @question = Question.find_by(id: questionID)   #Obtengo la pregunta concreta que corresponde al ID
+      #-----------------------------------------------
+      #-----------------------------------------------
+    erb :'respuestaPract'
   end
 
   before do
@@ -284,6 +318,24 @@ class App < Sinatra::Application
     erb :'respuesta'
   end
 
+  get '/ranking' do
+    @ranking = actualizar_ranking
+    erb :ranking
+  end
+
+  def actualizar_ranking
+    # ordenamos por score
+    @rankings = Ranking.order(score: :desc)
+    position = 1  # posiciones pe
+    # cada usuario tiene su posicion
+    @rankings.each do |ranking|
+      ranking.update(position: position)
+      position += 1
+    end
+
+    @rankings
+  end
+
 
   get '/logros' do
     @user = User.find(session[:user_id])
@@ -308,6 +360,8 @@ class App < Sinatra::Application
     @tema = Topic.find_by(id: session[:tema_id])
     erb :'guia'
   end
+
+
 
 end
 
