@@ -4,5 +4,8 @@ class Ranking < ActiveRecord::Base
     #relacion de uno a muchos con users
     has_many :users
 
+    validates :score, presence: true, numericality: true
+
+    validates :user_id, presence: true
 end
   
