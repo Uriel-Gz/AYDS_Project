@@ -1,0 +1,79 @@
+html {
+    background-image: url('https://img.lovepik.com/background/20211021/large/lovepik-black-gold-texture-background-image_401554973.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    color: white;
+    height: 100%;
+    font-family: consolas;
+}
+
+
+h1 {
+    position: relative;
+    top: 20px;
+    font-size: 2.5rem;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    text-decoration-line: underline;
+    color: rgb(244, 243, 200);
+}
+
+body {
+    text-align: center;
+    display: grid;
+    grid-template-columns: 40%;
+    justify-content: center;
+    font-size: 1.5rem;
+    height: 95%;
+    row-gap: 20px;
+    margin-left: 0;
+}
+
+ol {
+    display: grid;
+    grid-template-columns: 10% 50% 40%;
+    justify-content: center; 
+    padding-right: 40px;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    background-color: rgba(74, 74, 70, 0.708);
+    margin-left: 2px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgb(255, 221, 0);
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    font-size: large;
+    background-color: #f8c838;
+    padding: 2%;
+    border-radius: 4px;
+}
+
+a:hover{
+    background-color: #e8b007;
+}
+
+#yo {
+   border-left: 1px rgba(255, 255, 255, 0.566) solid;
+   border-top: 1px rgba(255, 255, 255, 0.566) solid;
+   border-bottom: 1px rgba(255, 255, 255, 0.566) solid;
+   box-shadow: -2.5px 0 3px rgb(243, 241, 166);
+}
+#io {
+   border-right: 1px rgba(255, 255, 255, 0.566) solid;
+   border-top: 1px rgba(255, 255, 255, 0.566) solid;
+   border-bottom: 1px rgba(255, 255, 255, 0.566) solid;
+   box-shadow: 2.5px 0 3px rgb(243, 241, 166);
+}
+
+img{
+    align-self: center;
+    align-content: end;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: solid 1px rgb(204, 199, 199);
+    position: relative;
+    box-shadow: 0 0 2px ;
+}
