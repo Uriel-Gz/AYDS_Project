@@ -79,7 +79,7 @@ PLATFORMS
 
 DEPENDENCIES
   multi_json
-  rack-test
+  rack-test (= 2.1.0)
   rake
   rspec
   simplecov
