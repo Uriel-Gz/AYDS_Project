@@ -230,7 +230,6 @@ class App < Sinatra::Application
     @user = User.find_by(id: session[:user_id])  #Consigo el USER del usuario de la sesion
     @respondidas = @user.questions.pluck(:id)    #Permite obtener los id de las preguntas que respondio
     @niveles_tema = @tema.questions.distinct.pluck(:nivel_q).count #Cantidad niveles del tema
-    session[:nivel] = nil
     erb :'niveles'
   end
 
@@ -361,6 +360,8 @@ class App < Sinatra::Application
     @tema = Topic.find_by(id: session[:tema_id])
     erb :'guia'
   end
+
+
 
 end
 
