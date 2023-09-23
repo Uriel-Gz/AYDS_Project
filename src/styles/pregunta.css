@@ -1,6 +1,4 @@
 
-
-
 h3 {
   text-align: center;
 }
@@ -41,6 +39,7 @@ body {
     background-image: url("https://i.pinimg.com/originals/ab/7b/5d/ab7b5d60e8f7458465c42f1493c8b7ce.jpg");
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
   }
 
   img {
@@ -250,7 +249,7 @@ body {
 
 .boton-salir {
   display: inline-block;
-  background-color: red;
+  background-color: #10c9ad;
   color: white;
   padding: 10px 20px;
   text-decoration: none;
@@ -259,6 +258,6 @@ body {
 }
 
 .boton-salir:hover {
-  background-color: #555;
+  background-color: #068d79;
   transform: scale(1.1);
 }
