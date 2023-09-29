@@ -4,16 +4,16 @@ class Option < ActiveRecord::Base
 
   #relacion de uno a uno con answer
   has_one :answer
- 
+
   ##validacion asociada
   validates_associated :question
-  
-  
+
+
   ## validacion
   validates :description, presence: true
- 
+
   validates :isCorrect, presence: true,inclusion: [true, false]
- 
+
   validates :question_id, presence: true, numericality: true
 
 
