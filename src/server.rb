@@ -314,6 +314,8 @@ class App < Sinatra::Application
       @user.save                                   # Guardo
       @user.questions << @question
       @user.save
+      ranking = Ranking.find_by(user_id: @user.id)
+      ranking.update(score: @user.total_score)
     end
     erb :'respuesta'
   end
@@ -335,7 +337,6 @@ class App < Sinatra::Application
 
     @rankings
   end
-
 
   get '/logros' do
     @user = User.find(session[:user_id])
