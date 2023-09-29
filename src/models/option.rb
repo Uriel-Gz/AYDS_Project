@@ -8,7 +8,7 @@ class Option < ActiveRecord::Base
   ## validacion
   validates :description, presence: true
 
-  validates :isCorrect, presence: true,inclusion: [true, false]
+  validates :isCorrect, inclusion: { in: [true, false] }
 
   validates :question_id, presence: true, numericality: true
 
