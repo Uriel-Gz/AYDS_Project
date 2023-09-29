@@ -6,7 +6,7 @@ class Question < ActiveRecord::Base
   belongs_to :topic
 
   #relacion de uno a muchos con options
-  has_many :option
+  has_many :options
 
   #relacion de uno a uno con answer
   has_one :answer
@@ -18,8 +18,6 @@ class Question < ActiveRecord::Base
   validates :nivel_q, numericality: true, presence: true
 
   validates :topic_id, presence: true, numericality: true
-
-  validates :users, presence: true
 
 end
 

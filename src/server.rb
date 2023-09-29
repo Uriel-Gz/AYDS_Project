@@ -135,6 +135,7 @@ class App < Sinatra::Application
         #Si el usuario se guarda entonces es un exito, sino error
         if user.save
           profile = Profile.new(user_id: user.id, picture: "https://i.pinimg.com/originals/71/11/1f/71111f93d4fda96b241ace2ca4a102f3.png")
+          Ranking.create(score: user.total_score, user_id: user.id) #Agrega el usuario al ranking
           profile.save
 
           redirect '/'
@@ -229,7 +230,6 @@ class App < Sinatra::Application
     @user = User.find_by(id: session[:user_id])  #Consigo el USER del usuario de la sesion
     @respondidas = @user.questions.pluck(:id)    #Permite obtener los id de las preguntas que respondio
     @niveles_tema = @tema.questions.distinct.pluck(:nivel_q).count #Cantidad niveles del tema
-    session[:nivel] = nil
     erb :'niveles'
   end
 
@@ -267,14 +267,25 @@ class App < Sinatra::Application
     if @questions.any?
       @question = @questions.sample
       if @question != nil
-        erb :''
+        erb :'modopractica'
       end
-    else
-      erb :''
     end
 
   end
 
+  post '/verificarPract' do
+    @respuestaID = params[:opcionElegida] #Parametro que otorga el ID de la respuesta seleccionada
+    questionID = params[:question]        #Parametro que otorga el ID de la pregunta respondida
+    @tema_id = params[:tema]
+    @nivel = params[:nivel]
+    #-----------------------------------------------
+    #-----------------------------------------------
+    @respuesta = Option.find_by(id: @respuestaID)  #Obtengo la respuesta concreta que corresponde al ID
+    @question = Question.find_by(id: questionID)   #Obtengo la pregunta concreta que corresponde al ID
+      #-----------------------------------------------
+      #-----------------------------------------------
+    erb :'respuestaPract'
+  end
 
   before do
     response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
@@ -310,25 +321,21 @@ class App < Sinatra::Application
   end
 
   get '/ranking' do
-    @user = User.find(session[:user_id])
-
-    if Ranking.exists?(name:@user.name)
-      @rank = Ranking.find_by(name:@user.name)
-      @rank.update(score:@user.total_score)
-    else
-      Ranking.create(name:@user.name, score:@user.total_score)
-    end
-
-    @rank=Ranking.all
-    @ord = @rank.order(score: :desc)
-
-    @var = 1
-    j = 0
-    while @ord[j].name != @user.name
-        @var += 1
-        j += 1
-    end
+    @ranking = actualizar_ranking
     erb :ranking
+  end
+
+  def actualizar_ranking
+    # ordenamos por score
+    @rankings = Ranking.order(score: :desc)
+    position = 1  # posiciones pe
+    # cada usuario tiene su posicion
+    @rankings.each do |ranking|
+      ranking.update(position: position)
+      position += 1
+    end
+
+    @rankings
   end
 
   get '/logros' do
@@ -354,6 +361,8 @@ class App < Sinatra::Application
     @tema = Topic.find_by(id: session[:tema_id])
     erb :'guia'
   end
+
+
 
 end
 

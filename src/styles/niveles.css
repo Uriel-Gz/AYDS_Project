@@ -4,8 +4,9 @@ body {
   margin-top: 0%;
   padding: 0;
   background-image: url("https://i.pinimg.com/originals/ab/7b/5d/ab7b5d60e8f7458465c42f1493c8b7ce.jpg");
-  background-repeat: no-repeat;
+  /* background-size: ; */
   background-size: cover;
+  background-attachment: fixed;
 }
 
 .container {
@@ -72,7 +73,7 @@ li {
 .boton-salir {
   display: inline-block;
   padding: 10px 20px;
-  background-color: #ff0000;
+  background-color: #10c9ad;
   color: #fff;
   text-decoration: none;
   border-radius: 5px;
@@ -81,7 +82,7 @@ li {
 }
 
 .boton-salir:hover {
-  background-color: #555;
+  background-color: #068d79;
   transform: scale(1.1);
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3); /* Aumenta la sombra al pasar el cursor sobre el botón */
 }
