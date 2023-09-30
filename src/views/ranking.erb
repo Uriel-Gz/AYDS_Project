@@ -42,18 +42,18 @@
 
   </ol>
 
+      <% if pos.position > 5%>
   <ol>
     <% @ranking.each do |rank| %>
       <%user = User.find_by(id: pos.user_id)%>
       <%profile = user.profile%>
-      <% if pos.position > 5%>
         <img class="imagen" src ="<%= profile.picture %>">
         <p id="yo"> <%= pos.position%> Usuario: <%= user.name %></p> 
         <p id="io">Score: <%=user.total_score%></p>
-      <% end %>
     <% break %>
   <% end %>
   </ol>
+      <% end %>
 
   <div>
     <a href="/principal" class="boton">Volver Principal</a>
