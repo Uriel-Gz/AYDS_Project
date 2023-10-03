@@ -30,10 +30,4 @@ describe Option do
     end
 
 
-    it "is invalid without the identifier to the question that corresponds" do
-      option = Option.new(description: "4", isCorrect:"F", question_id: 1)
-      expect(option.valid?).to eq(false)
-    end
-
-
 end

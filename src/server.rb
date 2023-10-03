@@ -49,7 +49,7 @@ class App < Sinatra::Application
     before do
       ##lista de rutas restringidas
       ##Estas rutas requerirán que el usuario haya iniciado sesión para acceder a ellas.
-      restricted_paths = ['/principal', '/perfil', '/logros', '/niveles', '/modificar_perfil', '/guia', '/game']
+      restricted_paths = ['/principal', '/perfil', '/logros', '/niveles', '/modificar_perfil', '/guia', '/game', '/practica']
       ##Si la ruta actual (restricted_paths) esta incluida en la lista y no se inicio session, se vuelve al login
       if restricted_paths.include?(request.path_info) && !session[:user_id]
         redirect '/'

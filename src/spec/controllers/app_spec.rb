@@ -13,16 +13,15 @@ RSpec.describe 'Sinatra App' do
   end
 
   context 'Routes without logging user' do
-      after(:each) do
-        user = User.find_by(name: 'Santiooo')
-        user.destroy if user
-      end
 
     it 'register correct' do
       post '/register', {uname:'Santioo', psw:'pas1234', psw2:'pas1234', email:'santiago010@gmail.com'}
       expect(last_response.status).to eq(302)
       follow_redirect!
       expect(last_request.path_info).to eq('/')
+      Profile.destroy_all
+      Ranking.destroy_all
+      User.destroy_all
     end
 
     it 'register password not equal' do
@@ -79,12 +78,14 @@ RSpec.describe 'Sinatra App' do
   context 'probando perfil' do
     before(:each) do
       # Simula una sesión de usuario iniciada
-      @session = { user_id: 1}
       @user = User.create(name:"Santioo", email:"santiago010@mail.com", password:"pas1234", total_score: 5)
+      @profile = Profile.create(user_id: @user.id)
+      @session = {user_id: @user.id}
     end
 
     after(:each) do
       @session = nil
+      @profile.destroy
       @user.destroy
     end
 
@@ -134,7 +135,7 @@ RSpec.describe 'Sinatra App' do
       @user = User.create(name:"Santioooooo", email:"santiago010@mail.com", password:"pas1234", total_score: 5)
       @topic = Topic.create(nombre: "Samess", descripcion: "pruebaasdsadsad asd a", guia: "asdasdasd asd asd asdasdasdas")
       @question = Question.create(value: 1, description: "¿2+2?", nivel_q: 1, topic_id: @topic.id)
-      @session = { user_id: @user.id, nivel:@question.nivel_q, tema_id: @topic.id}
+      @session = {user_id:@user.id, tema_id:@topic.id}
     end
 
     after(:each) do
@@ -157,22 +158,20 @@ RSpec.describe 'Sinatra App' do
       expect(last_response.status).to eq(200)
     end
 
-    it 'testing the route /niveles' do
-      get '/niveles', {tema: 1}, 'rack.session' => @session
-      @question.destroy
-      @topic.destroy
-      expect(last_response.status).to eq(200)
-    end
-
     #it 'testing the route /niveles' do
-    #  get '/niveles', {tema: @topic.id}, 'rack.session' => @session
+    #  get '/niveles', {tema: 1}, 'rack.session' => @session
     #  @question.destroy
     #  @topic.destroy
     #  expect(last_response.status).to eq(200)
     #end
 
+    it 'testing the route /niveles' do
+      get '/niveles', {tema: @topic.id}, 'rack.session' => @session
+      expect(last_response.status).to eq(200)
+    end
+
     it 'testing the route /guia' do
-      get '/guia', {}, 'rack.session' => @session.merge(tema_id: 1)
+      get '/guia', {}, 'rack.session' => @session.merge(tema_id: @topic.id)
       expect(last_response.status).to eq(200)
     end
 
@@ -215,10 +214,8 @@ RSpec.describe 'Sinatra App' do
 
 
     it 'probando la verificacion de respuestas del juego' do
-      @option = Option.create(description: "4", isCorrect: true, question_id: 1)
-      post '/verificar', {opcionElegida: @option.id, question: 1, tema: @topic.id, nivel: @question.nivel_q}, 'rack.session' => @session
+      post '/verificar', {opcionElegida:@option.id, question:@question.id, tema:@topic.id, nivel:@question.nivel_q}, 'rack.session' => @session
       expect(last_response.status).to eq(200)
-      @option.destroy
     end
 
   end
@@ -227,7 +224,7 @@ RSpec.describe 'Sinatra App' do
   context 'prob pract' do
     before(:each) do
      @user = User.create(name:"Santioooo", email:"santiago010@mail.com", password:"pas1234", total_score: 5)
-     @session = { user_id: @user.id }
+     @session = {user_id: @user.id}
      @topic = Topic.create(nombre: "Samess", descripcion: "pruebaasdsadsad asd a", guia: "asdasdasd asd asd asdasdasdas")
      @question = Question.create(value: 1, description: "¿2+2?", nivel_q: 1, topic_id: @topic.id)
      @question2 = Question.create(value: 1, description: "¿3+3?", nivel_q: 1, topic_id: @topic.id)
@@ -244,22 +241,20 @@ RSpec.describe 'Sinatra App' do
    end
 #
 
-  it 'probando las prácticas del juego' do
-    post '/practica', { tema: 1, nivel: 1}, 'rack.session' => @session
-    expect(last_response.status).to eq(200)
-  end
-   #it 'probando las prácticas del juego' do
-   #  post '/practica', { tema: @topic.id, nivel: @question.nivel_q }, 'rack.session' => @session
-   #  expect(last_response.status).to eq(200)
-   #end
+  #it 'probando las prácticas del juego' do
+  #  post '/practica', { tema:1, nivel: 1}, 'rack.session' => @session
+  #  expect(last_response.status).to eq(200)
+  #end
+   it 'probando las prácticas del juego' do
+     post '/practica', {tema: @topic.id, nivel: @question.nivel_q }, 'rack.session' => @session
+     expect(last_response.status).to eq(200)
+   end
 
    it 'probando la verificacion de respuestas de la practica' do
-     @option = Option.create(description: "4", isCorrect: true, question_id: 1)
      post '/verificarPract', {opcionElegida: @option.id, question: @question.id, tema: @topic.id, nivel: @question.nivel_q}, 'rack.session' => @session
      expect(last_response.status).to eq(200)
      @option.destroy
    end
-
    ##Este enrealidad tendria que ir en option @question.id pero no me deja y nose porq ayuda
 
   end
