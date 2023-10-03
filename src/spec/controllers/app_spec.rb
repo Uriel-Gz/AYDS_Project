@@ -158,6 +158,11 @@ RSpec.describe 'Sinatra App' do
       expect(last_response.status).to eq(200)
     end
 
+    it 'testing/ranking whit user verification' do
+      get '/ranking', {}, 'rack.session' => @sesion
+      expect(last_response.status).to eq(200)
+    end
+    
     it 'testing the route /niveles' do
       get '/niveles', {tema: 1}, 'rack.session' => @session
       @question.destroy
