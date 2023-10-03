@@ -15,7 +15,7 @@ RSpec.describe 'Sinatra App' do
   context 'Routes without logging user' do
 
     it 'register correct' do
-      post '/register', {uname:'Santioo', psw:'pas1234', psw2:'pas1234', email:'santiago010@gmail.com'}
+      post '/register', {uname:'Santiago', psw:'pas1236', psw2:'pas1236', email:'santiagol010@gmail.com'}
       expect(last_response.status).to eq(302)
       follow_redirect!
       expect(last_request.path_info).to eq('/')
@@ -158,12 +158,19 @@ RSpec.describe 'Sinatra App' do
       expect(last_response.status).to eq(200)
     end
 
-    #it 'testing the route /niveles' do
-    #  get '/niveles', {tema: 1}, 'rack.session' => @session
-    #  @question.destroy
-    #  @topic.destroy
+    it 'testing the route /niveles' do
+      get '/niveles', {tema: 1}, 'rack.session' => @session
+      @question.destroy
+      @topic.destroy
+      expect(last_response.status).to eq(200)
+    end
+
+    # it 'testing the route /niveles' do
+    #  get '/niveles', {tema: @topic.id}, 'rack.session' => @session
+    # #  @question.destroy
+    # #  @topic.destroy
     #  expect(last_response.status).to eq(200)
-    #end
+    # end
 
     it 'testing the route /niveles' do
       get '/niveles', {tema: @topic.id}, 'rack.session' => @session
@@ -175,10 +182,10 @@ RSpec.describe 'Sinatra App' do
       expect(last_response.status).to eq(200)
     end
 
-    #it 'testing the route /guia' do
+    # it 'testing the route /guia' do
     #  get '/guia', {}, 'rack.session' => @session
     #  expect(last_response.status).to eq(200)
-    #end
+    # end
   end
 
 
