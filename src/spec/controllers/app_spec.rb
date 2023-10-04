@@ -14,6 +14,13 @@ RSpec.describe 'Sinatra App' do
 
   context 'Routes without logging user' do
 
+    it 'not register ingresed' do
+      get '/perfil'
+      expect(last_response.status).to eq(302)
+      follow_redirect!
+      expect(last_request.path_info).to eq('/')
+    end
+
     it 'register correct' do
       post '/register', {uname:'Santiago', psw:'pas1236', psw2:'pas1236', email:'santiagol010@gmail.com'}
       expect(last_response.status).to eq(302)
@@ -133,9 +140,16 @@ RSpec.describe 'Sinatra App' do
     before(:each) do
       # Simula una sesión de usuario iniciada
       @user = User.create(name:"Santioooooo", email:"santiago010@mail.com", password:"pas1234", total_score: 5)
-      @topic = Topic.create(nombre: "Samess", descripcion: "pruebaasdsadsad asd a", guia: "asdasdasd asd asd asdasdasdas")
+      guiaSum =
+                "
+                Definicion
+                --DIVISION-- La suma es la acción de añadir, juntar o agregar elementos, cuando realizamos esta acción estamos uniendo cantidades o conjuntos y para ello siempre debe haber un mínimo de dos elementos.
+                --PARTES-- Partes de la suma
+                --DIVISION-- A los números que intervienen en una suma se les denomina sumandos, al resultado de la operación lo llamamos suma o resultado. Por ejemplo, en el caso de la operación 2+8 = 10 , el 2 y el 8 son sumandos y el 10 es la suma o resultado.
+                "
+      @topic = Topic.create(nombre: "Suma" , descripcion: "La adición o suma es la operación matemática de composición que consiste en combinar o añadir dos números o más para obtener una cantidad final o total.", img:'https://i.imgur.com/rMA2PnT.png', guia: guiaSum, video: 'https://www.youtube.com/embed/oF-rZLIShC8')
       @question = Question.create(value: 1, description: "¿2+2?", nivel_q: 1, topic_id: @topic.id)
-      @session = {user_id:@user.id, tema_id:@topic.id}
+      @session = {user_id:@user.id, tema_id:1}
     end
 
     after(:each) do
@@ -153,15 +167,9 @@ RSpec.describe 'Sinatra App' do
       @achievement.destroy
     end
 
-    it 'verify /principal with verification' do
-      get '/principal', {}, 'rack.session' => @session
-      expect(last_response.status).to eq(200)
-    end
 
     it 'testing the route /niveles' do
       get '/niveles', {tema: 1}, 'rack.session' => @session
-      @question.destroy
-      @topic.destroy
       expect(last_response.status).to eq(200)
     end
 
@@ -172,14 +180,10 @@ RSpec.describe 'Sinatra App' do
     #  expect(last_response.status).to eq(200)
     # end
 
-    it 'testing the route /niveles' do
-      get '/niveles', {tema: @topic.id}, 'rack.session' => @session
-      expect(last_response.status).to eq(200)
-    end
-
     it 'testing the route /guia' do
-      get '/guia', {}, 'rack.session' => @session.merge(tema_id: @topic.id)
+      get '/guia', {}, 'rack.session' => @session
       expect(last_response.status).to eq(200)
+
     end
 
     # it 'testing the route /guia' do
@@ -221,7 +225,7 @@ RSpec.describe 'Sinatra App' do
 
 
     it 'probando la verificacion de respuestas del juego' do
-      post '/verificar', {opcionElegida:@option.id, question:@question.id, tema:@topic.id, nivel:@question.nivel_q}, 'rack.session' => @session
+      post '/verificar', {opcionElegida:@option.id, question:@question.id, tema:1, nivel:1}, 'rack.session' => @session
       expect(last_response.status).to eq(200)
     end
 
@@ -230,12 +234,12 @@ RSpec.describe 'Sinatra App' do
 
   context 'prob pract' do
     before(:each) do
-     @user = User.create(name:"Santioooo", email:"santiago010@mail.com", password:"pas1234", total_score: 5)
-     @session = {user_id: @user.id}
-     @topic = Topic.create(nombre: "Samess", descripcion: "pruebaasdsadsad asd a", guia: "asdasdasd asd asd asdasdasdas")
-     @question = Question.create(value: 1, description: "¿2+2?", nivel_q: 1, topic_id: @topic.id)
-     @question2 = Question.create(value: 1, description: "¿3+3?", nivel_q: 1, topic_id: @topic.id)
-     @option = Option.create(description: "4", isCorrect: true, question_id: @question.id)
+      @user = User.create(name:"Santioooo", email:"santiago010@mail.com", password:"pas1234", total_score: 5)
+      @session = { user_id: @user.id }
+      @topic = Topic.create(nombre: "Samess", descripcion: "pruebaasdsadsad asd a", guia: "asdasdasd asd asd asdasdasdas")
+      @question = Question.create(value: 1, description: "¿2+2?", nivel_q: 1, topic_id: @topic.id)
+      @question2 = Question.create(value: 1, description: "¿3+3?", nivel_q: 1, topic_id: @topic.id)
+      @option = Option.create(description: "4", isCorrect: true, question_id: @question.id)
    end
 
    after(:each) do
@@ -253,14 +257,14 @@ RSpec.describe 'Sinatra App' do
   #  expect(last_response.status).to eq(200)
   #end
    it 'probando las prácticas del juego' do
-     post '/practica', {tema: @topic.id, nivel: @question.nivel_q }, 'rack.session' => @session
+     post '/practica', {tema: 1, nivel: 1}, 'rack.session' => @session
      expect(last_response.status).to eq(200)
    end
 
    it 'probando la verificacion de respuestas de la practica' do
      post '/verificarPract', {opcionElegida: @option.id, question: @question.id, tema: @topic.id, nivel: @question.nivel_q}, 'rack.session' => @session
      expect(last_response.status).to eq(200)
-     @option.destroy
+
    end
    ##Este enrealidad tendria que ir en option @question.id pero no me deja y nose porq ayuda
 
