@@ -244,6 +244,9 @@ class App < Sinatra::Application
     @preguntas_nivel = Question.where(nivel_q: @nivel, topic_id: @tema.id)
     @questions = @preguntas_nivel.where.not(id: @respondidas) #Obtengo preguntas no respondidas
 
+    @numero_por_nivel = Question.where(nivel_q: @nivel, topic_id: @tema.id).count #Numero de preguntas por nivel
+    @preguntas_respondidas = @preguntas_nivel.where(id: @respondidas).count       #Numero de preguntas respondidas por nivel
+
     if @questions.any?                #Pregnta si contiene algun elemento.
       @question = @questions.sample   #Se utiliza para seleccionar de forma aleatoria un elemento de una colección, como un arreglo o un conjunto.
       if @question != nil             #Es igual a nil?
