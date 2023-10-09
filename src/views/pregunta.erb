@@ -8,7 +8,7 @@
     <link href="<%= url('/pregunta.css') %>" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-    <div class="tiempo">Tiempo: <span id="contador">30</span> segundos</div>
+    <div class="tiempo">Tiempo: <span id="contador"></span> segundos</div>
 
     <div id="salir">
         <a href="/niveles?tema=<%= @tema.id %>" class="boton-salir">Salir</a>
@@ -50,6 +50,10 @@
             let temporizador = setInterval(function() {
                 //disminuye el tiempo
                 contador.textContent = tiempo;
+                if (tiempo < 10) {
+                    contador.style.color = 'red';
+                    contador.style.fontSize = '30px'
+                }
                 if (tiempo <= 0) {
                     //detiene el temporizador
                     clearInterval(temporizador);
