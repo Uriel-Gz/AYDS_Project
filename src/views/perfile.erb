@@ -1,11 +1,16 @@
 <!DOCTYPE html>
-<html>
+  <% if @momentDay < 19%>
+  <html class="light-mode-perfil">
+  <% else %>
+  <html>
+  <%end%>
 <head>
   <title>Mi Perfil</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="https://i.imgur.com/Nl7KAcL.png">
 	 <link href="<%= url('/perfil.css') %>" rel="stylesheet" type="text/css"/>
+	 <link href="<%= url('/variant-style.css') %>" rel="stylesheet" type="text/css"/>
 </head>
 
 <body>
@@ -20,10 +25,8 @@
 		<p>Puntaje: <%= @user.total_score%></p>
 	</div>
 	<div id="but">
-		<center>
-		<a href="/modificar_perfil" class="boton">Modificar</a>
-		<a href="/principal" class="boton">Pagina Principal</a>
-		</center>
+		<a href="/principal" class="boton" id="pp">Pagina Principal</a>
+		<a href="/modificar_perfil" class="boton" id="mod">Modificar</a>
 	</div>
 </body>
 </html>

@@ -45,16 +45,17 @@ li {
 .tema-link {
   display: inline-block;
   padding: 10px 20px;
-  background-color: #f8f07b;
+  background-color: #f8b602c5;
   color: #333;
   text-decoration: none;
+  font-size: 16px;
   border-radius: 5px;
   transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .tema-link:hover {
-  background-color: #8fff79;
+  background-color: #fff479;
   transform: scale(1.1);
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
 }
@@ -90,6 +91,8 @@ li {
 #guia {
   text-align: center;
   margin-bottom: 20px;
+  font-size: large;
+  text-shadow: 0 2px 2px black;
 }
 
 .boton-guia {
