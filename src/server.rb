@@ -120,7 +120,8 @@ class App < Sinatra::Application
     if @exist
       erb :'errorregister'
     else
-      @sonIguales = (password == repPassword)
+      @emailUsed = User.find_by(email: email)
+      @sonIguales = (password == repPassword) || !@emailUsed
       if !@sonIguales
         erb :'errorregister'
       else
@@ -134,7 +135,7 @@ class App < Sinatra::Application
 
         #Si el usuario se guarda entonces es un exito, sino error
         if user.save
-          profile = Profile.new(user_id: user.id, picture: "https://i.pinimg.com/originals/71/11/1f/71111f93d4fda96b241ace2ca4a102f3.png")
+          profile = Profile.new(user_id: user.id, picture: "https://i.imgur.com/V39f2iV.png")
           Ranking.create(score: user.total_score, user_id: user.id) #Agrega el usuario al ranking
           profile.save
 
