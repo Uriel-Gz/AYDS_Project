@@ -4,10 +4,11 @@
 */
 
 html{
-  background: radial-gradient(rgb(1, 108, 127), rgb(3, 3, 3));
+  background: linear-gradient(rgba(0, 0, 0, 0.936),rgb(1, 105, 119) );
   background-size: cover;
   background-position: center;
-  height: 100%;width: 100%;
+  background-attachment: fixed;
+  transition: 5s;
 }
 
 p{
@@ -45,7 +46,7 @@ img {
 }
 
 #but {
-  display: grid;
+  display: flex;
   justify-content: center;
   position: relative;
   top: 50px;
@@ -59,12 +60,13 @@ img {
   font-size: 18px;
   margin: 5px 5px;
   padding: 10px 20px;
-
+  text-decoration: none;
+  /* transition: background-color 0.3s ease; */
+  box-shadow: -1px 4px 0 rgb(0, 29, 34);
 }
 
 .boton:hover {
-  background-color: #05c2c9;
-  box-shadow: 0 0 20px #0fcbf9;
+  box-shadow: -1px 4px 0 rgb(1, 74, 87);
 }
 
 .imagen {
@@ -82,7 +84,6 @@ a{
   font-size: large;
   color: rgb(209, 202, 202);
   font-family: 'Times New Roman', Times, serif;
-  background-color: rgb(6, 87, 207);
   text-decoration: none;
   text-align: center;
   border-radius: 5px;
@@ -90,6 +91,9 @@ a{
 }
 
 a:hover{
+    background-color: rgb(1, 191, 225);
+    height: 35px;
+    width: 135px;
     transform: scale(1.15);
 }
 
@@ -110,4 +114,15 @@ a:hover{
 .puntuacion-numero {
   font-weight: bold; /* Texto en negrita para el número de puntuación */
   color: #0a0a0a; /* Color del número de puntuación */
+}
+
+#mod{
+  position: relative;
+  rotate: -10deg;
+}
+
+#pp{
+  position: relative;
+  rotate: 10deg;
+  left: 15px;
 }
