@@ -63,18 +63,18 @@ class App < Sinatra::Application
     get '/' do
       erb :'login'
     end
-    
-    
+
+
     #Configura la sesión para que sea activada en todas las rutas:
     #HSe usa para habilitar las sesiones en todas las rutas utilizando enable :sessions.
     #Esto permite que Sinatra maneje automáticamente las cookies de sesión
     #y almacene los datos de sesión en el servidor.
     enable :sessions
-    
+
     ## Para autentificar que la cuenta del usuario haya sido creada.
     post '/authenticate' do
       name = params[:uname]
-      password = params[:psw]      
+      password = params[:psw]
       ##Verifica la existencia del usuario
       usuario = User.find_by(name: name)
       if usuario && usuario.authenticate(password)
@@ -109,8 +109,7 @@ class App < Sinatra::Application
     if @exist
       erb :'errorregister'
     else
-      @emailUsed = User.find_by(email: email)
-      @sonIguales = (password == repPassword) || !@emailUsed
+      @sonIguales = (password == repPassword)
       if !@sonIguales
         erb :'errorregister'
       else
