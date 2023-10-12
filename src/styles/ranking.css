@@ -1,5 +1,5 @@
 html {
-    background-image: url('https://img.lovepik.com/background/20211021/large/lovepik-black-gold-texture-background-image_401554973.jpg');
+    background: radial-gradient(rgb(1, 108, 127), rgb(3, 3, 3));
     background-attachment: fixed;
     background-size: cover;
     color: white;
@@ -31,27 +31,29 @@ body {
 ol {
     display: grid;
     grid-template-columns: 10% 50% 40%;
-    justify-content: center; 
+    justify-content: center;
     padding-right: 40px;
     margin-top: 1%;
     margin-bottom: 1%;
     background-color: rgba(74, 74, 70, 0.708);
     margin-left: 2px;
     border-radius: 10px;
-    box-shadow: 0 0 5px rgb(255, 221, 0);
+    box-shadow: 0 0 5px rgb(140, 247, 255);
 }
 
 a {
-    text-decoration: none;
-    color: black;
-    font-size: large;
-    background-color: #f8c838;
-    padding: 2%;
-    border-radius: 4px;
+  background-color: #08b5d8;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 18px;
+  margin: 5px 5px;
+  padding: 10px 20px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
 }
 
 a:hover{
-    background-color: #e8b007;
+    background-color: #018e8c;
 }
 
 #yo {

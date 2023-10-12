@@ -76,8 +76,8 @@ class App < Sinatra::Application
       name = params[:uname]
       password = params[:psw]      
       ##Verifica la existencia del usuario
-      usuario = User.find_by(name: name, password: password)
-      if usuario
+      usuario = User.find_by(name: name)
+      if usuario && usuario.authenticate(password)
       #Guardamos el id del usuario autenticando la clave
       #:user_id en la sesión
         session[:user_id] = usuario.id
@@ -109,7 +109,8 @@ class App < Sinatra::Application
     if @exist
       erb :'errorregister'
     else
-      @sonIguales = (password == repPassword)
+      @emailUsed = User.find_by(email: email)
+      @sonIguales = (password == repPassword) || !@emailUsed
       if !@sonIguales
         erb :'errorregister'
       else
@@ -123,7 +124,7 @@ class App < Sinatra::Application
 
         #Si el usuario se guarda entonces es un exito, sino error
         if user.save
-          profile = Profile.new(user_id: user.id, picture: "https://i.pinimg.com/originals/71/11/1f/71111f93d4fda96b241ace2ca4a102f3.png")
+          profile = Profile.new(user_id: user.id, picture: "https://i.imgur.com/V39f2iV.png")
           Ranking.create(score: user.total_score, user_id: user.id) #Agrega el usuario al ranking
           profile.save
 
@@ -179,19 +180,17 @@ class App < Sinatra::Application
     end
 
     if params[:name].present?         #En caso de que no exista un usuario con ese nombre permite modificarlo
-      user.name = params[:name]
-      user.save
+      user.update_column(:name,params[:name]) #Cambia el nombre
     end
     if params[:password].present?         #Si se ingreso una nueva contraseña
       user.password = params[:password]   #Cambia la contraseña
       user.save
     end
     if params[:email].present?      #Si se ingreso un nuevo email
-      user.email = params[:email]   #Cambia el email
-      user.save
+      user.update_column(:email,params[:email] ) #Cambia el email
     end
-    if params[:imagen].present?         #Si se otorgo un link de imagen
-      profile.picture = params[:imagen] #Cambia el link de imagen
+    if params[:imagen].present?       #Si se otorgo un link de imagen
+      profile.picture = params[:imagen]  #Cambia el link de imagen
       profile.save
     end
     redirect '/perfil'
@@ -232,6 +231,9 @@ class App < Sinatra::Application
     @respondidas = @user.questions.pluck(:id)  #Permite obtener los id de las preguntas que respondio
     @preguntas_nivel = Question.where(nivel_q: @nivel, topic_id: @tema.id)
     @questions = @preguntas_nivel.where.not(id: @respondidas) #Obtengo preguntas no respondidas
+
+    @numero_por_nivel = Question.where(nivel_q: @nivel, topic_id: @tema.id).count #Numero de preguntas por nivel
+    @preguntas_respondidas = @preguntas_nivel.where(id: @respondidas).count       #Numero de preguntas respondidas por nivel
 
     if @questions.any?                #Pregnta si contiene algun elemento.
       @question = @questions.sample   #Se utiliza para seleccionar de forma aleatoria un elemento de una colección, como un arreglo o un conjunto.
@@ -300,9 +302,9 @@ class App < Sinatra::Application
 
       # Si la respuesta otorgada es la correcta
     if @respuesta.isCorrect
-      @user = User.find(session[:user_id])         # Obtengo el usuario correspondiente al id
-      @user.total_score += @question.value          # Sumo al score almacenado el valor de la respuesta si fue correcta.
-      @user.save                                   # Guardo
+      @user = User.find(session[:user_id])   # Obtengo el usuario correspondiente al id
+      res  = @user.total_score + @question.value          # Sumo al score almacenado el valor de la respuesta si fue correcta.
+      @user.update_column(:total_score,res)               # actualizo puntaje total
       @user.questions << @question
       @user.save
       ranking = Ranking.find_by(user_id: @user.id)

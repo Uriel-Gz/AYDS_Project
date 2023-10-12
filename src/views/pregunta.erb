@@ -13,6 +13,8 @@
   	<link href="<%= url('/variant-style.css') %>" rel="stylesheet" type="text/css"/>
 </head>
 <body>
+    <div class="tiempo">Tiempo: <span id="contador"></span> segundos</div>
+
     <div id="salir">
         <a href="/niveles?tema=<%= @tema.id %>" class="boton-salir">Salir</a>
     </div>
@@ -23,7 +25,7 @@
                 <!--El método shuffle en Ruby se utiliza para mezclar aleatoriamente los elementos de un arreglo.
                     Cuando se llama al método shuffle en un arreglo, se reorganizan los elementos en un orden aleatorio.
                     Esto significa que los elementos del arreglo original se mezclarán de forma aleatoria,
-                    creando un nuevo arreglo con el orden aleatorio. El arreglo original no se modifica. -->   
+                    creando un nuevo arreglo con el orden aleatorio. El arreglo original no se modifica. -->
                 <% options = Option.where(question_id: @question.id).shuffle %>
                 <% options.each do |option| %>
                     <input type="hidden" name="question" value="<%= @question.id %>">
@@ -37,5 +39,46 @@
     <div id="score">
         <h2>Score: <%= @user.total_score%></h2>
     </div>
+
+    <div class = "barra">
+        <progress value="<%= @preguntas_respondidas %>" max="<%= @numero_por_nivel  %>"></progress>
+        <p><%= @preguntas_respondidas * 100 / @numero_por_nivel %>%</p>
+    </div>
+
+    <script>
+        //variable tiempo para tener el maximo tiempo para poder contestar
+        let tiempo = 30;
+        //crea una variable contador que busca el elemento HTML que tiene el id 'contador'
+        let contador = document.getElementById('contador');
+
+        function iniciar_tiempo() {
+            let temporizador = setInterval(function() {
+                //disminuye el tiempo
+                contador.textContent = tiempo;
+                if (tiempo < 10) {
+                    contador.style.color = 'red';
+                    contador.style.fontSize = '30px'
+                }
+                if (tiempo <= 0) {
+                    //detiene el temporizador
+                    clearInterval(temporizador);
+                    //ejecuta la funcion para elimianar las opciones
+                    quitarOpciones();
+                }
+                tiempo--;
+            }, 1000);
+        }
+
+        function quitarOpciones() {
+            alert('Tu tiempo se acabo, intentalo de nuevo.');
+            window.location.reload();
+        }
+
+        //apenas carga la pagina se llama a la funcion para volver hacerlo
+        window.onload = function() {
+            iniciar_tiempo();
+        };
+    </script>
+
 </body>
 </html>

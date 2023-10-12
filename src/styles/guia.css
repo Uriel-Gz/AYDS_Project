@@ -1,16 +1,18 @@
 html {
-  background: linear-gradient(rgb(0, 32, 37) 20%, rgb(0, 87, 99) 40%);
-  /* background-size: 100%; */
-  height: 100%;
+  background: radial-gradient(rgb(1, 108, 127), rgb(3, 3, 3));
   background-attachment: fixed;
+  background-size: cover;
+  color: white;
+  height: 100%;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
+
 
 body {
   margin: 40px;
 }
 
 h1 {
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   text-align: center;
   color: #0abede;
   font-size: 36px;
@@ -26,7 +28,6 @@ h2 {
 }
 
 p {
-  font-family: sans-serif;
   color: #000;
   line-height: 1.5;
   border: 1px solid  #0abede;

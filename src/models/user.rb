@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+
+
+  has_secure_password
   #relacion de muchos a muchos con achievement
   has_and_belongs_to_many :achievements
 
