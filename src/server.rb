@@ -120,7 +120,8 @@ class App < Sinatra::Application
     if @exist
       erb :'errorregister'
     else
-      @sonIguales = (password == repPassword)
+      @emailUsed = User.find_by(email: email)
+      @sonIguales = (password == repPassword) || !@emailUsed
       if !@sonIguales
         erb :'errorregister'
       else
@@ -134,7 +135,7 @@ class App < Sinatra::Application
 
         #Si el usuario se guarda entonces es un exito, sino error
         if user.save
-          profile = Profile.new(user_id: user.id, picture: "https://i.pinimg.com/originals/71/11/1f/71111f93d4fda96b241ace2ca4a102f3.png")
+          profile = Profile.new(user_id: user.id, picture: "https://i.imgur.com/V39f2iV.png")
           Ranking.create(score: user.total_score, user_id: user.id) #Agrega el usuario al ranking
           profile.save
 
@@ -243,6 +244,9 @@ class App < Sinatra::Application
     @respondidas = @user.questions.pluck(:id)  #Permite obtener los id de las preguntas que respondio
     @preguntas_nivel = Question.where(nivel_q: @nivel, topic_id: @tema.id)
     @questions = @preguntas_nivel.where.not(id: @respondidas) #Obtengo preguntas no respondidas
+
+    @numero_por_nivel = Question.where(nivel_q: @nivel, topic_id: @tema.id).count #Numero de preguntas por nivel
+    @preguntas_respondidas = @preguntas_nivel.where(id: @respondidas).count       #Numero de preguntas respondidas por nivel
 
     if @questions.any?                #Pregnta si contiene algun elemento.
       @question = @questions.sample   #Se utiliza para seleccionar de forma aleatoria un elemento de una colección, como un arreglo o un conjunto.

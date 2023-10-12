@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head>
-
+<head>
     <title>SUG-MATH</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,58 +9,84 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initialinitial-scale=1.0">
     <link href="<%= url('/niveles.css') %>" rel="stylesheet" type="text/css"/>
-  </head>
-  <body>
-    <div id="salir">
+    <style>
+        .nivel {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+  <div id="salir">
       <a href="/principal" class="boton-salir">Salir</a>
-    </div>
-
-    <div id="guia">
-      <a href ="/guia" class="boton-guia">Guia</a>
-    </div>
-
-
-
-  <div class="niveles">
-    <h1> Niveles de <%= @tema.nombre %></h1>
-    <ul>
-      <% for i in (1..@niveles_tema) %>
-        <% preguntas_nivel = Question.where(topic_id: @tema.id, nivel_q: i).where.not(id: @respondidas) %>
-
-        <li>
-          <form action="/game" method="post">
-            <input type="hidden" name="tema" value="<%= session[:tema_id] %>">
-            <input type="hidden" name="nivel" value="<%= i %>">
-            <button type="submit" class="tema-link">Nivel <%= i %> (Modo Juego)</button>
-          </form>
-        </li>
-        <% respond = Question.where(topic_id: @tema.id, nivel_q: i).where(id: @respondidas) %>
-        <% if respond.any? %>
-          <li>
-            <form action="/practica" method="post">
-              <input type="hidden" name="tema" value="<%= session[:tema_id] %>">
-              <input type="hidden" name="nivel" value="<%= i %>">
-              <button type="submit" class="tema-link">Nivel <%= i %> ( Practica)</button>
-            </form>
-          </li>
-        <% end %>
-
-
-
-        <% if preguntas_nivel.any? %>
-          <% break %>
-        <% else %>
-          <% total = i %>
-        <% end %>
-      <% end %>
-
-      <% if total == @niveles_tema %>
-        <li>
-          <p> Terminaste todas las preguntas de este tema </p>
-        </li>
-      <% end %>
-    </ul>
   </div>
 
-  </body>
+  <div id="guia">
+      <a href="/guia" class="boton-guia">Guía</a>
+  </div>
+
+  <div class="niveles">
+    <h1> Niveles y Practica de <%= @tema.nombre %></h1>
+    <ul>
+        <li>
+            <button type="button" class="tema-link" onclick="showOptions('juego')">Modo Juego</button>
+        </li>
+
+        <li>
+            <button type="button" class="tema-link" onclick="showOptions('practica')">Modo Práctica</button>
+        </li>
+    </ul>
+    <!-- Opciones del modo juego -->
+    <div class="nivel" id="juego">
+        <% for i in (1..@niveles_tema) %>
+        <% preguntas_nivel = Question.where(topic_id: @tema.id, nivel_q: i).where.not(id: @respondidas) %>
+        <li>
+            <form action="/game" method="post">
+                <input type="hidden" name="tema" value="<%= session[:tema_id] %>">
+                <input type="hidden" name="nivel" value="<%= i %>">
+                <button type="submit" class="tema-link">Nivel <%= i %> (Modo Juego)</button>
+            </form>
+            <% if preguntas_nivel.any? %>
+                <% break %>
+            <% else %>
+                <% total = i %>
+            <% end %>
+        </li>
+        <% end %>
+    </div>
+
+    <!-- Opciones del modo practica -->
+    <div class="nivel" id="practica">
+        <% for i in (1..@niveles_tema) %>
+          <% preguntas_nivel = Question.where(topic_id: @tema.id, nivel_q: i).where.not(id: @respondidas) %>
+            <% respond = Question.where(topic_id: @tema.id, nivel_q: i).where(id: @respondidas) %>
+            <% if respond.any? %>
+              <li>
+                <form action="/practica" method="post">
+                    <input type="hidden" name="tema" value="<%= session[:tema_id] %>">
+                    <input type="hidden" name="nivel" value="<%= i %>">
+                    <button type="submit" class="tema-link">Nivel <%= i %> (Practica)</button>
+                </form>
+              </li>
+            <% end %>
+        <% end %>
+        <% respond = Question.where(topic_id: @tema.id, nivel_q: i).where(id: @respondidas) %>
+        <%if !respond.any?%>
+          <p>Responde al menos una de las preguntas para desbloquearlo</p>
+        <%end%>
+
+      </div>
+  </div>
+
+  <script>
+      function showOptions(mode) {
+        // Oculta todas las opciones primero
+        document.querySelectorAll('.nivel').forEach(function (option) {
+            option.style.display = 'none';
+        });
+        // Muestra las opciones según el modo seleccionado
+        document.getElementById(mode).style.display = 'block';
+      }
+  </script>
+
+</body>
 </html>

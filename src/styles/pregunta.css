@@ -261,3 +261,62 @@ body {
   background-color: #068d79;
   transform: scale(1.1);
 }
+
+
+.tiempo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  padding: 10px;
+  font-size: 16px;
+  text-align: center;
+}
+
+
+#contador {
+  color: #51ff00;
+  font-size: 24px;
+}
+
+
+
+
+/* Estilo para el contenedor de la barra de progreso (centrado) */
+.barra {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Efecto de resplandor */
+  overflow: hidden;
+}
+
+progress {
+  width: 50%;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+/* Estilo para la parte llena de la barra de progreso */
+progress::-webkit-progress-value {
+  background-color: #00ff40;
+}
+
+
+progress[value] {
+  appearance: none;
+  width: 50%; height: 10px;
+  border-radius: 10px;
+  box-shadow: 0 2px 3px rgba(0,0,0,.5) inset;
+
+  position: relative;
+  margin: 0 0 1.5em;
+}
+
+p {
+  margin-left: 1px; /* Espacio entre la barra y el texto */
+  font-size: 20px;
+  color: #ffffff; /* Color del texto */
+}
