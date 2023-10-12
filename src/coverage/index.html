@@ -14,7 +14,7 @@
       <img src="./assets/0.12.3/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" class="hide">
-      <div class="timestamp">Generated <abbr class="timeago" title="2023-10-06T18:40:26+00:00">2023-10-06T18:40:26+00:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2023-10-10T15:16:28+00:00">2023-10-10T15:16:28+00:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -23,14 +23,14 @@
     <span class="group_name">All Files</span>
     (<span class="covered_percent">
       <span class="green">
-  97.41%
+  98.15%
 </span>
 
      </span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         1.57
+         1.61
        </span>
     </span> hits/line
     )
@@ -43,11 +43,11 @@
   </div>
 
   <div class="t-line-summary">
-    <b>540</b> relevant lines,
-    <span class="green"><b>526</b> lines covered</span> and
-    <span class="red"><b>14</b> lines missed. </span>
+    <b>542</b> relevant lines,
+    <span class="green"><b>532</b> lines covered</span> and
+    <span class="red"><b>10</b> lines missed. </span>
     (<span class="green">
-  97.41%
+  98.15%
 </span>
 )
   </div>
@@ -172,9 +172,9 @@
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#87f8c6e72e0b81b2ca59333cdeca9f47ababc8f2" class="src_link" title="models/user.rb">models/user.rb</a></td>
             <td class="green strong cell--number t-file__coverage">100.00 %</td>
-            <td class="cell--number">22</td>
-            <td class="cell--number">8</td>
-            <td class="cell--number">8</td>
+            <td class="cell--number">25</td>
+            <td class="cell--number">9</td>
+            <td class="cell--number">9</td>
             <td class="cell--number">0</td>
             <td class="cell--number">1.00</td>
             
@@ -182,23 +182,23 @@
         
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#6b2d9dade1a96baf952b554c2403e9973343560a" class="src_link" title="server.rb">server.rb</a></td>
-            <td class="green strong cell--number t-file__coverage">92.47 %</td>
+            <td class="green strong cell--number t-file__coverage">94.57 %</td>
             <td class="cell--number">370</td>
-            <td class="cell--number">186</td>
-            <td class="cell--number">172</td>
-            <td class="cell--number">14</td>
-            <td class="cell--number">2.24</td>
+            <td class="cell--number">184</td>
+            <td class="cell--number">174</td>
+            <td class="cell--number">10</td>
+            <td class="cell--number">2.37</td>
             
           </tr>
         
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#ec9d63ab313f593cfd75b338d0d7a19da2a24c8c" class="src_link" title="spec/controllers/app_spec.rb">spec/controllers/app_spec.rb</a></td>
             <td class="green strong cell--number t-file__coverage">100.00 %</td>
-            <td class="cell--number">254</td>
-            <td class="cell--number">137</td>
-            <td class="cell--number">137</td>
+            <td class="cell--number">258</td>
+            <td class="cell--number">140</td>
+            <td class="cell--number">140</td>
             <td class="cell--number">0</td>
-            <td class="cell--number">1.35</td>
+            <td class="cell--number">1.38</td>
             
           </tr>
         
@@ -1711,8 +1711,8 @@
     
 
     <div class="t-line-summary">
-      <b>8</b> relevant lines.
-      <span class="green"><b>8</b> lines covered</span> and
+      <b>9</b> relevant lines.
+      <span class="green"><b>9</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
 
@@ -1741,23 +1741,12 @@
 
             
 
-            <code class="ruby">  #relacion de muchos a muchos con achievement</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="3">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">  has_and_belongs_to_many :achievements</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="4">
+          <li class="never" data-hits="" data-linenumber="3">
             
             
 
@@ -1768,13 +1757,24 @@
         </div>
       
         <div>
+          <li class="covered" data-hits="1" data-linenumber="4">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  has_secure_password</code>
+          </li>
+        </div>
+      
+        <div>
           <li class="never" data-hits="" data-linenumber="5">
             
             
 
             
 
-            <code class="ruby">  #relacion de muchos a muchos con question</code>
+            <code class="ruby">  #relacion de muchos a muchos con achievement</code>
           </li>
         </div>
       
@@ -1785,7 +1785,7 @@
 
             
 
-            <code class="ruby">  has_and_belongs_to_many :questions</code>
+            <code class="ruby">  has_and_belongs_to_many :achievements</code>
           </li>
         </div>
       
@@ -1807,7 +1807,7 @@
 
             
 
-            <code class="ruby">  #relacion de uno a uno con profile</code>
+            <code class="ruby">  #relacion de muchos a muchos con question</code>
           </li>
         </div>
       
@@ -1818,7 +1818,7 @@
 
             
 
-            <code class="ruby">  has_one :profile</code>
+            <code class="ruby">  has_and_belongs_to_many :questions</code>
           </li>
         </div>
       
@@ -1829,7 +1829,7 @@
 
             
 
-            <code class="ruby">    </code>
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -1840,7 +1840,7 @@
 
             
 
-            <code class="ruby">  #relacion de muchos a 1 con rancking  </code>
+            <code class="ruby">  #relacion de uno a uno con profile</code>
           </li>
         </div>
       
@@ -1851,7 +1851,7 @@
 
             
 
-            <code class="ruby">  belongs_to :ranking</code>
+            <code class="ruby">  has_one :profile</code>
           </li>
         </div>
       
@@ -1862,7 +1862,7 @@
 
             
 
-            <code class="ruby"></code>
+            <code class="ruby">    </code>
           </li>
         </div>
       
@@ -1873,29 +1873,29 @@
 
             
 
-            <code class="ruby">  </code>
+            <code class="ruby">  #relacion de muchos a 1 con rancking  </code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="15">
-            
-            
-
-            
-
-            <code class="ruby">  ## validacion</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="16">
+          <li class="covered" data-hits="1" data-linenumber="15">
             <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">  validates :name, presence: true, length: { minimum: 2 }, uniqueness: true</code>
+            <code class="ruby">  belongs_to :ranking</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="16">
+            
+            
+
+            
+
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -1911,18 +1911,29 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="18">
+          <li class="never" data-hits="" data-linenumber="18">
+            
+            
+
+            
+
+            <code class="ruby">  ## validacion</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="19">
             <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">  validates :email, presence: true, uniqueness: true</code>
+            <code class="ruby">  validates :name, presence: true, length: { minimum: 2 }, uniqueness: true</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="19">
+          <li class="never" data-hits="" data-linenumber="20">
             
             
 
@@ -1933,7 +1944,29 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="20">
+          <li class="covered" data-hits="1" data-linenumber="21">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  validates :email, presence: true, uniqueness: true</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="22">
+            
+            
+
+            
+
+            <code class="ruby">  </code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="23">
             <span class="hits">1</span>
             
 
@@ -1944,7 +1977,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="21">
+          <li class="never" data-hits="" data-linenumber="24">
             
             
 
@@ -1955,7 +1988,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="22">
+          <li class="never" data-hits="" data-linenumber="25">
             
             
 
@@ -1975,7 +2008,7 @@
     <h3>server.rb</h3>
     <h4>
       <span class="green">
-  92.47%
+  94.57%
 </span>
 
       lines covered
@@ -1984,9 +2017,9 @@
     
 
     <div class="t-line-summary">
-      <b>186</b> relevant lines.
-      <span class="green"><b>172</b> lines covered</span> and
-      <span class="red"><b>14</b> lines missed.</span>
+      <b>184</b> relevant lines.
+      <span class="green"><b>174</b> lines covered</span> and
+      <span class="red"><b>10</b> lines missed.</span>
     </div>
 
     
@@ -2371,8 +2404,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="56" data-linenumber="35">
-            <span class="hits">56</span>
+          <li class="covered" data-hits="58" data-linenumber="35">
+            <span class="hits">58</span>
             
 
             
@@ -2558,8 +2591,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="28" data-linenumber="52">
-            <span class="hits">28</span>
+          <li class="covered" data-hits="29" data-linenumber="52">
+            <span class="hits">29</span>
             
 
             
@@ -2580,8 +2613,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="28" data-linenumber="54">
-            <span class="hits">28</span>
+          <li class="covered" data-hits="29" data-linenumber="54">
+            <span class="hits">29</span>
             
 
             
@@ -2624,8 +2657,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="27" data-linenumber="58">
-            <span class="hits">27</span>
+          <li class="covered" data-hits="28" data-linenumber="58">
+            <span class="hits">28</span>
             
 
             
@@ -2872,7 +2905,7 @@
 
             
 
-            <code class="ruby">    usuario = User.find_by(name: name, password: password)</code>
+            <code class="ruby">    usuario = User.find_by(name: name)</code>
           </li>
         </div>
       
@@ -2883,7 +2916,7 @@
 
             
 
-            <code class="ruby">    if usuario</code>
+            <code class="ruby">    if usuario &amp;&amp; usuario.authenticate(password)</code>
           </li>
         </div>
       
@@ -3631,7 +3664,7 @@
 
             
 
-            <code class="ruby"></code>
+            <code class="ruby">  </code>
           </li>
         </div>
       
@@ -3642,7 +3675,7 @@
 
             
 
-            <code class="ruby">#-----------------------------------------------------------------------------------------------------------------------------------------------------</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -3653,7 +3686,7 @@
 
             
 
-            <code class="ruby">#-----------------------------------------------------------------------------------------------------------------------------------------------------</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -3697,7 +3730,7 @@
 
             
 
-            <code class="ruby"></code>
+            <code class="ruby">#-----------------------------------------------------------------------------------------------------------------------------------------------------</code>
           </li>
         </div>
       
@@ -3708,7 +3741,7 @@
 
             
 
-            <code class="ruby"></code>
+            <code class="ruby">#-----------------------------------------------------------------------------------------------------------------------------------------------------</code>
           </li>
         </div>
       
@@ -3724,73 +3757,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="158">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">  get &#39;/principal&#39; do</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="2" data-linenumber="159">
-            <span class="hits">2</span>
-            
-
-            
-
-            <code class="ruby">    @temas = Topic.all</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="2" data-linenumber="160">
-            <span class="hits">2</span>
-            
-
-            
-
-            <code class="ruby">    session[:indice] = 0</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="2" data-linenumber="161">
-            <span class="hits">2</span>
-            
-
-            
-
-            <code class="ruby">    session[:tema_id] = 0</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="2" data-linenumber="162">
-            <span class="hits">2</span>
-            
-
-            
-
-            <code class="ruby">    erb :&#39;principal&#39;</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="163">
-            
-            
-
-            
-
-            <code class="ruby">  end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="164">
+          <li class="never" data-hits="" data-linenumber="158">
             
             
 
@@ -3801,13 +3768,79 @@
         </div>
       
         <div>
+          <li class="never" data-hits="" data-linenumber="159">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="160">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  get &#39;/principal&#39; do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="2" data-linenumber="161">
+            <span class="hits">2</span>
+            
+
+            
+
+            <code class="ruby">    @temas = Topic.all</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="2" data-linenumber="162">
+            <span class="hits">2</span>
+            
+
+            
+
+            <code class="ruby">    session[:indice] = 0</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="2" data-linenumber="163">
+            <span class="hits">2</span>
+            
+
+            
+
+            <code class="ruby">    session[:tema_id] = 0</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="2" data-linenumber="164">
+            <span class="hits">2</span>
+            
+
+            
+
+            <code class="ruby">    erb :&#39;principal&#39;</code>
+          </li>
+        </div>
+      
+        <div>
           <li class="never" data-hits="" data-linenumber="165">
             
             
 
             
 
-            <code class="ruby">#-----------------------------------------------------------------------------------------------------------------------------------------------------</code>
+            <code class="ruby">  end</code>
           </li>
         </div>
       
@@ -3818,7 +3851,7 @@
 
             
 
-            <code class="ruby">#-----------------------------------------------------------------------------------------------------------------------------------------------------</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -3851,18 +3884,18 @@
 
             
 
-            <code class="ruby"></code>
+            <code class="ruby">#-----------------------------------------------------------------------------------------------------------------------------------------------------</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="170">
-            <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="170">
+            
             
 
             
 
-            <code class="ruby">  get &#39;/perfil&#39; do</code>
+            <code class="ruby">#-----------------------------------------------------------------------------------------------------------------------------------------------------</code>
           </li>
         </div>
       
@@ -3873,29 +3906,29 @@
 
             
 
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="172">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  get &#39;/perfil&#39; do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="173">
+            
+            
+
+            
+
             <code class="ruby">    # Verificar si un usuario ha iniciado sesión</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="2" data-linenumber="172">
-            <span class="hits">2</span>
-            
-
-            
-
-            <code class="ruby">    user_id = session[:user_id]   #Tomamos el id del usuario que inicio sesion</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="2" data-linenumber="173">
-            <span class="hits">2</span>
-            
-
-            
-
-            <code class="ruby">    @user = User.find(user_id)    #Obtengo el usuario especifico del ID</code>
           </li>
         </div>
       
@@ -3906,40 +3939,40 @@
 
             
 
-            <code class="ruby">    @profile = @user.profile      #Obtengo el perfil especifico del ID</code>
+            <code class="ruby">    user_id = session[:user_id]   #Tomamos el id del usuario que inicio sesion</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="175">
-            
-            
-
-            
-
-            <code class="ruby">   #-----------------------------------------------</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="176">
-            
-            
-
-            
-
-            <code class="ruby">   #-----------------------------------------------</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="2" data-linenumber="177">
+          <li class="covered" data-hits="2" data-linenumber="175">
             <span class="hits">2</span>
             
 
             
 
-            <code class="ruby">    erb :&#39;perfile&#39;                #Mostramos los datos del usuario y Perfil</code>
+            <code class="ruby">    @user = User.find(user_id)    #Obtengo el usuario especifico del ID</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="2" data-linenumber="176">
+            <span class="hits">2</span>
+            
+
+            
+
+            <code class="ruby">    @profile = @user.profile      #Obtengo el perfil especifico del ID</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="177">
+            
+            
+
+            
+
+            <code class="ruby">   #-----------------------------------------------</code>
           </li>
         </div>
       
@@ -3950,12 +3983,34 @@
 
             
 
+            <code class="ruby">   #-----------------------------------------------</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="2" data-linenumber="179">
+            <span class="hits">2</span>
+            
+
+            
+
+            <code class="ruby">    erb :&#39;perfile&#39;                #Mostramos los datos del usuario y Perfil</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="180">
+            
+            
+
+            
+
             <code class="ruby">  end</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="179">
+          <li class="never" data-hits="" data-linenumber="181">
             
             
 
@@ -3966,7 +4021,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="180">
+          <li class="covered" data-hits="1" data-linenumber="182">
             <span class="hits">1</span>
             
 
@@ -3977,7 +4032,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="181">
+          <li class="covered" data-hits="1" data-linenumber="183">
             <span class="hits">1</span>
             
 
@@ -3988,35 +4043,13 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="182">
-            
-            
-
-            
-
-            <code class="ruby">  end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="183">
-            
-            
-
-            
-
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
           <li class="never" data-hits="" data-linenumber="184">
             
             
 
             
 
-            <code class="ruby"></code>
+            <code class="ruby">  end</code>
           </li>
         </div>
       
@@ -4032,7 +4065,29 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="186">
+          <li class="never" data-hits="" data-linenumber="186">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="187">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="188">
             <span class="hits">1</span>
             
 
@@ -4043,7 +4098,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="187">
+          <li class="covered" data-hits="2" data-linenumber="189">
             <span class="hits">2</span>
             
 
@@ -4054,7 +4109,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="188">
+          <li class="covered" data-hits="2" data-linenumber="190">
             <span class="hits">2</span>
             
 
@@ -4065,7 +4120,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="189">
+          <li class="covered" data-hits="2" data-linenumber="191">
             <span class="hits">2</span>
             
 
@@ -4076,7 +4131,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="190">
+          <li class="covered" data-hits="2" data-linenumber="192">
             <span class="hits">2</span>
             
 
@@ -4087,7 +4142,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="191">
+          <li class="covered" data-hits="2" data-linenumber="193">
             <span class="hits">2</span>
             
 
@@ -4098,7 +4153,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="192">
+          <li class="covered" data-hits="1" data-linenumber="194">
             <span class="hits">1</span>
             
 
@@ -4109,7 +4164,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="193">
+          <li class="never" data-hits="" data-linenumber="195">
             
             
 
@@ -4120,7 +4175,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="194">
+          <li class="never" data-hits="" data-linenumber="196">
             
             
 
@@ -4131,35 +4186,13 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="195">
+          <li class="never" data-hits="" data-linenumber="197">
             
             
 
             
 
             <code class="ruby">  #-----------------------------------------------</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="196">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    if params[:name].present?         #En caso de que no exista un usuario con ese nombre permite modificarlo</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="197">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">      user.name = params[:name]</code>
           </li>
         </div>
       
@@ -4170,29 +4203,29 @@
 
             
 
-            <code class="ruby">      user.save</code>
+            <code class="ruby">    if params[:name].present?         #En caso de que no exista un usuario con ese nombre permite modificarlo</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="199">
+          <li class="covered" data-hits="1" data-linenumber="199">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">      user.update_column(:name,params[:name]) #Cambia el nombre</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="200">
             
             
 
             
 
             <code class="ruby">    end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="200">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    if params[:psw].present?         #Si se ingreso una nueva contraseña</code>
           </li>
         </div>
       
@@ -4203,23 +4236,34 @@
 
             
 
-            <code class="ruby">      user.password = params[:psw]   #Cambia la contraseña</code>
+            <code class="ruby">    if params[:password].present?     #Si se ingreso una nueva contraseña   </code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="202">
-            <span class="hits">1</span>
+          <li class="missed" data-hits="0" data-linenumber="202">
+            
             
 
             
 
-            <code class="ruby">      user.save</code>
+            <code class="ruby">      user.password = params[:password]</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="203">
+          <li class="missed" data-hits="0" data-linenumber="203">
+            
+            
+
+            
+
+            <code class="ruby">      user.save  #Cambia la contraseña </code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="204">
             
             
 
@@ -4230,7 +4274,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="204">
+          <li class="covered" data-hits="1" data-linenumber="205">
             <span class="hits">1</span>
             
 
@@ -4241,24 +4285,13 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="205">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">      user.email = params[:email]   #Cambia el email</code>
-          </li>
-        </div>
-      
-        <div>
           <li class="covered" data-hits="1" data-linenumber="206">
             <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">      user.save</code>
+            <code class="ruby">      user.update_column(:email,params[:email] ) #Cambia el email</code>
           </li>
         </div>
       
@@ -4280,7 +4313,7 @@
 
             
 
-            <code class="ruby">    if params[:imagen].present?         #Si se otorgo un link de imagen</code>
+            <code class="ruby">    if params[:imagen].present?       #Si se otorgo un link de imagen</code>
           </li>
         </div>
       
@@ -4291,7 +4324,7 @@
 
             
 
-            <code class="ruby">      profile.picture = params[:imagen] #Cambia el link de imagen</code>
+            <code class="ruby">      profile.picture = params[:imagen]  #Cambia el link de imagen</code>
           </li>
         </div>
       
@@ -5187,8 +5220,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="26" data-linenumber="291">
-            <span class="hits">26</span>
+          <li class="covered" data-hits="27" data-linenumber="291">
+            <span class="hits">27</span>
             
 
             
@@ -5198,8 +5231,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="26" data-linenumber="292">
-            <span class="hits">26</span>
+          <li class="covered" data-hits="27" data-linenumber="292">
+            <span class="hits">27</span>
             
 
             
@@ -5209,8 +5242,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="26" data-linenumber="293">
-            <span class="hits">26</span>
+          <li class="covered" data-hits="27" data-linenumber="293">
+            <span class="hits">27</span>
             
 
             
@@ -5424,7 +5457,7 @@
 
             
 
-            <code class="ruby">      @user = User.find(session[:user_id])         # Obtengo el usuario correspondiente al id</code>
+            <code class="ruby">      @user = User.find(session[:user_id])   # Obtengo el usuario correspondiente al id</code>
           </li>
         </div>
       
@@ -5435,7 +5468,7 @@
 
             
 
-            <code class="ruby">      @user.total_score += @question.value          # Sumo al score almacenado el valor de la respuesta si fue correcta.</code>
+            <code class="ruby">      res  = @user.total_score + @question.value          # Sumo al score almacenado el valor de la respuesta si fue correcta.</code>
           </li>
         </div>
       
@@ -5446,7 +5479,7 @@
 
             
 
-            <code class="ruby">      @user.save                                   # Guardo</code>
+            <code class="ruby">      @user.update_column(:total_score,res)               # actualizo puntaje total</code>
           </li>
         </div>
       
@@ -5550,8 +5583,8 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="324">
-            
+          <li class="covered" data-hits="1" data-linenumber="324">
+            <span class="hits">1</span>
             
 
             
@@ -5561,8 +5594,8 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="325">
-            
+          <li class="covered" data-hits="1" data-linenumber="325">
+            <span class="hits">1</span>
             
 
             
@@ -5616,8 +5649,8 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="330">
-            
+          <li class="covered" data-hits="1" data-linenumber="330">
+            <span class="hits">1</span>
             
 
             
@@ -5627,8 +5660,8 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="331">
-            
+          <li class="covered" data-hits="1" data-linenumber="331">
+            <span class="hits">1</span>
             
 
             
@@ -5649,8 +5682,8 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="333">
-            
+          <li class="covered" data-hits="1" data-linenumber="333">
+            <span class="hits">1</span>
             
 
             
@@ -5704,8 +5737,8 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="338">
-            
+          <li class="covered" data-hits="1" data-linenumber="338">
+            <span class="hits">1</span>
             
 
             
@@ -5803,8 +5836,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="347">
-            <span class="hits">1</span>
+          <li class="covered" data-hits="7" data-linenumber="347">
+            <span class="hits">7</span>
             
 
             
@@ -5814,8 +5847,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="348">
-            <span class="hits">1</span>
+          <li class="covered" data-hits="3" data-linenumber="348">
+            <span class="hits">3</span>
             
 
             
@@ -5825,8 +5858,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="349">
-            <span class="hits">1</span>
+          <li class="covered" data-hits="3" data-linenumber="349">
+            <span class="hits">3</span>
             
 
             
@@ -6085,8 +6118,8 @@
     
 
     <div class="t-line-summary">
-      <b>137</b> relevant lines.
-      <span class="green"><b>137</b> lines covered</span> and
+      <b>140</b> relevant lines.
+      <span class="green"><b>140</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
 
@@ -6219,8 +6252,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="21" data-linenumber="12">
-            <span class="hits">21</span>
+          <li class="covered" data-hits="22" data-linenumber="12">
+            <span class="hits">22</span>
             
 
             
@@ -7792,8 +7825,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="3" data-linenumber="155">
-            <span class="hits">3</span>
+          <li class="covered" data-hits="4" data-linenumber="155">
+            <span class="hits">4</span>
             
 
             
@@ -7814,8 +7847,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="3" data-linenumber="157">
-            <span class="hits">3</span>
+          <li class="covered" data-hits="4" data-linenumber="157">
+            <span class="hits">4</span>
             
 
             
@@ -7858,8 +7891,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="3" data-linenumber="161">
-            <span class="hits">3</span>
+          <li class="covered" data-hits="4" data-linenumber="161">
+            <span class="hits">4</span>
             
 
             
@@ -7869,8 +7902,8 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="3" data-linenumber="162">
-            <span class="hits">3</span>
+          <li class="covered" data-hits="4" data-linenumber="162">
+            <span class="hits">4</span>
             
 
             
@@ -7968,13 +8001,13 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="171">
-            
-            
-
+          <li class="covered" data-hits="1" data-linenumber="171">
+            <span class="hits">1</span>
             
 
-            <code class="ruby"></code>
+            
+
+            <code class="ruby">    it &#39;testing/ranking whit user verification&#39; do</code>
           </li>
         </div>
       
@@ -7985,7 +8018,7 @@
 
             
 
-            <code class="ruby">    it &#39;testing the route /niveles&#39; do</code>
+            <code class="ruby">      get &#39;/ranking&#39;, {}, &#39;rack.session&#39; =&gt; @sesion</code>
           </li>
         </div>
       
@@ -7996,23 +8029,12 @@
 
             
 
-            <code class="ruby">      get &#39;/niveles&#39;, {tema: 1}, &#39;rack.session&#39; =&gt; @session</code>
+            <code class="ruby">      expect(last_response.status).to eq(500)</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="174">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">      expect(last_response.status).to eq(200)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="175">
+          <li class="never" data-hits="" data-linenumber="174">
             
             
 
@@ -8023,7 +8045,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="176">
+          <li class="never" data-hits="" data-linenumber="175">
             
             
 
@@ -8034,24 +8056,35 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="177">
-            
-            
-
+          <li class="covered" data-hits="1" data-linenumber="176">
+            <span class="hits">1</span>
             
 
-            <code class="ruby">    # it &#39;testing the route /niveles&#39; do</code>
+            
+
+            <code class="ruby">    it &#39;testing the route /niveles&#39; do</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="178">
+          <li class="covered" data-hits="1" data-linenumber="177">
+            <span class="hits">1</span>
             
+
+            
+
+            <code class="ruby">      get &#39;/niveles&#39;, {tema: 1}, &#39;rack.session&#39; =&gt; @session</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="178">
+            <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">    #  get &#39;/niveles&#39;, {tema: @topic.id}, &#39;rack.session&#39; =&gt; @session</code>
+            <code class="ruby">      expect(last_response.status).to eq(200)</code>
           </li>
         </div>
       
@@ -8062,7 +8095,7 @@
 
             
 
-            <code class="ruby">    # #  @question.destroy</code>
+            <code class="ruby">    end</code>
           </li>
         </div>
       
@@ -8073,7 +8106,7 @@
 
             
 
-            <code class="ruby">    # #  @topic.destroy</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -8084,7 +8117,7 @@
 
             
 
-            <code class="ruby">    #  expect(last_response.status).to eq(200)</code>
+            <code class="ruby">    # it &#39;testing the route /niveles&#39; do</code>
           </li>
         </div>
       
@@ -8095,7 +8128,7 @@
 
             
 
-            <code class="ruby">    # end</code>
+            <code class="ruby">    #  get &#39;/niveles&#39;, {tema: @topic.id}, &#39;rack.session&#39; =&gt; @session</code>
           </li>
         </div>
       
@@ -8106,40 +8139,40 @@
 
             
 
-            <code class="ruby"></code>
+            <code class="ruby">    # #  @question.destroy</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="184">
-            <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="184">
+            
             
 
             
 
-            <code class="ruby">    it &#39;testing the route /guia&#39; do</code>
+            <code class="ruby">    # #  @topic.destroy</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="185">
-            <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="185">
+            
             
 
             
 
-            <code class="ruby">      get &#39;/guia&#39;, {}, &#39;rack.session&#39; =&gt; @session</code>
+            <code class="ruby">    #  expect(last_response.status).to eq(200)</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="186">
-            <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="186">
+            
             
 
             
 
-            <code class="ruby">      expect(last_response.status).to eq(200)</code>
+            <code class="ruby">    # end</code>
           </li>
         </div>
       
@@ -8155,260 +8188,29 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="188">
-            
-            
-
-            
-
-            <code class="ruby">    end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="189">
-            
-            
-
-            
-
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="190">
-            
-            
-
-            
-
-            <code class="ruby">    # it &#39;testing the route /guia&#39; do</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="191">
-            
-            
-
-            
-
-            <code class="ruby">    #  get &#39;/guia&#39;, {}, &#39;rack.session&#39; =&gt; @session</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="192">
-            
-            
-
-            
-
-            <code class="ruby">    #  expect(last_response.status).to eq(200)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="193">
-            
-            
-
-            
-
-            <code class="ruby">    # end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="194">
-            
-            
-
-            
-
-            <code class="ruby">  end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="195">
-            
-            
-
-            
-
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="196">
-            
-            
-
-            
-
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="197">
+          <li class="covered" data-hits="1" data-linenumber="188">
             <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">  context &#39;prob game&#39; do</code>
+            <code class="ruby">    it &#39;testing the route /guia&#39; do</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="198">
-            
-            
-
-            
-
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="199">
+          <li class="covered" data-hits="1" data-linenumber="189">
             <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">    before(:each) do</code>
+            <code class="ruby">      get &#39;/guia&#39;, {}, &#39;rack.session&#39; =&gt; @session</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="200">
-            <span class="hits">2</span>
-            
-
-            
-
-            <code class="ruby">      @user = User.create(name:&quot;Santioooo&quot;, email:&quot;santiago010@mail.com&quot;, password:&quot;pas1234&quot;, total_score: 5)</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="2" data-linenumber="201">
-            <span class="hits">2</span>
-            
-
-            
-
-            <code class="ruby">      @session = { user_id: @user.id }</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="202">
-            
-            
-
-            
-
-            <code class="ruby">    end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="203">
-            
-            
-
-            
-
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="204">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    after(:each) do</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="2" data-linenumber="205">
-            <span class="hits">2</span>
-            
-
-            
-
-            <code class="ruby">      @session = nil</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="2" data-linenumber="206">
-            <span class="hits">2</span>
-            
-
-            
-
-            <code class="ruby">      @user.destroy</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="207">
-            
-            
-
-            
-
-            <code class="ruby">    end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="208">
-            
-            
-
-            
-
-            <code class="ruby"></code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="209">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    it &#39;probando las preguntas del juego&#39; do</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="210">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">      post &#39;/game&#39;, { tema: 1, nivel: 1}, &#39;rack.session&#39; =&gt; @session</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="211">
+          <li class="covered" data-hits="1" data-linenumber="190">
             <span class="hits">1</span>
             
 
@@ -8419,18 +8221,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="212">
-            
-            
-
-            
-
-            <code class="ruby">    end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="213">
+          <li class="never" data-hits="" data-linenumber="191">
             
             
 
@@ -8441,40 +8232,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="214">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">    it &#39;probando la verificacion de respuestas del juego&#39; do</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="215">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">      post &#39;/verificar&#39;, {opcionElegida:1, question:1, tema:1, nivel:1}, &#39;rack.session&#39; =&gt; @session</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="covered" data-hits="1" data-linenumber="216">
-            <span class="hits">1</span>
-            
-
-            
-
-            <code class="ruby">      expect(last_response.status).to eq(500) #aca tendria que ser 200 pero nose porque no entra</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="217">
+          <li class="never" data-hits="" data-linenumber="192">
             
             
 
@@ -8485,7 +8243,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="218">
+          <li class="never" data-hits="" data-linenumber="193">
             
             
 
@@ -8496,7 +8254,51 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="219">
+          <li class="never" data-hits="" data-linenumber="194">
+            
+            
+
+            
+
+            <code class="ruby">    # it &#39;testing the route /guia&#39; do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="195">
+            
+            
+
+            
+
+            <code class="ruby">    #  get &#39;/guia&#39;, {}, &#39;rack.session&#39; =&gt; @session</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="196">
+            
+            
+
+            
+
+            <code class="ruby">    #  expect(last_response.status).to eq(200)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="197">
+            
+            
+
+            
+
+            <code class="ruby">    # end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="198">
             
             
 
@@ -8507,7 +8309,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="220">
+          <li class="never" data-hits="" data-linenumber="199">
             
             
 
@@ -8518,7 +8320,7 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="221">
+          <li class="never" data-hits="" data-linenumber="200">
             
             
 
@@ -8529,18 +8331,29 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="222">
+          <li class="covered" data-hits="1" data-linenumber="201">
             <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">  context &#39;prob pract&#39; do</code>
+            <code class="ruby">  context &#39;prob game&#39; do</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="223">
+          <li class="never" data-hits="" data-linenumber="202">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="203">
             <span class="hits">1</span>
             
 
@@ -8551,7 +8364,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="224">
+          <li class="covered" data-hits="2" data-linenumber="204">
             <span class="hits">2</span>
             
 
@@ -8562,7 +8375,7 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="225">
+          <li class="covered" data-hits="2" data-linenumber="205">
             <span class="hits">2</span>
             
 
@@ -8573,18 +8386,18 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="226">
+          <li class="never" data-hits="" data-linenumber="206">
             
             
 
             
 
-            <code class="ruby">   end</code>
+            <code class="ruby">    end</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="227">
+          <li class="never" data-hits="" data-linenumber="207">
             
             
 
@@ -8595,13 +8408,233 @@
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="228">
+          <li class="covered" data-hits="1" data-linenumber="208">
             <span class="hits">1</span>
             
 
             
 
-            <code class="ruby">   after(:each) do</code>
+            <code class="ruby">    after(:each) do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="2" data-linenumber="209">
+            <span class="hits">2</span>
+            
+
+            
+
+            <code class="ruby">      @session = nil</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="2" data-linenumber="210">
+            <span class="hits">2</span>
+            
+
+            
+
+            <code class="ruby">      @user.destroy</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="211">
+            
+            
+
+            
+
+            <code class="ruby">    end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="212">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="213">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    it &#39;probando las preguntas del juego&#39; do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="214">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">      post &#39;/game&#39;, { tema: 1, nivel: 1}, &#39;rack.session&#39; =&gt; @session</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="215">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">      expect(last_response.status).to eq(200)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="216">
+            
+            
+
+            
+
+            <code class="ruby">    end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="217">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="218">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    it &#39;probando la verificacion de respuestas del juego&#39; do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="219">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">      post &#39;/verificar&#39;, {opcionElegida:1, question:1, tema:1, nivel:1}, &#39;rack.session&#39; =&gt; @session</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="220">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">      expect(last_response.status).to eq(500) #aca tendria que ser 200 pero nose porque no entra</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="221">
+            
+            
+
+            
+
+            <code class="ruby">    end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="222">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="223">
+            
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="224">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="225">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="226">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">  context &#39;prob pract&#39; do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="1" data-linenumber="227">
+            <span class="hits">1</span>
+            
+
+            
+
+            <code class="ruby">    before(:each) do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="2" data-linenumber="228">
+            <span class="hits">2</span>
+            
+
+            
+
+            <code class="ruby">      @user = User.create(name:&quot;Santioooo&quot;, email:&quot;santiago010@mail.com&quot;, password:&quot;pas1234&quot;, total_score: 5)</code>
           </li>
         </div>
       
@@ -8612,18 +8645,18 @@
 
             
 
-            <code class="ruby">     @session = nil</code>
+            <code class="ruby">      @session = { user_id: @user.id }</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="2" data-linenumber="230">
-            <span class="hits">2</span>
+          <li class="never" data-hits="" data-linenumber="230">
+            
             
 
             
 
-            <code class="ruby">     @user.destroy</code>
+            <code class="ruby">   end</code>
           </li>
         </div>
       
@@ -8634,40 +8667,40 @@
 
             
 
-            <code class="ruby">   end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="232">
-            
-            
-
-            
-
-            <code class="ruby">#</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="233">
-            
-            
-
-            
-
             <code class="ruby"></code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="234">
+          <li class="covered" data-hits="1" data-linenumber="232">
+            <span class="hits">1</span>
             
+
+            
+
+            <code class="ruby">   after(:each) do</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="2" data-linenumber="233">
+            <span class="hits">2</span>
             
 
             
 
-            <code class="ruby">  #it &#39;probando las prácticas del juego&#39; do</code>
+            <code class="ruby">     @session = nil</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="covered" data-hits="2" data-linenumber="234">
+            <span class="hits">2</span>
+            
+
+            
+
+            <code class="ruby">     @user.destroy</code>
           </li>
         </div>
       
@@ -8678,7 +8711,7 @@
 
             
 
-            <code class="ruby">  #  post &#39;/practica&#39;, { tema:1, nivel: 1}, &#39;rack.session&#39; =&gt; @session</code>
+            <code class="ruby">   end</code>
           </li>
         </div>
       
@@ -8689,7 +8722,7 @@
 
             
 
-            <code class="ruby">  #  expect(last_response.status).to eq(200)</code>
+            <code class="ruby">#</code>
           </li>
         </div>
       
@@ -8700,40 +8733,40 @@
 
             
 
-            <code class="ruby">  #end</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="238">
-            <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="238">
+            
             
 
             
 
-            <code class="ruby">   it &#39;probando las prácticas del juego&#39; do</code>
+            <code class="ruby">  #it &#39;probando las prácticas del juego&#39; do</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="239">
-            <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="239">
+            
             
 
             
 
-            <code class="ruby">     post &#39;/practica&#39;, {tema: 1, nivel: 1}, &#39;rack.session&#39; =&gt; @session</code>
+            <code class="ruby">  #  post &#39;/practica&#39;, { tema:1, nivel: 1}, &#39;rack.session&#39; =&gt; @session</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="240">
-            <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="240">
+            
             
 
             
 
-            <code class="ruby">     expect(last_response.status).to eq(200)</code>
+            <code class="ruby">  #  expect(last_response.status).to eq(200)</code>
           </li>
         </div>
       
@@ -8744,18 +8777,18 @@
 
             
 
-            <code class="ruby">   end</code>
+            <code class="ruby">  #end</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="242">
-            
-            
-
+          <li class="covered" data-hits="1" data-linenumber="242">
+            <span class="hits">1</span>
             
 
-            <code class="ruby"></code>
+            
+
+            <code class="ruby">   it &#39;probando las prácticas del juego&#39; do</code>
           </li>
         </div>
       
@@ -8766,7 +8799,7 @@
 
             
 
-            <code class="ruby">   it &#39;probando la verificacion de respuestas de la practica&#39; do</code>
+            <code class="ruby">     post &#39;/practica&#39;, {tema: 1, nivel: 1}, &#39;rack.session&#39; =&gt; @session</code>
           </li>
         </div>
       
@@ -8777,18 +8810,18 @@
 
             
 
-            <code class="ruby">     post &#39;/verificarPract&#39;, {opcionElegida: 1, question: 1, tema: 1, nivel: 1}, &#39;rack.session&#39; =&gt; @session</code>
+            <code class="ruby">     expect(last_response.status).to eq(200)</code>
           </li>
         </div>
       
         <div>
-          <li class="covered" data-hits="1" data-linenumber="245">
-            <span class="hits">1</span>
+          <li class="never" data-hits="" data-linenumber="245">
+            
             
 
             
 
-            <code class="ruby">     expect(last_response.status).to eq(200)</code>
+            <code class="ruby">   end</code>
           </li>
         </div>
       
@@ -8804,35 +8837,35 @@
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="247">
-            
-            
-
+          <li class="covered" data-hits="1" data-linenumber="247">
+            <span class="hits">1</span>
             
 
-            <code class="ruby">   end</code>
+            
+
+            <code class="ruby">   it &#39;probando la verificacion de respuestas de la practica&#39; do</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="248">
-            
-            
-
+          <li class="covered" data-hits="1" data-linenumber="248">
+            <span class="hits">1</span>
             
 
-            <code class="ruby">   ##Este enrealidad tendria que ir en option @question.id pero no me deja y nose porq ayuda</code>
+            
+
+            <code class="ruby">     post &#39;/verificarPract&#39;, {opcionElegida: 1, question: 1, tema: 1, nivel: 1}, &#39;rack.session&#39; =&gt; @session</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="249">
-            
-            
-
+          <li class="covered" data-hits="1" data-linenumber="249">
+            <span class="hits">1</span>
             
 
-            <code class="ruby"></code>
+            
+
+            <code class="ruby">     expect(last_response.status).to eq(200)</code>
           </li>
         </div>
       
@@ -8843,7 +8876,7 @@
 
             
 
-            <code class="ruby">  end</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -8854,7 +8887,7 @@
 
             
 
-            <code class="ruby"></code>
+            <code class="ruby">   end</code>
           </li>
         </div>
       
@@ -8865,7 +8898,7 @@
 
             
 
-            <code class="ruby"></code>
+            <code class="ruby">   ##Este enrealidad tendria que ir en option @question.id pero no me deja y nose porq ayuda</code>
           </li>
         </div>
       
@@ -8882,6 +8915,50 @@
       
         <div>
           <li class="never" data-hits="" data-linenumber="254">
+            
+            
+
+            
+
+            <code class="ruby">  end</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="255">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="256">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="257">
+            
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="258">
             
             
 

@@ -77,8 +77,8 @@ class App < Sinatra::Application
     password = params[:psw]
 
     ##Verifica la existencia del usuario
-    usuario = User.find_by(name: name, password: password)
-    if usuario
+    usuario = User.find_by(name: name)
+    if usuario && usuario.authenticate(password)
       #Guardamos el id del usuario autenticando la clave
       #:user_id en la sesión
       session[:user_id] = usuario.id
@@ -147,6 +147,8 @@ class App < Sinatra::Application
     end
   end
 
+  
+
 
 #-----------------------------------------------------------------------------------------------------------------------------------------------------
 #-----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -195,19 +197,17 @@ class App < Sinatra::Application
   #-----------------------------------------------
   #-----------------------------------------------
     if params[:name].present?         #En caso de que no exista un usuario con ese nombre permite modificarlo
-      user.name = params[:name]
-      user.save
+      user.update_column(:name,params[:name]) #Cambia el nombre
     end
-    if params[:psw].present?         #Si se ingreso una nueva contraseña
-      user.password = params[:psw]   #Cambia la contraseña
-      user.save
+    if params[:password].present?     #Si se ingreso una nueva contraseña   
+      user.password = params[:password]
+      user.save  #Cambia la contraseña 
     end
     if params[:email].present?      #Si se ingreso un nuevo email
-      user.email = params[:email]   #Cambia el email
-      user.save
+      user.update_column(:email,params[:email] ) #Cambia el email
     end
-    if params[:imagen].present?         #Si se otorgo un link de imagen
-      profile.picture = params[:imagen] #Cambia el link de imagen
+    if params[:imagen].present?       #Si se otorgo un link de imagen
+      profile.picture = params[:imagen]  #Cambia el link de imagen
       profile.save
     end
     redirect '/perfil'
@@ -313,9 +313,9 @@ class App < Sinatra::Application
 
       # Si la respuesta otorgada es la correcta
     if @respuesta.isCorrect
-      @user = User.find(session[:user_id])         # Obtengo el usuario correspondiente al id
-      @user.total_score += @question.value          # Sumo al score almacenado el valor de la respuesta si fue correcta.
-      @user.save                                   # Guardo
+      @user = User.find(session[:user_id])   # Obtengo el usuario correspondiente al id
+      res  = @user.total_score + @question.value          # Sumo al score almacenado el valor de la respuesta si fue correcta.
+      @user.update_column(:total_score,res)               # actualizo puntaje total
       @user.questions << @question
       @user.save
       ranking = Ranking.find_by(user_id: @user.id)
