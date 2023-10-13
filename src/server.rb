@@ -81,7 +81,6 @@ class App < Sinatra::Application
       #Guardamos el id del usuario autenticando la clave
       #:user_id en la sesión
         session[:user_id] = usuario.id
-
         redirect "/principal"
       else
         erb :'loginerror'
@@ -104,9 +103,9 @@ class App < Sinatra::Application
 
     ##Verifica si el usuario existe o no
     @exist = User.find_by(name: name)
-
+    @email = User.find_by(email: email)
     ## El usuario existe no lo crea
-    if @exist
+    if @exist || @email
       erb :'errorregister'
     else
       @sonIguales = (password == repPassword)
@@ -208,8 +207,8 @@ class App < Sinatra::Application
 
 
   get '/niveles' do
-    # @momentDay = Time.now
-    # @momentDay = @momentDay.hour - 3
+    @momentDay = Time.now
+    @momentDay = @momentDay.hour - 3
     session[:tema_id] = params[:tema]
     @tema = Topic.find_by(id: session[:tema_id]) #Consigo el TEMA de las preguntas
     @user = User.find_by(id: session[:user_id])  #Consigo el USER del usuario de la sesion
@@ -220,8 +219,8 @@ class App < Sinatra::Application
 
 
   post '/game' do
-    # @momentDay = Time.now
-    # @momentDay = @momentDay.hour - 3
+    @momentDay = Time.now
+    @momentDay = @momentDay.hour - 3
     @tema = Topic.find_by(id: params[:tema])
     @user = User.find_by(id: session[:user_id])  #Consigo el USER del usuario de la sesion
     @nivel = params[:nivel]
@@ -246,8 +245,8 @@ class App < Sinatra::Application
 
 
   post '/practica' do
-    # @momentDay = Time.now
-    # @momentDay = @momentDay.hour - 3
+    @momentDay = Time.now
+    @momentDay = @momentDay.hour - 3
     @tema = Topic.find_by(id: params[:tema])
     @user = User.find_by(id: session[:user_id])  #Consigo el USER del usuario de la sesion
     @nivel = params[:nivel]
@@ -313,8 +312,8 @@ class App < Sinatra::Application
   end
 
   get '/ranking' do
-    # @momentDay = Time.now
-    # @momentDay = @momentDay.hour - 3
+    @momentDay = Time.now
+    @momentDay = @momentDay.hour - 3
     @ranking = actualizar_ranking
     erb :ranking
   end

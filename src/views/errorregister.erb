@@ -13,23 +13,17 @@
 
   <link rel="icon" href="https://i.imgur.com/Nl7KAcL.png">
   <link href="<%= url('/log_without_tm_ICO.ico') %>" rel="icon" type="image/ico">
-  <link href="<%= url('/loginerror.css') %>" rel="stylesheet" type="text/css"/>
-
+  <link href="<%= url('/login.css') %>" rel="stylesheet" type="text/css"/>
 </head>
 
 <body>
-  <%if @exist%>
-    <center>
+  <div class = "error_register">
     <h3>No se pudo registrar el usuario</h3>
-    <p>El nombre de usuario ya existe</p>
+    <%if @exist%>
+        <p>El nombre de usuario o email ya ha sido usado</p>
+    <%else%>
+        <p>Las contraseñas no coinciden</p>
+    <%end%>
     <a href="/registrar" class="boton">Volver a intentarlo</a>
-    </center>
-  <%end%>
-  <%if !@sonIguales%>
-    <center>
-    <h3>No se pudo registrar el usuario</h3>
-    <p>Las contraseñas no coinciden</p>
-    <a href="/registrar" class="boton">Volver a intentarlo</a>
-    </center>
-  <%end%>
+  </div>
 </body>

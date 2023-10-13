@@ -97,21 +97,29 @@ li p {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   }
 
-  .boton {
-    display: inline;
+  .boton{
+    display: inline-block;
     padding: 10px 20px;
-    background-color: #0aafd4;
-    color: rgb(23, 21, 21);
-    border-radius: 5px;
+    background-color: #10c9ad;
+    color: #fff;
     text-decoration: none;
     border-radius: 5px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border: solid #000000 1px;
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(#3ffaea), to(#0567fa));
+    background: -moz-linear-gradient(top, #3ffaea, #0567fa);
+    text-shadow: 1px 1px 3px #000000;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s; /* Agrega la transición para los cambios */
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Agrega sombra al botón */
   }
 
   .boton:hover {
-    background-color: #04dff8;
-    transform: scale(1.05);
+    background-color: #068d79;
+    transform: scale(1.1);
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3); /* Aumenta la sombra al pasar el cursor sobre el botón */
   }
+
 
   progress:not(value) {
     background-color: rgb(0, 0, 0);

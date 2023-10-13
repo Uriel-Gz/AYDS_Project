@@ -9,6 +9,7 @@ html {
   background-attachment: fixed;
   height: 98.5%;
   transition: 5s;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 body {
@@ -20,7 +21,6 @@ label {
   position: absolute;
   color: rgba(0, 208, 255, 0.897);
   font-weight: bold;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 30px;
   text-shadow: 0 0 20px rgba(254, 254, 254, 0.473),
     0 0 10px rgba(255, 255, 255, 0.829);
@@ -62,7 +62,6 @@ a.tema-button {
   /* Ajusta el valor del padding según tu preferencia */
   color: #12cdf7;
   text-align: center;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .tema-content h3 {
@@ -117,7 +116,6 @@ a.tema-button {
   border: 0;
   cursor: pointer;
   font-size: 26px;
-  font-family: 'Times New Roman', Times, serif;
 }
 
 a {
