@@ -83,7 +83,7 @@ class App < Sinatra::Application
         session[:user_id] = usuario.id
         redirect "/principal"
       else
-        erb :'loginerror'
+        erb :'error'
       end
     end
 
@@ -102,15 +102,15 @@ class App < Sinatra::Application
     email = params[:email]
 
     ##Verifica si el usuario existe o no
-    @exist = User.find_by(name: name)
-    @email = User.find_by(email: email)
+    @existUser = User.find_by(name: name)
+    @existEmail = User.find_by(email: email)
     ## El usuario existe no lo crea
-    if @exist || @email
-      erb :'errorregister'
+    if @existUser || @existEmail
+      erb :'error'
     else
       @sonIguales = (password == repPassword)
       if !@sonIguales
-        erb :'errorregister'
+        erb :'error'
       else
         ## El usuario no existe, se crea y lo guarda en user
         user = User.new(name: name, email: email, password: password)
@@ -128,7 +128,7 @@ class App < Sinatra::Application
 
           redirect '/'
         else
-          erb :'errorregister'
+          erb :'error'
         end
       end
     end
@@ -172,30 +172,28 @@ class App < Sinatra::Application
     nuevoName = params[:name]           #Parametro otorga el nuevo nombre ingresado.
     user = User.find(session[:user_id]) #Obtiene el usuario correspondiente al ID almacenado en el incio de session.
     profile = user.profile              #Obtiene el perfil del usuario determinado.
-    exist = User.find_by(name: nuevoName)
-    if exist                            #Si existe un usuario con ese nuevo Nombre, no lo permite.
-      redirect '/error_modificar'
+    @existUser = User.find_by(name: nuevoName)
+    @existEmail = User.find_by(email: params[:email])
+    if @existUser || @existEmail              #Si existe un usuario con ese nombre o email, no lo permite.
+      @modify = true
+      erb :'error'
+    else
+      if params[:name].present?         #En caso de que no exista un usuario con ese nombre permite modificarlo
+        user.update_column(:name,params[:name]) #Cambia el nombre
+      end
+      if params[:password].present?         #Si se ingreso una nueva contraseña
+        user.password = params[:password]   #Cambia la contraseña
+        user.save
+      end
+      if params[:email].present?      #Si se ingreso un nuevo email
+        user.update_column(:email,params[:email] ) #Cambia el email
+      end
+      if params[:imagen].present?       #Si se otorgo un link de imagen
+        profile.picture = params[:imagen]  #Cambia el link de imagen
+        profile.save
+      end
+      redirect '/perfil'
     end
-
-    if params[:name].present?         #En caso de que no exista un usuario con ese nombre permite modificarlo
-      user.update_column(:name,params[:name]) #Cambia el nombre
-    end
-    if params[:password].present?         #Si se ingreso una nueva contraseña
-      user.password = params[:password]   #Cambia la contraseña
-      user.save
-    end
-    if params[:email].present?      #Si se ingreso un nuevo email
-      user.update_column(:email,params[:email] ) #Cambia el email
-    end
-    if params[:imagen].present?       #Si se otorgo un link de imagen
-      profile.picture = params[:imagen]  #Cambia el link de imagen
-      profile.save
-    end
-    redirect '/perfil'
-  end
-
-  get '/error_modificar' do
-    erb :'error_modificar'
   end
 
 

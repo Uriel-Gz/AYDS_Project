@@ -3,7 +3,7 @@ body {
   font-family: Arial, sans-serif;
   margin-top: 0%;
   padding: 0;
-  background-image: url("https://i.pinimg.com/originals/ab/7b/5d/ab7b5d60e8f7458465c42f1493c8b7ce.jpg");
+  background-image: url("https://i.imgur.com/37ZHMMK.jpg");
   /* background-size: ; */
   background-size: cover;
   background-attachment: fixed;
@@ -39,6 +39,7 @@ ul {
 
 li {
   margin-bottom: 10px;
+  list-style-type: none;
 }
 
 /* Estilos para los enlaces de los niveles */

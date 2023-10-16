@@ -29,7 +29,7 @@ img {
     align-self: center;
 }
 html{
-    background: radial-gradient(#016c7f, rgb(3, 3, 3));
+    background: radial-gradient(rgb(1, 108, 127), rgb(3, 3, 3));
     /* background-size: ; */
     background-attachment: fixed;
     font-size: 30px;

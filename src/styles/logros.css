@@ -1,5 +1,5 @@
 html {
-  background: linear-gradient(rgba(0, 0, 0, 0.936),rgb(1, 105, 119) );
+  background: radial-gradient(rgb(1, 108, 127), rgb(3, 3, 3));
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -9,7 +9,7 @@ html {
 h1 {
     color: rgb(5, 130, 227);
     font-weight: bold;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 44px;
     text-align: center;
     margin-top: 20px;

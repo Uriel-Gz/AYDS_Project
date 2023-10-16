@@ -14,10 +14,9 @@ body {
     font-family: Arial, sans-serif;
     margin-top:12%;
     padding: 0;
-    background-image: url("https://i.pinimg.com/originals/ab/7b/5d/ab7b5d60e8f7458465c42f1493c8b7ce.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
+    background: radial-gradient(rgb(1, 108, 127), rgb(3, 3, 3));
     background-attachment: fixed;
+    background-size: cover;
   }
 
   img {
