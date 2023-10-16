@@ -1,19 +1,19 @@
 html {
-  /* background-image: url('https://images4.alphacoders.com/594/594600.jpg'); */
-  background: linear-gradient(rgb(0, 3, 1) 20%, rgb(0, 87, 99));
-  background-size: 100%;
-  background-position: absolute;
-  height: 100%;
+  background: radial-gradient(rgb(1, 108, 127), rgb(3, 3, 3));
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  transition: 5s;
 }
 
 h1 {
     color: rgb(5, 130, 227);
     font-weight: bold;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 44px;
-    text-shadow: 0 0 10px rgb(253, 250, 250), 0 0 10px rgb(253, 250, 250), 0 0 10px rgb(253, 250, 250), 0 0 10px rgb(253, 250, 250);
     text-align: center;
     margin-top: 20px;
+    margin-bottom: 10px;
 }
 
 /* Estilos generales */
@@ -21,7 +21,7 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  /* height: 100%; */
+  height: 100%;
 }
 
 ul {
@@ -31,7 +31,7 @@ ul {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  background-color: rgba(5, 99, 161, 0.158);
+  background-color: rgba(5, 99, 161, 0);
 }
 
 li {
@@ -40,7 +40,6 @@ li {
   padding: 20px;
   background-color: #0391b48a;
   border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(246, 244, 244, 0.788);
 }
 
 li:hover{
@@ -95,26 +94,35 @@ li p {
                  0 0 10px rgb(57, 149, 254),
                  0 0 10px rgb(83, 174, 249),
                  0 0 10px rgb(50, 166, 255);
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-style: fire;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   }
 
-  .boton {
-    display: inline;
+  .boton{
+    display: inline-block;
     padding: 10px 20px;
-    background-color: #4fe189;
-    color: rgb(23, 21, 21);
-    border-radius: 5px;
+    background-color: #10c9ad;
+    color: #fff;
     text-decoration: none;
-    transition: background-color 0.1s ease;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border: solid #000000 1px;
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(#3ffaea), to(#0567fa));
+    background: -moz-linear-gradient(top, #3ffaea, #0567fa);
+    text-shadow: 1px 1px 3px #000000;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s; /* Agrega la transición para los cambios */
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Agrega sombra al botón */
   }
 
   .boton:hover {
-    background-color: #07b871;
+    background-color: #068d79;
+    transform: scale(1.1);
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3); /* Aumenta la sombra al pasar el cursor sobre el botón */
   }
 
+
   progress:not(value) {
-    background-color: black;
+    background-color: rgb(0, 0, 0);
   }
 
   /* Styling the determinate progress element */
@@ -158,7 +166,7 @@ li p {
 
     background-size: 35px 20px, 100% 100%, 100% 100%;
     border-radius: 20px;
-    background-color: rgb(4, 216, 216);
+    background-color: rgb(0, 255, 170);
     /* Let's animate this */
     animation: animate-stripes 5s linear infinite;
     box-shadow: 0 0 10px rgb(89, 242, 247);

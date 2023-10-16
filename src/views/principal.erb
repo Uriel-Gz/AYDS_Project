@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<html>
+  <% if @momentDay < 19%>
+  <html class="light-mode-principal">
+  <% else %>
+  <html>
+  <%end%>
 <head>
   <title>SUG-MATH</title>
   <meta charset="UTF-8">
@@ -12,11 +16,41 @@
     <meta name="viewport" content="width=device-width,initialinitial-scale=1.0">
 
   <link href="<%= url('/principal.css') %>" rel="stylesheet" type="text/css"/>
+  <link href="<%= url('/variant-style.css') %>" rel="stylesheet" type="text/css"/>
 
   </head>
   <body>
-    <div>
+
+<div id="sideNavigation" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="/perfil">Perfil</a>
+    <a href="/logros">Logros</a>
+    <a href="/ranking">Ranking</a>
+    <a id="form">
+      <form action="/logout" method="post">
+        <button type="submit" id="hds">Logout</button>
+      </form>
+    </a>
+</div>
+  <nav class="topnav">
+    <a href="#" onclick="openNav()" id="but">
+      <svg width="30" height="30" id="icoOpen">
+        <% if @momentDay != 'night'%>
+          <path d="M0,5 30,5" stroke="#ffffff" stroke-width="5"/>
+          <path d="M0,14 30,14" stroke="#ffffff" stroke-width="5"/>
+          <path d="M0,23 30,23" stroke="#ffffff" stroke-width="5"/>
+        <% else %>
+          <path d="M0,5 30,5" stroke="#06c7f8" stroke-width="5"/>
+          <path d="M0,14 30,14" stroke="#06c7f8" stroke-width="5"/>
+          <path d="M0,23 30,23" stroke="#06c7f8" stroke-width="5"/>
+        <%end%>
+      </svg>
+    </a>
+  </nav>
+
       <label>SELECCION DE TEMA</label>
+  <div id="main">
+    <div>
       <div class="tema-list">
         <% @temas.each do |topic|  %>
         <div class="tema-item">
@@ -32,18 +66,24 @@
       </div>
     </div>
 
+    <script>
+      /** function darkModee() {
+      //   var element = document.body;
+      //   element.classList.toggle("dark-mode");
+      //   // document.getElementById("123").classList.toggle("dark-mode");
+       }*/
+      function openNav() {
+        document.getElementById("sideNavigation").style.width = "200px";
+        document.getElementById("main").style.marginLeft = "200px";
+        document.getElementById("but").style.display = "none";
+      }
+      function closeNav() {
+        document.getElementById("sideNavigation").style.width = "0";
+        document.getElementById("main").style.marginLeft = "0";
+        document.getElementById("but").style.display = "block";
+      }
+    </script>
 
-    <div class="menu-lateral">
-       <ul>
-        <li><a href="/perfil">Perfil</a>
-        <li><a href="/logros">Logros</a>
-        <li><a href="/ranking">Ranking</a>
-        <li><a id="form"><form action="/logout" method="post">
-               <button type="submit" id="hds">Logout</button>
-               </form>
-            </a>
-      </ul>
-    </div>
-
+  </div>
   </body>
 </html>

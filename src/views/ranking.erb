@@ -21,11 +21,11 @@
       <%profile = user.profile%>
       <% if pos.position == count+1 %>
         <img class="imagen" src ="<%= profile.picture %>">
-        <p id="yo"> <%= count+1%> Usuario: <%= user.name %></p> 
+        <p id="yo"> <%= count+1%> Usuario: <%= user.name %></p>
         <p id="io">Score: <%=user.total_score%></p>
       <% else %>
         <img class="imagen" src ="<%= profile.picture %>">
-        <p> <%= count+1%> Usuario: <%= user.name %></p> 
+        <p> <%= count+1%> Usuario: <%= user.name %></p>
         <p>Score: <%=user.total_score%></p>
       <% end %>
       <% count += 1 %>
@@ -42,21 +42,21 @@
 
   </ol>
 
-      <% if pos.position > 5%>
-  <ol>
-    <% @ranking.each do |rank| %>
-      <%user = User.find_by(id: pos.user_id)%>
-      <%profile = user.profile%>
-        <img class="imagen" src ="<%= profile.picture %>">
-        <p id="yo"> <%= pos.position%> Usuario: <%= user.name %></p> 
-        <p id="io">Score: <%=user.total_score%></p>
-    <% break %>
-  <% end %>
-  </ol>
+    <% if pos.position > 5%>
+      <ol>
+      <% @ranking.each do |rank| %>
+        <%user = User.find_by(id: pos.user_id)%>
+        <%profile = user.profile%>
+          <img class="imagen" src ="<%= profile.picture %>">
+          <p id="yo"> <%= pos.position%> Usuario: <%= user.name %></p> 
+          <p id="io">Score: <%=user.total_score%></p>
+        <% break %>
       <% end %>
+      </ol>
+    <% end %>
 
   <div>
-    <a href="/principal" class="boton">Volver Principal</a>
+    <a href="/principal" class="boton">Pagina Principal</a>
   </div>
 </body>
 

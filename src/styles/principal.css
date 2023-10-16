@@ -4,26 +4,31 @@
 */
 
 html {
-  background-image: url('https://i.imgur.com/61M8jVe.jpg');
+  background-image: url('https://i.imgur.com/37ZHMMK.jpg');
   background-size: 100%;
   background-attachment: fixed;
+  height: 98.5%;
+  transition: 5s;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 body {
-  height: 90%;
+  height: 100%;
 }
 
 label {
   display: block;
+  position: absolute;
   color: rgba(0, 208, 255, 0.897);
   font-weight: bold;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 30px;
   text-shadow: 0 0 20px rgba(254, 254, 254, 0.473),
     0 0 10px rgba(255, 255, 255, 0.829);
   text-align: center;
   padding-top: 20px;
   box-shadow: 0 2px;
+  top: 2%;
+  left: 40%;
 }
 
 p {
@@ -36,21 +41,18 @@ p {
   /* Ajusta el padding vertical y horizontal */
   border: 1px solid #ada6a6c8;
   border-radius: 5px;
-  background-color: rgba(5, 77, 136, 0.137);
   text-decoration: none;
-  width: 310px;
-  height: 100%;
 }
 
 .tema-button:hover {
-  background-color: #0b6d945c;
+  background-color: #0b6d94a9;
 }
 
 a.tema-button {
   width: 280px;
   height: 220px;
-  border: none;
-  box-shadow: 0 0 3px rgb(114, 219, 248);
+  /* border: none; */
+  box-shadow: 0 0 5px rgb(71, 222, 249);
 }
 
 .tema-content {
@@ -60,7 +62,6 @@ a.tema-button {
   /* Ajusta el valor del padding según tu preferencia */
   color: #12cdf7;
   text-align: center;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .tema-content h3 {
@@ -89,7 +90,7 @@ a.tema-button {
   padding-top: 30px;
   flex-wrap: wrap;
   justify-content: space-around;
-  margin-left: 200px;
+  /* margin-left: 200px; */
 }
 
 .boton {
@@ -109,54 +110,16 @@ a.tema-button {
   background-color: #028db3;
 }
 
-.menu-lateral {
-  background-color: #0a1c1e;
-  color: #fff;
-  height: 100vh;
-  width: 200px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  overflow-y: auto;
-  display: block;
-  padding-block-start: 35%;
-}
-
 #hds {
   background-color: inherit;
   color: #4ad5f8;
   border: 0;
   cursor: pointer;
-  font-size: 16px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 26px;
 }
 
 a {
   cursor: pointer;
-}
-
-.menu-lateral ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-form button#hds {
-  font-size: 20px;
-}
-
-.menu-lateral ul li {
-  margin-bottom: 10px;
-}
-
-.menu-lateral ul li a {
-  color: #4ad5f8;
-  text-decoration: none;
-  display: block;
-  padding: 10px;
-  border-radius: 3px;
-  transition: background-color 0.3s ease;
 }
 
 .contenido-principal {
@@ -202,38 +165,12 @@ li:hover {
 }
 
 .tema button {
-  /* background-color: #ff6f61; */
-  /* border: none; */
-  /* border-radius: 3px; */
-  /* color: #fff; */
-  /* display: inline-block; */
   font-size: 18px;
   padding: 12px 24px;
   text-decoration: none;
-  transition: background-color 0.3s ease;
+  /* transition: 0.3s ease; */
   cursor: pointer;
   font-weight: bold;
-}
-
-/* .tema button:hover {
-  background-color: #e15750;
-} */
-
-/* Estilos adicionales */
-.menu-lateral ul {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.menu-lateral ul li a {
-  /* display: inline-block; */
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  width: 150px;
-  text-align: center;
-  font-size: 20px;
-  padding: 12px;
 }
 
 .contenido-principal {
@@ -261,6 +198,125 @@ ul{
   position: relative;
 }
 
-.menu-lateral{
-  border-right: 3px solid rgb(1, 44, 56);
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Stay on top */
+  top: 0;
+  left: 0;
+  display: block;
+  text-align: center;
+  background-color: #1111117c; /* Black*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 100px; /*Place content 60px from the top*/
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
 }
+/* The navigation menu links */
+.sidenav a {
+  padding: 10px 15px 10px 15px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #4ad5f8;
+  display: block;
+  align-self: center;
+  transition: 0.3s
+}
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover, .offcanvas a:focus{
+  color: #f1f1f1;
+  background: #03647e;
+}
+/* Position and style the close button (top right corner) */
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  padding: auto;
+}
+
+.sidenav .closebtn:hover{
+  border-radius: 50px;
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+  transition: margin-left .5s;
+  padding: 20px;
+  overflow:hidden;
+  width:100%;
+}
+body {
+overflow-x: hidden;
+}
+/* Add a black background color to the top navigation */
+.topnav {
+  background-color: transparent;
+  overflow: hidden;
+}
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #cecccc67;
+  color: black;
+  border-radius: 20px;
+}
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+a svg{
+transition:all .5s ease;
+&:hover{
+  #transform:rotate(180deg);
+}
+}
+#ico{
+display: none;
+color: white;
+}
+/* .menu{
+background: #ffffff;
+display: none;
+padding: 5px;
+width: 320px;
+@include border-radius(5px);
+#transition: all 0.5s ease;
+a{
+  display: block;
+  color: #fff;
+  text-align: center;
+  padding: 10px 2px;
+  margin: 3px 0;
+  text-decoration: none;
+  background: #444;
+  &:nth-child(1){
+    margin-top: 0;
+    @include border-radius(3px 3px 0 0 );
+  }
+  &:nth-child(5){
+    margin-bottom: 0;
+    @include border-radius(0 0 3px 3px);
+  }
+  &:hover{
+    background: #555;
+  }
+}
+} */

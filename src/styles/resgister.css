@@ -13,22 +13,28 @@ h1{
 }
 
 .form-group, .login{
-    display: flex;
     align-items: center;
     justify-content: center;
 }
 
 html{
-  /* margin: 300px 20px 200px 20px; */
-  /* background: radial-gradient(rgb(195, 244, 245), rgb(4, 175, 175)); */
-  background-image: url('https://i.postimg.cc/65Dbh1fJ/back.jpg');
-  background-size: cover;
+  background: radial-gradient(rgb(1, 108, 127), rgb(3, 3, 3));
+  /* background-size: ; */
+  background-attachment: fixed;
   font-size: 30px;
 }
 
 form{
-  margin-block-start: 200px;
+  margin-block-start: 20px;
 }
+
+img {
+  width: 700px;
+  margin-bottom: 1px;
+  border: none;
+  align-self: center;
+}
+
 
 input{
   border: inset 2px rgba(208, 178, 7, 0.856);
@@ -36,8 +42,8 @@ input{
   /* margin-left: 9px; */
   background-color: rgba(230, 230, 230, 0.733);
   box-shadow: 0px 2px 2px rgb(223, 213, 8),
-              0px 0px 4px rgb(240, 230, 39), 
-              0px 0px 6px rgb(246, 239, 111), 
+              0px 0px 4px rgb(240, 230, 39),
+              0px 0px 6px rgb(246, 239, 111),
               0px 0px 8px white;
   overflow: hidden;
   font-size: 20px;
@@ -55,8 +61,8 @@ button{
   border: inset 2px rgba(208, 178, 7, 0.856);
   border-radius: 15px;
   box-shadow: 0px 2px 2px rgb(223, 213, 8),
-              0px 0px 4px rgb(240, 230, 39), 
-              0px 0px 6px rgb(246, 239, 111), 
+              0px 0px 4px rgb(240, 230, 39),
+              0px 0px 6px rgb(246, 239, 111),
               0px 0px 8px white;
   height: 25px;
   background-color: rgba(245, 245, 245, 0.838);

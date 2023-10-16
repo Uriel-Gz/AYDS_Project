@@ -1,9 +1,11 @@
 html{
-  background-image: url('https://p4.wallpaperbetter.com/wallpaper/546/923/740/gradient-wallpaper-preview.jpg');
+  background: radial-gradient(rgb(1, 108, 127), rgb(3, 3, 3));
   background-size: cover;
   background-position: center;
-  height: 100%;
-  width: 100%;
+  background-attachment: fixed;
+  transition: 5s;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
 }
 
 body {
@@ -64,35 +66,45 @@ button[type="submit"]:hover {
   background-color: #038b7d;
 }
 
-.boton {
-  display: inline-block;
-  background-color: #08b5d8;
+
+a {
+  margin: 3px;
+  width: 130px;
+  height: 30px;
+  font-size: large;
+  color: rgb(209, 202, 202);
+  text-decoration: none;
+  text-align: center;
   border-radius: 5px;
+  padding: 2px;
+}
+
+.but {
+  display: flex;
+  justify-content: center;
+}
+
+.boton-container {
+  text-align: center;
+}
+
+.boton {
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(#3ffaea), to(#0567fa));
+  background: -moz-linear-gradient(top, #3ffaea, #0567fa);
+  border-radius: 8px;
   color: #fff;
   font-size: 18px;
-  margin: 5px 5px;
+  margin: 30px 5px;
   padding: 10px 20px;
   text-decoration: none;
-  transition: background-color 0.3s ease;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  box-shadow: -1px 4px 0 rgba(0, 29, 34);
 }
 
 .boton:hover {
-  background-color: #05c2c9;
-  box-shadow: 0 0 20px #0fcbf9;
+  box-shadow: -1px 8px 0 rgba(1, 74, 87);
+  transform: scale(1.05);
 }
 
-.boton:active {
-  background-color: #05cbcb;
-  animation: scale-up-bottom-left 0.8s;
-  box-shadow: 0 0 20px #0fcbf9;
-}
 
-@keyframes scale-up-bottom-left{
-    0% {transform:scale(.5);
-        transform-origin:left bottom
-    }
-    100%{
-        transform:scale(1);
-        transform-origin:left bottom
-    }
-}
+

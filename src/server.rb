@@ -4,7 +4,7 @@ require 'logger'
 require 'sinatra/activerecord'
 
 require 'sinatra/reloader' if Sinatra::Base.environment == :development
-
+require 'time'
 
 require_relative 'models/user'
 require_relative 'models/topic'
@@ -65,36 +65,27 @@ class App < Sinatra::Application
     end
 
 
-   #Configura la sesión para que sea activada en todas las rutas:
-   #HSe usa para habilitar las sesiones en todas las rutas utilizando enable :sessions.
-   #Esto permite que Sinatra maneje automáticamente las cookies de sesión
-   #y almacene los datos de sesión en el servidor.
-  enable :sessions
+    #Configura la sesión para que sea activada en todas las rutas:
+    #HSe usa para habilitar las sesiones en todas las rutas utilizando enable :sessions.
+    #Esto permite que Sinatra maneje automáticamente las cookies de sesión
+    #y almacene los datos de sesión en el servidor.
+    enable :sessions
 
-  ## Para autentificar que la cuenta del usuario haya sido creada.
-  post '/authenticate' do
-    name = params[:uname]
-    password = params[:psw]
-
-    ##Verifica la existencia del usuario
-    usuario = User.find_by(name: name, password: password)
-    if usuario
+    ## Para autentificar que la cuenta del usuario haya sido creada.
+    post '/authenticate' do
+      name = params[:uname]
+      password = params[:psw]
+      ##Verifica la existencia del usuario
+      usuario = User.find_by(name: name)
+      if usuario && usuario.authenticate(password)
       #Guardamos el id del usuario autenticando la clave
       #:user_id en la sesión
-      session[:user_id] = usuario.id
-
-      redirect "/principal"
-    else
-      erb :'loginerror'
+        session[:user_id] = usuario.id
+        redirect "/principal"
+      else
+        erb :'error'
+      end
     end
-  end
-
-
-  #-----------------------------------------------------------------------------------------------------------------------------------------------------
-  #-----------------------------------------------------------------------------------------------------------------------------------------------------
-  #-----------------------------------------------------------------------------------------------------------------------------------------------------
-  #-----------------------------------------------------------------------------------------------------------------------------------------------------
-  #-----------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -110,19 +101,16 @@ class App < Sinatra::Application
     repPassword = params[:psw2]
     email = params[:email]
 
-    #-----------------------------------------------
-    #-----------------------------------------------
-
     ##Verifica si el usuario existe o no
-    @exist = User.find_by(name: name)
-
+    @existUser = User.find_by(name: name)
+    @existEmail = User.find_by(email: email)
     ## El usuario existe no lo crea
-    if @exist
-      erb :'errorregister'
+    if @existUser || @existEmail
+      erb :'error'
     else
       @sonIguales = (password == repPassword)
       if !@sonIguales
-        erb :'errorregister'
+        erb :'error'
       else
         ## El usuario no existe, se crea y lo guarda en user
         user = User.new(name: name, email: email, password: password)
@@ -134,40 +122,35 @@ class App < Sinatra::Application
 
         #Si el usuario se guarda entonces es un exito, sino error
         if user.save
-          profile = Profile.new(user_id: user.id, picture: "https://i.pinimg.com/originals/71/11/1f/71111f93d4fda96b241ace2ca4a102f3.png")
+          profile = Profile.new(user_id: user.id, picture: "https://i.imgur.com/V39f2iV.png")
           Ranking.create(score: user.total_score, user_id: user.id) #Agrega el usuario al ranking
           profile.save
 
           redirect '/'
         else
-          erb :'errorregister'
+          erb :'error'
         end
       end
     end
   end
 
 
-#-----------------------------------------------------------------------------------------------------------------------------------------------------
-#-----------------------------------------------------------------------------------------------------------------------------------------------------
-#-----------------------------------------------------------------------------------------------------------------------------------------------------
-#-----------------------------------------------------------------------------------------------------------------------------------------------------
-#-----------------------------------------------------------------------------------------------------------------------------------------------------
-
-
 
   get '/principal' do
+    @momentDay = Time.now
+    @momentDay = @momentDay.hour - 3
     @temas = Topic.all
     session[:indice] = 0
     session[:tema_id] = 0
     erb :'principal'
   end
 
-#-----------------------------------------------------------------------------------------------------------------------------------------------------
-#-----------------------------------------------------------------------------------------------------------------------------------------------------
-#-----------------------------------------------------------------------------------------------------------------------------------------------------
-#-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 
   get '/perfil' do
+    @momentDay = Time.now
+    @momentDay = @momentDay.hour - 3
     # Verificar si un usuario ha iniciado sesión
     user_id = session[:user_id]   #Tomamos el id del usuario que inicio sesion
     @user = User.find(user_id)    #Obtengo el usuario especifico del ID
@@ -178,6 +161,8 @@ class App < Sinatra::Application
   end
 
   get '/modificar_perfil' do
+    # @momentDay = Time.now
+    # @momentDay = @momentDay.hour - 3
     erb :'modificar_perfil'
   end
 
@@ -187,33 +172,28 @@ class App < Sinatra::Application
     nuevoName = params[:name]           #Parametro otorga el nuevo nombre ingresado.
     user = User.find(session[:user_id]) #Obtiene el usuario correspondiente al ID almacenado en el incio de session.
     profile = user.profile              #Obtiene el perfil del usuario determinado.
-    exist = User.find_by(name: nuevoName)
-    if exist                            #Si existe un usuario con ese nuevo Nombre, no lo permite.
-      redirect '/error_modificar'
+    @existUser = User.find_by(name: nuevoName)
+    @existEmail = User.find_by(email: params[:email])
+    if @existUser || @existEmail              #Si existe un usuario con ese nombre o email, no lo permite.
+      @modify = true
+      erb :'error'
+    else
+      if params[:name].present?         #En caso de que no exista un usuario con ese nombre permite modificarlo
+        user.update_column(:name,params[:name]) #Cambia el nombre
+      end
+      if params[:password].present?         #Si se ingreso una nueva contraseña
+        user.password = params[:password]   #Cambia la contraseña
+        user.save
+      end
+      if params[:email].present?      #Si se ingreso un nuevo email
+        user.update_column(:email,params[:email] ) #Cambia el email
+      end
+      if params[:imagen].present?       #Si se otorgo un link de imagen
+        profile.picture = params[:imagen]  #Cambia el link de imagen
+        profile.save
+      end
+      redirect '/perfil'
     end
-  #-----------------------------------------------
-  #-----------------------------------------------
-    if params[:name].present?         #En caso de que no exista un usuario con ese nombre permite modificarlo
-      user.name = params[:name]
-      user.save
-    end
-    if params[:psw].present?         #Si se ingreso una nueva contraseña
-      user.password = params[:psw]   #Cambia la contraseña
-      user.save
-    end
-    if params[:email].present?      #Si se ingreso un nuevo email
-      user.email = params[:email]   #Cambia el email
-      user.save
-    end
-    if params[:imagen].present?         #Si se otorgo un link de imagen
-      profile.picture = params[:imagen] #Cambia el link de imagen
-      profile.save
-    end
-    redirect '/perfil'
-  end
-
-  get '/error_modificar' do
-    erb :'error_modificar'
   end
 
 
@@ -225,6 +205,8 @@ class App < Sinatra::Application
 
 
   get '/niveles' do
+    @momentDay = Time.now
+    @momentDay = @momentDay.hour - 3
     session[:tema_id] = params[:tema]
     @tema = Topic.find_by(id: session[:tema_id]) #Consigo el TEMA de las preguntas
     @user = User.find_by(id: session[:user_id])  #Consigo el USER del usuario de la sesion
@@ -235,6 +217,8 @@ class App < Sinatra::Application
 
 
   post '/game' do
+    @momentDay = Time.now
+    @momentDay = @momentDay.hour - 3
     @tema = Topic.find_by(id: params[:tema])
     @user = User.find_by(id: session[:user_id])  #Consigo el USER del usuario de la sesion
     @nivel = params[:nivel]
@@ -243,6 +227,9 @@ class App < Sinatra::Application
     @respondidas = @user.questions.pluck(:id)  #Permite obtener los id de las preguntas que respondio
     @preguntas_nivel = Question.where(nivel_q: @nivel, topic_id: @tema.id)
     @questions = @preguntas_nivel.where.not(id: @respondidas) #Obtengo preguntas no respondidas
+
+    @numero_por_nivel = Question.where(nivel_q: @nivel, topic_id: @tema.id).count #Numero de preguntas por nivel
+    @preguntas_respondidas = @preguntas_nivel.where(id: @respondidas).count       #Numero de preguntas respondidas por nivel
 
     if @questions.any?                #Pregnta si contiene algun elemento.
       @question = @questions.sample   #Se utiliza para seleccionar de forma aleatoria un elemento de una colección, como un arreglo o un conjunto.
@@ -256,6 +243,8 @@ class App < Sinatra::Application
 
 
   post '/practica' do
+    @momentDay = Time.now
+    @momentDay = @momentDay.hour - 3
     @tema = Topic.find_by(id: params[:tema])
     @user = User.find_by(id: session[:user_id])  #Consigo el USER del usuario de la sesion
     @nivel = params[:nivel]
@@ -309,9 +298,9 @@ class App < Sinatra::Application
 
       # Si la respuesta otorgada es la correcta
     if @respuesta.isCorrect
-      @user = User.find(session[:user_id])         # Obtengo el usuario correspondiente al id
-      @user.total_score += @question.value          # Sumo al score almacenado el valor de la respuesta si fue correcta.
-      @user.save                                   # Guardo
+      @user = User.find(session[:user_id])   # Obtengo el usuario correspondiente al id
+      res  = @user.total_score + @question.value          # Sumo al score almacenado el valor de la respuesta si fue correcta.
+      @user.update_column(:total_score,res)               # actualizo puntaje total
       @user.questions << @question
       @user.save
       ranking = Ranking.find_by(user_id: @user.id)
@@ -321,6 +310,8 @@ class App < Sinatra::Application
   end
 
   get '/ranking' do
+    @momentDay = Time.now
+    @momentDay = @momentDay.hour - 3
     @ranking = actualizar_ranking
     erb :ranking
   end
@@ -339,6 +330,8 @@ class App < Sinatra::Application
   end
 
   get '/logros' do
+    @momentDay = Time.now
+    @momentDay = @momentDay.hour - 3
     @user = User.find(session[:user_id])
     @logros = Achievement.all
     @logrosObtenidos = @user.achievements.pluck(:id)

@@ -4,119 +4,175 @@
 */
 
 html{
-  background-image: url('https://p4.wallpaperbetter.com/wallpaper/546/923/740/gradient-wallpaper-preview.jpg');
+  background: radial-gradient(rgb(1, 108, 127), rgb(3, 3, 3));
   background-size: cover;
   background-position: center;
-  height: 100%;width: 100%;
-}
-
-p{
-  color: rgb(244, 244, 244);
-  font-weight: bold;
-  margin: 10px;
-  /* font-family: 'Times New Roman', Times, serif; */
-  font-family: Verdana,'Arial Black', Times, serif;
-  font-size: 25px;
-  text-shadow: 0 0 20px rgba(0, 242, 255, 0.879),
-               0 0 20px rgba(88, 242, 250, 0.879),
-               0 0 20px rgba(178, 242, 245, 0.879);
-}
-
-.container {
-background-color: rgba(153, 204, 243, 0.311);
-border-top-left-radius: 300px 100px;
-border-bottom-right-radius: 200px 70px;
-border-bottom-left-radius: 200px 70px;
-border-top-right-radius: 300px 100px;
-margin: 20px auto;
-max-width: 400px;
-padding: 20px;
-text-align: center;
-display: grid;
-position: relative;
-top: 50px;
-}
-
-img {
-  border-radius: 50%;
-  width: 250px;
-  height: 250px;
-  object-fit: cover;
-  margin-bottom: 10px;
-  /* margin-top: 50px; */
-  position: relative;
-  top: 50px;
-}
-
-#but {
-  display: grid;
+  background-attachment: fixed;
+  height: 100vh;
+  display: flex;
   justify-content: center;
-  position: relative;
-  top: 50px;
-}
-  
+  align-items: center;
+  transition: 5s;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 
-.boton {
-  background-color: #08b5d8;
-  border-radius: 8px;
-  color: #fff;
-  font-size: 18px;
-  margin: 5px 5px;
-  padding: 10px 20px;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
-}
-
-.boton:hover {
-  background-color: #05c2c9;
-  box-shadow: 0 0 20px #0fcbf9;
-}
-
-.imagen {
-  /* margin-top: 8%; */
-width: 200px;
-height: 200px;
-border: solid 5px rgb(210, 197, 197);
-box-shadow: 0 0 20px rgba(24, 240, 252, 0.879);
 }
 
 
-a{
-  display: block;
+a {
   margin: 3px;
   width: 130px;
   height: 30px;
   font-size: large;
   color: rgb(209, 202, 202);
-  font-family: 'Times New Roman', Times, serif;
-  background-color: rgb(6, 87, 207);
   text-decoration: none;
   text-align: center;
   border-radius: 5px;
   padding: 2px;
 }
 
-a:hover{
-    background-color: rgb(3, 59, 144);
-    height: 35px;
-    width: 135px;
+#but {
+  display: flex;
+  justify-content: center;
 }
 
-.puntuacion {
-  font-family: Arial, sans-serif; /* Cambia la fuente según tus preferencias */
-  font-size: 18px; /* Tamaño de fuente para el texto de puntuación */
-  color: #000000; /* Color del texto de puntuación */
-  display: inline-block;
-  background-color: #afdee2; /* Color de fondo del contenedor */
-  padding: 10px; /* Espacio interno del contenedor */
-  border-radius: 5px; /* Bordes redondeados del contenedor */
+.boton {
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(#3ffaea), to(#0567fa));
+  background: -moz-linear-gradient(top, #3ffaea, #0567fa);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 18px;
+  margin: 5px 5px;
+  padding: 10px 20px;
+  text-decoration: none;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  box-shadow: -1px 4px 0 rgba(0, 29, 34);
 }
 
-.puntuacion-texto {
-  font-weight: bold; /* Texto en negrita para el título "Score" */
+.boton:hover {
+  box-shadow: -1px 8px 0 rgba(1, 74, 87);
+  transform: scale(1.05);
 }
 
-.puntuacion-numero {
-  font-weight: bold; /* Texto en negrita para el número de puntuación */
-  color: #0a0a0a; /* Color del número de puntuación */
+
+.card {
+  width: 900px;
+  height: 450px;
+  background: #00000056;
+  border-radius: 10px;
+  position: relative;
+  display: flex;
+  cursor: pointer;
+  justify-content: center;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.13);
 }
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 2%;
+  width: 95%;
+  height: 200px;
+  z-index: 1;
+  border-radius: 10px 10px 0 0;
+  background-color: #00ccff;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.021);
+}
+
+.card-cover-image {
+  position: absolute;
+  top: 2%;
+  width: 95%;
+  height: 200px;
+  z-index: 2;
+  border-radius: 10px 10px 0 0;
+  object-fit: cover;
+}
+
+.card .img{
+  width: 185px;
+  height: 200px;
+  z-index: 10;
+  transform: translateY(150px);
+  position: relative;
+  left: -70px;
+  /* border: 3px solid #252525; */
+  /* overflow: hidden; */
+  /* position: absolute; */
+  /* background: #fff; */
+  /* transition: transform 0.3s ease; */
+
+}
+
+.card .img img {
+  border: 3px solid #252525; /* Puedes ajustar el color y el grosor del borde según tus preferencias */
+  border-radius: 20%;
+  width: 220px;
+  height: 220px;
+  object-fit: cover;
+  margin-bottom: 10px;
+  transition: transform 0.3s ease;
+  background-color: #00ccff57;
+}
+
+
+.imagen:hover {
+  transform: scale(1.05);
+}
+
+
+.content{
+  color: rgb(255, 255, 255);
+  width: 50%;
+  height: 50%;
+  transform: translateY(220px);
+  position: relative;
+  flex-direction: column;
+  z-index: 20;
+  align-items: center;
+}
+.content p{
+  font-size: 25px;
+}
+.content h2 {
+  font-size: 40px;
+  position: relative; /* Necesario para posicionar el subrayado correctamente */
+}
+
+.content h2::after {
+  content: ''; /* Agrega un elemento pseudo ::after para el subrayado */
+  position: absolute;
+  left: 0;
+  bottom: -3px; /* Ajusta la distancia del subrayado */
+  width: 100%;
+  border-bottom: 3px solid #ff9472; /* Ajusta el grosor y el color del subrayado */
+}
+
+.center{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 20px;
+}
+.box{
+  border-radius: 10px;
+}
+
+.btn{
+  width: 95%;
+  padding: 10px;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  transform: translateY(10px);
+  background: #ff9472;
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 0 20px rgba(0, 0,0, 0.13);
+  cursor: pointer;
+}
+.btn:hover{
+  background: rgb(255, 159, 130);
+}
+
+
