@@ -13,6 +13,7 @@ require_relative 'models/option'
 require_relative 'models/profile'
 require_relative 'models/achievement'
 require_relative 'models/ranking'
+require_relative 'controllers/juego_controller'
 
 
 class App < Sinatra::Application
@@ -38,8 +39,8 @@ class App < Sinatra::Application
 
 
     ## PAGINA DE LOGIN Y REGISTER
-    set :views, File.join(File.dirname(__FILE__), 'views')
-    set :public_folder, File.join(File.dirname(__FILE__), 'styles')
+  set :views, File.join(File.dirname(__FILE__), 'views')
+  set :public_folder, File.join(File.dirname(__FILE__), 'styles')
 
     ##Establece la configuración session_expire_after a 7200 segundos (2 horas).
     ##Esta configuración define el tiempo de expiración de las sesiones.
@@ -135,15 +136,15 @@ class App < Sinatra::Application
   end
 
 
-
-  get '/principal' do
-    @momentDay = Time.now
-    @momentDay = @momentDay.hour - 3
-    @temas = Topic.all
-    session[:indice] = 0
-    session[:tema_id] = 0
-    erb :'principal'
-  end
+  use Juego
+  # get '/principal' do
+  #   @momentDay = Time.now
+  #   @momentDay = @momentDay.hour - 3
+  #   @temas = Topic.all
+  #   session[:indice] = 0
+  #   session[:tema_id] = 0
+  #   erb :'principal'
+  # end
 
 
 
