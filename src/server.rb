@@ -14,7 +14,8 @@ require_relative 'models/profile'
 require_relative 'models/achievement'
 require_relative 'models/ranking'
 require_relative 'controllers/juego_controller'
-
+require_relative 'controllers/inicio_session.rb'
+require_relative 'controllers/JuegoController.rb'
 
 class App < Sinatra::Application
   def initialize(app = nil)
@@ -42,9 +43,7 @@ class App < Sinatra::Application
   set :views, File.join(File.dirname(__FILE__), 'views')
   set :public_folder, File.join(File.dirname(__FILE__), 'styles')
 
-    ##Establece la configuración session_expire_after a 7200 segundos (2 horas).
-    ##Esta configuración define el tiempo de expiración de las sesiones.
-    set :session_expire_after, 7200
+  set :session_expire_after, 7200
 
 
     before do
@@ -61,10 +60,6 @@ class App < Sinatra::Application
       end
     end
 
-    get '/' do
-      erb :'login'
-    end
-
 
     #Configura la sesión para que sea activada en todas las rutas:
     #HSe usa para habilitar las sesiones en todas las rutas utilizando enable :sessions.
@@ -72,79 +67,10 @@ class App < Sinatra::Application
     #y almacene los datos de sesión en el servidor.
     enable :sessions
 
-    ## Para autentificar que la cuenta del usuario haya sido creada.
-    post '/authenticate' do
-      name = params[:uname]
-      password = params[:psw]
-      ##Verifica la existencia del usuario
-      usuario = User.find_by(name: name)
-      if usuario && usuario.authenticate(password)
-      #Guardamos el id del usuario autenticando la clave
-      #:user_id en la sesión
-        session[:user_id] = usuario.id
-        redirect "/principal"
-      else
-        erb :'error'
-      end
-    end
 
-
-
-  get '/registrar' do
-    erb :'register'
-  end
-
-
-  ##Permite poder registrar un usuario correctamente.
-  post '/register' do
-    name = params[:uname]
-    password = params[:psw]
-    repPassword = params[:psw2]
-    email = params[:email]
-
-    ##Verifica si el usuario existe o no
-    @existUser = User.find_by(name: name)
-    @existEmail = User.find_by(email: email)
-    ## El usuario existe no lo crea
-    if @existUser || @existEmail
-      erb :'error'
-    else
-      @sonIguales = (password == repPassword)
-      if !@sonIguales
-        erb :'error'
-      else
-        ## El usuario no existe, se crea y lo guarda en user
-        user = User.new(name: name, email: email, password: password)
-        #Seteo el total score en 0
-        user.total_score = 0
-
-      #-----------------------------------------------
-      #-----------------------------------------------
-
-        #Si el usuario se guarda entonces es un exito, sino error
-        if user.save
-          profile = Profile.new(user_id: user.id, picture: "https://i.imgur.com/V39f2iV.png")
-          Ranking.create(score: user.total_score, user_id: user.id) #Agrega el usuario al ranking
-          profile.save
-
-          redirect '/'
-        else
-          erb :'error'
-        end
-      end
-    end
-  end
-
-
+  use Autentificacion
   use Juego
-  # get '/principal' do
-  #   @momentDay = Time.now
-  #   @momentDay = @momentDay.hour - 3
-  #   @temas = Topic.all
-  #   session[:indice] = 0
-  #   session[:tema_id] = 0
-  #   erb :'principal'
-  # end
+  use JuegoYPractica
 
 
 
@@ -197,117 +123,10 @@ class App < Sinatra::Application
     end
   end
 
-
-  post '/logout' do
-    #Eliminamos el id del usuario para garantizar que esté cerro session
-    session[:user_id] = nil;
-    redirect '/'
-  end
-
-
-  get '/niveles' do
-    @momentDay = Time.now
-    @momentDay = @momentDay.hour - 3
-    session[:tema_id] = params[:tema]
-    @tema = Topic.find_by(id: session[:tema_id]) #Consigo el TEMA de las preguntas
-    @user = User.find_by(id: session[:user_id])  #Consigo el USER del usuario de la sesion
-    @respondidas = @user.questions.pluck(:id)    #Permite obtener los id de las preguntas que respondio
-    @niveles_tema = @tema.questions.distinct.pluck(:nivel_q).count #Cantidad niveles del tema
-    erb :'niveles'
-  end
-
-
-  post '/game' do
-    @momentDay = Time.now
-    @momentDay = @momentDay.hour - 3
-    @tema = Topic.find_by(id: params[:tema])
-    @user = User.find_by(id: session[:user_id])  #Consigo el USER del usuario de la sesion
-    @nivel = params[:nivel]
-    #-----------------------------------------------
-    #-----------------------------------------------
-    @respondidas = @user.questions.pluck(:id)  #Permite obtener los id de las preguntas que respondio
-    @preguntas_nivel = Question.where(nivel_q: @nivel, topic_id: @tema.id)
-    @questions = @preguntas_nivel.where.not(id: @respondidas) #Obtengo preguntas no respondidas
-
-    @numero_por_nivel = Question.where(nivel_q: @nivel, topic_id: @tema.id).count #Numero de preguntas por nivel
-    @preguntas_respondidas = @preguntas_nivel.where(id: @respondidas).count       #Numero de preguntas respondidas por nivel
-
-    if @questions.any?                #Pregnta si contiene algun elemento.
-      @question = @questions.sample   #Se utiliza para seleccionar de forma aleatoria un elemento de una colección, como un arreglo o un conjunto.
-      if @question != nil             #Es igual a nil?
-        erb :'pregunta'
-      end
-    else
-      erb :'preguntaterminadas'
-    end
-  end
-
-
-  post '/practica' do
-    @momentDay = Time.now
-    @momentDay = @momentDay.hour - 3
-    @tema = Topic.find_by(id: params[:tema])
-    @user = User.find_by(id: session[:user_id])  #Consigo el USER del usuario de la sesion
-    @nivel = params[:nivel]
-
-    @answered = @user.questions.pluck(:id)  #Permite obtener los id de las preguntas que respondio
-    @question_level = Question.where(nivel_q: @nivel, topic_id: @tema.id)
-    @questions = @question_level.where(id: @answered)
-
-    if @questions.any?
-      @question = @questions.sample
-      if @question != nil
-        erb :'modopractica'
-      end
-    end
-
-  end
-
-  post '/verificarPract' do
-    @respuestaID = params[:opcionElegida] #Parametro que otorga el ID de la respuesta seleccionada
-    questionID = params[:question]        #Parametro que otorga el ID de la pregunta respondida
-    @tema_id = params[:tema]
-    @nivel = params[:nivel]
-    #-----------------------------------------------
-    #-----------------------------------------------
-    @respuesta = Option.find_by(id: @respuestaID)  #Obtengo la respuesta concreta que corresponde al ID
-    @question = Question.find_by(id: questionID)   #Obtengo la pregunta concreta que corresponde al ID
-      #-----------------------------------------------
-      #-----------------------------------------------
-    erb :'respuestaPract'
-  end
-
   before do
     response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
     response.headers['Pragma'] = 'no-cache'
     response.headers['Expires'] = '0'
-  end
-
-
-
-  post '/verificar' do
-    @respuestaID = params[:opcionElegida] #Parametro que otorga el ID de la respuesta seleccionada
-    questionID = params[:question]        #Parametro que otorga el ID de la pregunta respondida
-    @tema_id = params[:tema]
-    @nivel = params[:nivel]
-    #-----------------------------------------------
-    #-----------------------------------------------
-    @respuesta = Option.find_by(id: @respuestaID)  #Obtengo la respuesta concreta que corresponde al ID
-    @question = Question.find_by(id: questionID)   #Obtengo la pregunta concreta que corresponde al ID
-      #-----------------------------------------------
-      #-----------------------------------------------
-
-      # Si la respuesta otorgada es la correcta
-    if @respuesta.isCorrect
-      @user = User.find(session[:user_id])   # Obtengo el usuario correspondiente al id
-      res  = @user.total_score + @question.value          # Sumo al score almacenado el valor de la respuesta si fue correcta.
-      @user.update_column(:total_score,res)               # actualizo puntaje total
-      @user.questions << @question
-      @user.save
-      ranking = Ranking.find_by(user_id: @user.id)
-      ranking.update(score: @user.total_score)
-    end
-    erb :'respuesta'
   end
 
   get '/ranking' do
@@ -350,13 +169,6 @@ class App < Sinatra::Application
     @logros_usuario = @user.achievements
     erb :logro
   end
-
-  get '/guia'do
-    @tema = Topic.find_by(id: session[:tema_id])
-    erb :'guia'
-  end
-
-
 
 end
 

@@ -1,7 +1,10 @@
 # require 'time'
 require_relative '../models/user'
-        
+
 class Juego < Sinatra::Application
+
+  set :views, File.expand_path('../../views', __FILE__)
+
   get '/principal' do
     @momentDay = Time.now
     @momentDay = @momentDay.hour - 3
