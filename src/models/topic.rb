@@ -11,6 +11,10 @@ class Topic < ActiveRecord::Base
 
   validates :video, presence: true, uniqueness: true
 
+  def self.fetch_topic(topic_id)
+    find_by(id: topic_id)
+  end
+
 end
 
 

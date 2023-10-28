@@ -13,7 +13,7 @@
   <h1><center>Ranking</center></h1>
   <ol>
 
-  <%pos = Ranking.find_by(user_id: session[:user_id])%>
+    <%pos = Ranking.find_by(user_id: session[:user_id])%>
 
     <% count = 0 %>
     <% @ranking.each do |rank| %>
@@ -48,7 +48,7 @@
         <%user = User.find_by(id: pos.user_id)%>
         <%profile = user.profile%>
           <img class="imagen" src ="<%= profile.picture %>">
-          <p id="yo"> <%= pos.position%> Usuario: <%= user.name %></p> 
+          <p id="yo"> <%= pos.position%> Usuario: <%= user.name %></p>
           <p id="io">Score: <%=user.total_score%></p>
         <% break %>
       <% end %>
