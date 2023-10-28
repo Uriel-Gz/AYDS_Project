@@ -1,17 +1,15 @@
 class User < ActiveRecord::Base
-
-
   has_secure_password
-  #relacion de muchos a muchos con achievement
+  # relacion de muchos a muchos con achievement
   has_and_belongs_to_many :achievements
 
-  #relacion de muchos a muchos con question
+  # relacion de muchos a muchos con question
   has_and_belongs_to_many :questions
 
-  #relacion de uno a uno con profile
+  # relacion de uno a uno con profile
   has_one :profile
 
-  #relacion de muchos a 1 con rancking
+  # relacion de muchos a 1 con rancking
   belongs_to :ranking
 
 

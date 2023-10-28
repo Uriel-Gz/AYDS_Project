@@ -1,8 +1,8 @@
 class Option < ActiveRecord::Base
-  #relacion de muchos a muchos con questions
+  # relacion de muchos a muchos con questions
   belongs_to :question
 
-  #relacion de uno a uno con answer
+  # relacion de uno a uno con answer
   has_one :answer
 
   ## validacion
@@ -11,6 +11,4 @@ class Option < ActiveRecord::Base
   validates :isCorrect, inclusion: { in: [true, false] }
 
   validates :question_id, presence: true, numericality: true
-
-
 end

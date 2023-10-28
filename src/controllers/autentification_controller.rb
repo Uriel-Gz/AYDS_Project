@@ -14,7 +14,7 @@ class Autentificacion < Sinatra::Application
     password = params[:psw]
     # Verifica la existencia del usuario
     usuario = User.find_by(name: name)
-    if usuario && usuario.authenticate(password)
+    if usuario&.authenticate(password)
       # Guardamos el id del usuario autenticando, user_id en la sesión como clave
       session[:user_id] = usuario.id
       redirect '/principal'

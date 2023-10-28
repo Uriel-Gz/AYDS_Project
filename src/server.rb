@@ -22,7 +22,7 @@ class App < Sinatra::Application
 
   configure :production, :development do
     enable :logging
-    logger = Logger.new(STDOUT)
+    logger = Logger.new($stdout)
     logger.level = Logger::DEBUG if development?
     set :logger, logger
   end

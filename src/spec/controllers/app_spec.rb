@@ -1,7 +1,7 @@
 require 'rack/test'
 require 'sinatra/activerecord'
 require_relative '../../server'
-require_relative '../../models/init.rb'
+require_relative '../../models/init'
 
 
 RSpec.describe 'Sinatra App' do
@@ -13,7 +13,6 @@ RSpec.describe 'Sinatra App' do
   end
 
   context 'Routes without logging user' do
-
     it 'not register ingresed' do
       get '/perfil'
       expect(last_response.status).to eq(302)
@@ -22,7 +21,7 @@ RSpec.describe 'Sinatra App' do
     end
 
     it 'register correct' do
-      post '/register', {uname:'Santiago', psw:'pas1236', psw2:'pas1236', email:'santiagol010@gmail.com'}
+      post '/register', { uname: 'Santiago', psw: 'pas1236', psw2: 'pas1236', email: 'santiagol010@gmail.com' }
       expect(last_response.status).to eq(302)
       follow_redirect!
       expect(last_request.path_info).to eq('/')
@@ -32,15 +31,14 @@ RSpec.describe 'Sinatra App' do
     end
 
     it 'register password not equal' do
-      post '/register', {uname: 'Santioo', psw: 'pas1234', psw2: 'pas12345', email: 'santiago010@gmail.com'}
+      post '/register', { uname: 'Santioo', psw: 'pas1234', psw2: 'pas12345', email: 'santiago010@gmail.com' }
       expect(last_response.status).to eq(200)
     end
-
   end
   describe 'lol' do
     it 'authenticate of user' do
-      @user = User.create(name:"Santioo", email:"santiago010@gmail.com", password:"pas1234", total_score: 5)
-      post '/authenticate', {uname:'Santioo', psw:'pas1234' }
+      @user = User.create(name: 'Santioo', email: 'santiago010@gmail.com', password: 'pas1234', total_score: 5)
+      post '/authenticate', { uname: 'Santioo', psw: 'pas1234' }
       expect(last_response.status).to eq(302)
       follow_redirect!
       expect(last_request.path_info).to eq('/principal')
@@ -58,14 +56,14 @@ RSpec.describe 'Sinatra App' do
     end
 
     it 'register user exist' do
-      @user = User.create(name:"Santioo", email:"santiago010@gmail.com", password:"lolero123", total_score: 5)
-      post '/register', {uname: 'Santioo', psw: 'lolero123', psw2: 'lolero123', email: 'santiago0100@gmail.com'}
+      @user = User.create(name: 'Santioo', email: 'santiago010@gmail.com', password: 'lolero123', total_score: 5)
+      post '/register', { uname: 'Santioo', psw: 'lolero123', psw2: 'lolero123', email: 'santiago0100@gmail.com' }
       expect(last_response.status).to eq(200)
       @user.destroy
     end
 
     it 'not authenticate of user' do
-      @user = User.create(name:"Santioo", email:"santiago010@gmail.com", password:"pas1234", total_score: 5)
+      @user = User.create(name: 'Santioo', email: 'santiago010@gmail.com', password: 'pas1234', total_score: 5)
       post '/authenticate', { uname: 'Santioo', psw: 'pas12345' }
       expect(last_response.status).to eq(200)
       @user.destroy
@@ -85,9 +83,9 @@ RSpec.describe 'Sinatra App' do
   context 'probando perfil' do
     before(:each) do
       # Simula una sesión de usuario iniciada
-      @user = User.create(name:"Santioo", email:"santiago010@mail.com", password:"pas1234", total_score: 5)
+      @user = User.create(name: 'Santioo', email: 'santiago010@mail.com', password: 'pas1234', total_score: 5)
       @profile = Profile.create(user_id: @user.id)
-      @session = {user_id: @user.id}
+      @session = { user_id: @user.id }
     end
 
     after(:each) do
@@ -110,7 +108,7 @@ RSpec.describe 'Sinatra App' do
     end
 
 
-    #COMO AL INGRESAR A / y ya hay un usuario registrado te lleva a /principal
+    # COMO AL INGRESAR A / y ya hay un usuario registrado te lleva a /principal
     it 'testing the login route with a logged in user' do
       get '/', {}, 'rack.session' => @session
       # Verifica que se haya redireccionado
@@ -119,16 +117,16 @@ RSpec.describe 'Sinatra App' do
       follow_redirect!
       expect(last_request.path_info).to eq('/principal')
     end
-
   end
 
   context 'probando modificacion de perfil' do
     it 'should allow modifying the profile if the new name is unique' do
-      @user = User.create(name:"Santiiiiiiiii", email:"santiago010@mail.com", password:"pas1234", total_score: 5)
+      @user = User.create(name: 'Santiiiiiiiii', email: 'santiago010@mail.com', password: 'pas1234', total_score: 5)
       @profile = Profile.create(user_id: @user.id)
-      @session = { user_id: @user.id}
+      @session = { user_id: @user.id }
       # Realiza una solicitud POST a la ruta '/modify_profile' con nuevos valores
-      post '/modify_profile', { name: 'NombreUnico', psw:'pass1234', email:'santiago01@mail.com', imagen: 'lol.jpg'}, 'rack.session' => @session
+      post '/modify_profile', { name: 'NombreUnico', psw: 'pass1234', email: 'santiago01@mail.com', imagen: 'lol.jpg' },
+           'rack.session' => @session
       # Verifica que el código de estado sea 302 osea que direccione.
       expect(last_response.status).to eq(302)
       follow_redirect!
@@ -138,10 +136,11 @@ RSpec.describe 'Sinatra App' do
     end
 
     it 'modifying profile not user register' do
-      @user1 = User.create(name:"Santiiiiiiiii", email:"santiago010@mail.com", password:"pas1234", total_score: 5)
-      @user2 = User.create(name:"Santutu", email:"santiago@mail.com", password:"pas1234", total_score: 5)
-      @session = { user_id:@user1.id}
-      post '/modify_profile', { name: 'Santutu', psw:'pass1234', email:'santiago01@mail.com'}, 'rack.session' => @session
+      @user1 = User.create(name: 'Santiiiiiiiii', email: 'santiago010@mail.com', password: 'pas1234', total_score: 5)
+      @user2 = User.create(name: 'Santutu', email: 'santiago@mail.com', password: 'pas1234', total_score: 5)
+      @session = { user_id: @user1.id }
+      post '/modify_profile', { name: 'Santutu', psw: 'pass1234', email: 'santiago01@mail.com' },
+           'rack.session' => @session
       expect(last_response.status).to eq(302)
       follow_redirect!
       expect(last_request.path_info).to eq('/error_modificar')
@@ -152,9 +151,9 @@ RSpec.describe 'Sinatra App' do
 
   context 'Testing routes with user verification' do
     before(:each) do
-      @user = User.create(name:"Santioooooo", email:"santiago010@mail.com", password:"pas1234", total_score: 5)
+      @user = User.create(name: 'Santioooooo', email: 'santiago010@mail.com', password: 'pas1234', total_score: 5)
       # Simula una sesión de usuario iniciada
-      @session = {user_id:@user.id, tema_id:1}
+      @session = { user_id: @user.id, tema_id: 1 }
     end
 
     after(:each) do
@@ -163,7 +162,7 @@ RSpec.describe 'Sinatra App' do
     end
 
     it 'testing /logros with user verification' do
-      #Logro que el usuario va tener al tener 5 puntos.
+      # Logro que el usuario va tener al tener 5 puntos.
       get '/logros', {}, 'rack.session' => @session
       expect(last_response.status).to eq(200)
     end
@@ -177,9 +176,9 @@ RSpec.describe 'Sinatra App' do
       get '/ranking', {}, 'rack.session' => @sesion
       expect(last_response.status).to eq(200)
     end
-    
+
     it 'testing the route /niveles' do
-      get '/niveles', {tema: 1}, 'rack.session' => @session
+      get '/niveles', { tema: 1 }, 'rack.session' => @session
       expect(last_response.status).to eq(200)
     end
 
@@ -193,7 +192,6 @@ RSpec.describe 'Sinatra App' do
     it 'testing the route /guia' do
       get '/guia', {}, 'rack.session' => @session
       expect(last_response.status).to eq(200)
-
     end
 
     # it 'testing the route /guia' do
@@ -204,9 +202,8 @@ RSpec.describe 'Sinatra App' do
 
 
   context 'prob game' do
-
     before(:each) do
-      @user = User.create(name:"Santioooo", email:"santiago010@mail.com", password:"pas1234", total_score: 5)
+      @user = User.create(name: 'Santioooo', email: 'santiago010@mail.com', password: 'pas1234', total_score: 5)
       @session = { user_id: @user.id }
     end
 
@@ -216,48 +213,41 @@ RSpec.describe 'Sinatra App' do
     end
 
     it 'probando las preguntas del juego' do
-      post '/game', { tema: 1, nivel: 1}, 'rack.session' => @session
+      post '/game', { tema: 1, nivel: 1 }, 'rack.session' => @session
       expect(last_response.status).to eq(200)
     end
 
     it 'probando la verificacion de respuestas del juego' do
-      post '/verificar', {opcionElegida:1, question:1, tema:1, nivel:1}, 'rack.session' => @session
-      expect(last_response.status).to eq(500) #aca tendria que ser 200 pero nose porque no entra
+      post '/verificar', { opcionElegida: 1, question: 1, tema: 1, nivel: 1 }, 'rack.session' => @session
+      expect(last_response.status).to eq(500) # aca tendria que ser 200 pero nose porque no entra
     end
-
   end
 
 
   context 'prob pract' do
     before(:each) do
-      @user = User.create(name:"Santioooo", email:"santiago010@mail.com", password:"pas1234", total_score: 5)
+      @user = User.create(name: 'Santioooo', email: 'santiago010@mail.com', password: 'pas1234', total_score: 5)
       @session = { user_id: @user.id }
-   end
+    end
 
-   after(:each) do
-     @session = nil
-     @user.destroy
-   end
-#
+    after(:each) do
+      @session = nil
+      @user.destroy
+    end
 
-  #it 'probando las prácticas del juego' do
-  #  post '/practica', { tema:1, nivel: 1}, 'rack.session' => @session
-  #  expect(last_response.status).to eq(200)
-  #end
-   it 'probando las prácticas del juego' do
-     post '/practica', {tema: 1, nivel: 1}, 'rack.session' => @session
-     expect(last_response.status).to eq(200)
-   end
+    # it 'probando las prácticas del juego' do
+    #  post '/practica', { tema:1, nivel: 1}, 'rack.session' => @session
+    #  expect(last_response.status).to eq(200)
+    # end
+    it 'probando las prácticas del juego' do
+      post '/practica', { tema: 1, nivel: 1 }, 'rack.session' => @session
+      expect(last_response.status).to eq(200)
+    end
 
-   it 'probando la verificacion de respuestas de la practica' do
-     post '/verificarPract', {opcionElegida: 1, question: 1, tema: 1, nivel: 1}, 'rack.session' => @session
-     expect(last_response.status).to eq(200)
-
-   end
-   ##Este enrealidad tendria que ir en option @question.id pero no me deja y nose porq ayuda
-
+    it 'probando la verificacion de respuestas de la practica' do
+      post '/verificarPract', { opcionElegida: 1, question: 1, tema: 1, nivel: 1 }, 'rack.session' => @session
+      expect(last_response.status).to eq(200)
+    end
+    # #Este enrealidad tendria que ir en option @question.id pero no me deja y nose porq ayuda
   end
-
-
-
 end

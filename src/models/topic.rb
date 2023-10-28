@@ -14,7 +14,4 @@ class Topic < ActiveRecord::Base
   def self.fetch_topic(topic_id)
     find_by(id: topic_id)
   end
-
 end
-
-
