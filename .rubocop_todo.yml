@@ -11,7 +11,7 @@
 # Configuration parameters: CountComments, CountAsOne, AllowedMethods, AllowedPatterns.
 # AllowedMethods: refine
 Metrics/BlockLength:
-  Max: 177
+  Max: 180
 
 # Offense count: 39
 # Configuration parameters: EnforcedStyle, AllowedIdentifiers, AllowedPatterns.
@@ -37,3 +37,10 @@ Style/Documentation:
 # SupportedStyles: always, always_true, never
 Style/FrozenStringLiteralComment:
   Enabled: false
+
+# Offense count: 43
+# This cop supports safe autocorrection (--autocorrect).
+# Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, AllowedPatterns.
+# URISchemes: http, https
+Layout/LineLength:
+  Max: 410

@@ -182,22 +182,10 @@ RSpec.describe 'Sinatra App' do
       expect(last_response.status).to eq(200)
     end
 
-    # it 'testing the route /niveles' do
-    #  get '/niveles', {tema: @topic.id}, 'rack.session' => @session
-    # #  @question.destroy
-    # #  @topic.destroy
-    #  expect(last_response.status).to eq(200)
-    # end
-
     it 'testing the route /guia' do
       get '/guia', {}, 'rack.session' => @session
       expect(last_response.status).to eq(200)
     end
-
-    # it 'testing the route /guia' do
-    #  get '/guia', {}, 'rack.session' => @session
-    #  expect(last_response.status).to eq(200)
-    # end
   end
 
 
@@ -235,10 +223,6 @@ RSpec.describe 'Sinatra App' do
       @user.destroy
     end
 
-    # it 'probando las prácticas del juego' do
-    #  post '/practica', { tema:1, nivel: 1}, 'rack.session' => @session
-    #  expect(last_response.status).to eq(200)
-    # end
     it 'probando las prácticas del juego' do
       post '/practica', { tema: 1, nivel: 1 }, 'rack.session' => @session
       expect(last_response.status).to eq(200)
