@@ -5,8 +5,6 @@ class CreateOptions < ActiveRecord::Migration[7.0]
       t.string :description
       t.boolean :isCorrect
       t.references :question, foreign_key: true, null: false
-
-
     end
   end
 end

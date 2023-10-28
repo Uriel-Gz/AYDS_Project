@@ -79,14 +79,14 @@ class JuegoYPractica < Sinatra::Application
 
 
   def verificar_respuesta(respuesta, question, user_id)
-    if respuesta && question && respuesta.isCorrect
-      user = User.fetch_user(user_id)
-      User.add_points(user, question.value)
-      user.questions << question
-      user.save
-      ranking = Ranking.find_by(user_id: user.id)
-      Ranking.update_score(ranking, user) if ranking
-    end
+    return unless respuesta && question && respuesta.isCorrect
+
+    user = User.fetch_user(user_id)
+    User.add_points(user, question.value)
+    user.questions << question
+    user.save
+    ranking = Ranking.find_by(user_id: user.id)
+    Ranking.update_score(ranking, user) if ranking
   end
 
 

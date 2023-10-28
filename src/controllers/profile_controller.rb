@@ -33,18 +33,14 @@ class PerfilUsuario < Sinatra::Application
       @modify = true
       erb :error
     else
-      if params[:name].present?
-        user.update_column(:name, params[:name])
-      end
+      user.update_column(:name, params[:name]) if params[:name].present?
 
       if params[:password].present?
         user.password = params[:password]
         user.save
       end
 
-      if params[:email].present?
-        user.update_column(:email, params[:email])
-      end
+      user.update_column(:email, params[:email]) if params[:email].present?
 
       if params[:imagen].present?
         profile.picture = params[:imagen]
