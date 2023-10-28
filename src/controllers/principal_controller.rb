@@ -1,9 +1,7 @@
-# require 'time'
-require_relative '../models/user'
+# Controlador para vista principal
 
-class Juego < Sinatra::Application
-
-  set :views, File.expand_path('../../views', __FILE__)
+class Principal < Sinatra::Application
+  set :views, File.expand_path('../views', __dir__)
 
   get '/principal' do
     @momentDay = Time.now
