@@ -12,56 +12,43 @@ class Autentificacion < Sinatra::Application
   post '/authenticate' do
     name = params[:uname]
     password = params[:psw]
-    # Verifica la existencia del usuario
+    ##Verifica la existencia del usuario
     usuario = User.find_by(name: name)
-    if usuario&.authenticate(password)
-      # Guardamos el id del usuario autenticando, user_id en la sesión como clave
+    if usuario && usuario.authenticate(password)
       session[:user_id] = usuario.id
-      redirect '/principal'
+      redirect "/principal"
     else
-      erb :error
+      erb :'error'
     end
   end
-
 
   get '/registrar' do
     erb :register
   end
-
 
   post '/register' do
     name = params[:uname]
     password = params[:psw]
     repPassword = params[:psw2]
     email = params[:email]
+
     @existUser = User.find_by(name: name)
     @existEmail = User.find_by(email: email)
 
-    if @existUser || @existEmail
-      erb :error
-    else
-      @sonIguales = (password == repPassword)
-      if !@sonIguales
-        erb :error
-      else
-        # El usuario no existe, se crea y lo guarda en user
-        user = User.new(name: name, email: email, password: password)
-        # Se setea el puntaje en 0
-        user.total_score = 0
+    if @existUser || @existEmail || (password != repPassword)
+      return erb :error
+    end
 
-        # Si el usuario se guarda entonces es un exito
-        if user.save
-          profile = Profile.new(user_id: user.id, picture: 'https://i.imgur.com/V39f2iV.png')
-          Ranking.create(score: user.total_score, user_id: user.id)
-          profile.save
+    user = User.new(name: name, email: email, password: password)
+    user.total_score = 0
 
-          redirect '/'
-        else
-          erb :error
-        end
-      end
+    if user.save
+      Profile.create(user_id: user.id, picture: 'https://i.imgur.com/V39f2iV.png')
+      Ranking.create(score: user.total_score, user_id: user.id)
+      redirect '/'
     end
   end
+
 
 
   post '/logout' do

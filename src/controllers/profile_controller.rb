@@ -14,39 +14,40 @@ class PerfilUsuario < Sinatra::Application
 
 
   get '/modificar_perfil' do
-    # @momentDay = Time.now
-    # @momentDay = @momentDay.hour - 3
     erb :modificar_perfil
   end
 
 
-  post '/modify_profile' do
-    nuevoName = params[:name]
-    # Obtiene el usuario correspondiente al ID almacenado en el incio de session.
+  post '/modificar_perfil' do
     user = User.find(session[:user_id])
     profile = user.profile
-    @existUser = User.find_by(name: nuevoName)
+    @existUser = User.find_by(name: params[:name])
     @existEmail = User.find_by(email: params[:email])
 
-    # Si existe un usuario con ese nombre o email, no se modificará
     if @existUser || @existEmail
       @modify = true
-      erb :error
-    else
-      user.update_column(:name, params[:name]) if params[:name].present?
-
-      if params[:password].present?
-        user.password = params[:password]
-        user.save
-      end
-
-      user.update_column(:email, params[:email]) if params[:email].present?
-
-      if params[:imagen].present?
-        profile.picture = params[:imagen]
-        profile.save
-      end
-      redirect '/perfil'
+      return erb :error
     end
+    if params[:name].present?
+      user.update_column(:name, params[:name])
+    end
+
+    if params[:password].present?
+      user.password = params[:password]
+      user.save
+    end
+
+    if params[:email].present?
+      user.update_column(:email, params[:email])
+    end
+
+    if params[:imagen].present?
+      profile.update_column(:picture, params[:imagen])
+    end
+
+    redirect '/perfil'
   end
+
+
 end
+
