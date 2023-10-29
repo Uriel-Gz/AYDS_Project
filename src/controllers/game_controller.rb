@@ -8,47 +8,54 @@ class JuegoYPractica < Sinatra::Application
     @momentDay = @momentDay.hour - 3
   end
 
+
   get '/niveles' do
+    @tema, @user = get_tema_and_user(params, session)
     session[:tema_id] = params[:tema]
-    @tema = Topic.find_by(id: session[:tema_id])
-    @user = User.find_by(id: session[:user_id])
-    @respondidas = @user.questions.pluck(:id)
-    @niveles_tema = @tema.questions.distinct.pluck(:nivel_q).count
+    @respondidas = User.questions_responded(@user)
+    @niveles_tema = Topic.question_levels_count(@tema)
+
     erb :niveles
   end
 
 
   post '/game' do
-    @tema = Topic.find_by(id: params[:tema])
-    @user = User.find_by(id: session[:user_id])
+    @tema, @user = get_tema_and_user(params, session)
     @nivel = params[:nivel]
 
-    respondidas = @user.questions.pluck(:id)
-    preguntas_nivel = Question.where(nivel_q: @nivel, topic_id: @tema.id)
-    @questions = preguntas_nivel.where.not(id: respondidas)
+    respondidas = User.questions_responded(@user)
+    preguntas_nivel = Question.get_questions_level_topic(@nivel, @tema.id)
 
-    @numero_por_nivel = Question.where(nivel_q: @nivel, topic_id: @tema.id).count
+    @questions = preguntas_nivel.where.not(id: respondidas)
+    @numero_por_nivel = preguntas_nivel.count
     @preguntas_respondidas = preguntas_nivel.where(id: respondidas).count
 
     if @questions.any?
       @question = @questions.sample
-      return erb :pregunta
+      erb :pregunta
+    else
+      erb :preguntaterminadas
     end
-    erb :preguntaterminadas
   end
 
 
   post '/practica' do
-    @tema = Topic.fetch_topic(params[:tema])
-    @user = User.find_by(id: session[:user_id])
+    @tema, @user = get_tema_and_user(params, session)
     @nivel = params[:nivel]
     # @user.questions.pluck(:id) permite obtener los id de las preguntas que respondio
-    answered = @user.questions.pluck(:id)
-    question_level = Question.where(nivel_q: @nivel, topic_id: @tema.id)
+    answered = User.questions_responded(@user)
+    question_level = Question.get_questions_level_topic(@nivel, @tema.id)
     questions = question_level.where(id: answered)
 
     @question = questions.sample
     erb :modopractica
+  end
+
+
+  def get_tema_and_user(params, session)
+    tema = Topic.get_topic(params[:tema])
+    user = User.get_user(session[:user_id])
+    [tema, user]
   end
 
   post '/verificarPract' do
@@ -81,7 +88,7 @@ class JuegoYPractica < Sinatra::Application
   def verificar_respuesta(respuesta, question, user_id)
     return unless respuesta && question && respuesta.isCorrect
 
-    user = User.fetch_user(user_id)
+    user = User.get_user(user_id)
     User.add_points(user, question.value)
     user.questions << question
     user.save
@@ -91,7 +98,7 @@ class JuegoYPractica < Sinatra::Application
 
 
   get '/guia' do
-    @tema = Topic.find_by(id: session[:tema_id])
+    @tema = Topic.get_topic(session[:tema_id])
     erb :guia
   end
 end

@@ -12,7 +12,6 @@ class Autentificacion < Sinatra::Application
   post '/authenticate' do
     name = params[:uname]
     password = params[:psw]
-    ##Verifica la existencia del usuario
     usuario = User.find_by(name: name)
     if usuario && usuario.authenticate(password)
       session[:user_id] = usuario.id

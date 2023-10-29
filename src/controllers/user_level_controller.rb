@@ -25,7 +25,7 @@ class NivelUsuario < Sinatra::Application
   end
 
   get '/logros' do
-    @user = User.find(session[:user_id])
+    @user = User.get_user(session[:user_id])
     logrosObtenidos = @user.achievements.pluck(:id)
     @logrosNO_obtenidos = Achievement.where.not(id: logrosObtenidos)
 

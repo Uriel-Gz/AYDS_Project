@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   validates :password, presence: true
 
 
-  def self.fetch_user(user_id)
+  def self.get_user(user_id)
     find_by(id: user_id)
   end
 
@@ -29,4 +29,10 @@ class User < ActiveRecord::Base
     result = user.total_score + points
     user.update_column(:total_score, result)
   end
+
+
+  def self.questions_responded(user)
+    user.questions.pluck(:id)
+  end
+
 end

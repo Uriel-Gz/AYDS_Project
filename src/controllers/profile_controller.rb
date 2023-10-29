@@ -7,7 +7,7 @@ class PerfilUsuario < Sinatra::Application
   get '/perfil' do
     @momentDay = Time.now
     @momentDay = @momentDay.hour - 3
-    @user = User.find(session[:user_id])
+    @user = User.get_user(session[:user_id])
     @profile = @user.profile
     erb :perfile
   end
@@ -19,7 +19,7 @@ class PerfilUsuario < Sinatra::Application
 
 
   post '/modificar_perfil' do
-    user = User.find(session[:user_id])
+    user = User.get_user(session[:user_id])
     profile = user.profile
     @existUser = User.find_by(name: params[:name])
     @existEmail = User.find_by(email: params[:email])

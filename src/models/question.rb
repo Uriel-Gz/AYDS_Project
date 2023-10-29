@@ -19,4 +19,9 @@ class Question < ActiveRecord::Base
   validates :nivel_q, numericality: true, presence: true
 
   validates :topic_id, presence: true, numericality: true
+
+  def self.get_questions_level_topic(level, topic_id)
+    Question.where(nivel_q: level, topic_id: topic_id)
+  end
+
 end
