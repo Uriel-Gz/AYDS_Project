@@ -13,11 +13,11 @@ class Autentificacion < Sinatra::Application
     name = params[:uname]
     password = params[:psw]
     usuario = User.find_by(name: name)
-    if usuario && usuario.authenticate(password)
+    if usuario&.authenticate(password)
       session[:user_id] = usuario.id
-      redirect "/principal"
+      redirect '/principal'
     else
-      erb :'error'
+      erb :error
     end
   end
 
@@ -34,9 +34,7 @@ class Autentificacion < Sinatra::Application
     @existUser = User.find_by(name: name)
     @existEmail = User.find_by(email: email)
 
-    if @existUser || @existEmail || (password != repPassword)
-      return erb :error
-    end
+    return erb :error if @existUser || @existEmail || (password != repPassword)
 
     user = User.new(name: name, email: email, password: password)
     user.total_score = 0

@@ -30,13 +30,10 @@ class NivelUsuario < Sinatra::Application
     @logrosNO_obtenidos = Achievement.where.not(id: logrosObtenidos)
 
     @logrosNO_obtenidos.each do |logro|
-      if @user.total_score >= logro.point
-        @user.achievements << logro
-      end
+      @user.achievements << logro if @user.total_score >= logro.point
     end
 
     @logros_usuario = @user.achievements
     erb :logro
   end
-
 end

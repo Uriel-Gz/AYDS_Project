@@ -1,0 +1,42 @@
+Inspecting 42 files
+.C..C..C.C..................C..C..........
+
+Offenses:
+
+src/Rakefile.rb:1:1: C: Naming/FileName: The name of this source file (Rakefile.rb) should use snake_case.
+require 'sinatra/activerecord/rake'
+^
+src/controllers/autentification_controller.rb:16:8: C: [Correctable] Style/SafeNavigation: Use safe navigation (&.) instead of checking if an object exists before calling the method.
+    if usuario && usuario.authenticate(password)
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/controllers/autentification_controller.rb:18:16: C: [Correctable] Style/StringLiterals: Prefer single-quoted strings when you don't need string interpolation or special symbols.
+      redirect "/principal"
+               ^^^^^^^^^^^^
+src/controllers/autentification_controller.rb:20:11: C: [Correctable] Style/SymbolLiteral: Do not use strings for word-like symbol literals.
+      erb :'error'
+          ^^^^^^^^
+src/controllers/autentification_controller.rb:37:5: C: [Correctable] Style/IfUnlessModifier: Favor modifier if usage when having a single-line body. Another good alternative is the usage of control flow &&/||.
+    if @existUser || @existEmail || (password != repPassword)
+    ^^
+src/controllers/profile_controller.rb:31:5: C: [Correctable] Style/IfUnlessModifier: Favor modifier if usage when having a single-line body. Another good alternative is the usage of control flow &&/||.
+    if params[:name].present?
+    ^^
+src/controllers/profile_controller.rb:40:5: C: [Correctable] Style/IfUnlessModifier: Favor modifier if usage when having a single-line body. Another good alternative is the usage of control flow &&/||.
+    if params[:email].present?
+    ^^
+src/controllers/profile_controller.rb:44:5: C: [Correctable] Style/IfUnlessModifier: Favor modifier if usage when having a single-line body. Another good alternative is the usage of control flow &&/||.
+    if params[:imagen].present?
+    ^^
+src/controllers/profile_controller.rb:51:1: C: [Correctable] Layout/EmptyLinesAroundClassBody: Extra empty line detected at class body end.
+src/controllers/profile_controller.rb:53:1: C: [Correctable] Layout/TrailingEmptyLines: 1 trailing blank lines detected.
+src/controllers/user_level_controller.rb:33:7: C: [Correctable] Style/IfUnlessModifier: Favor modifier if usage when having a single-line body. Another good alternative is the usage of control flow &&/||.
+      if @user.total_score >= logro.point
+      ^^
+src/controllers/user_level_controller.rb:41:1: C: [Correctable] Layout/EmptyLinesAroundClassBody: Extra empty line detected at class body end.
+src/models/question.rb:26:1: C: [Correctable] Layout/EmptyLinesAroundClassBody: Extra empty line detected at class body end.
+src/models/user.rb:34:3: C: [Correctable] Layout/EmptyLineBetweenDefs: Expected 1 empty line between method definitions; found 2.
+  def self.questions_responded(user)
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/models/user.rb:37:1: C: [Correctable] Layout/EmptyLinesAroundClassBody: Extra empty line detected at class body end.
+
+42 files inspected, 15 offenses detected, 15 offenses autocorrectable

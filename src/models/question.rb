@@ -23,5 +23,4 @@ class Question < ActiveRecord::Base
   def self.get_questions_level_topic(level, topic_id)
     Question.where(nivel_q: level, topic_id: topic_id)
   end
-
 end

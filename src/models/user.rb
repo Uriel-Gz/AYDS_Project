@@ -30,9 +30,7 @@ class User < ActiveRecord::Base
     user.update_column(:total_score, result)
   end
 
-
   def self.questions_responded(user)
     user.questions.pluck(:id)
   end
-
 end
