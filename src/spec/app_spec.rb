@@ -1,8 +1,8 @@
 require 'rack/test'
 require 'sinatra/activerecord'
-require_relative '../../server'
-require_relative '../../models/init'
-require_relative '../../controllers/routes'
+require_relative '../server'
+require_relative '../models/init.rb'
+require_relative '../controllers/routes.rb'
 
 
 RSpec.describe 'Sinatra App' do
@@ -154,14 +154,12 @@ RSpec.describe 'Sinatra App' do
   context 'Testing routes with user verification' do
     before(:each) do
       @user = User.create(name: 'Santioooooo', email: 'santiago010@mail.com', password: 'pas1234', total_score: 5)
-      @ranking = Ranking.create(position: 1, score: 5, user_id: @user.id)
       # Simula una sesión de usuario iniciada
       @session = { user_id: @user.id, tema_id: 1 }
     end
 
     after(:each) do
       @session = nil
-      @ranking.destroy
       @user.destroy
     end
 

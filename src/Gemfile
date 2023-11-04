@@ -11,11 +11,11 @@ end
 
 gem 'bcrypt'
 gem 'rake'
-gem 'simplecov'
 gem 'sinatra-activerecord'
 gem 'sqlite3'
 
 group :test do
   gem 'rack-test', '2.1.0'
   gem 'rspec'
+  gem 'simplecov'
 end
