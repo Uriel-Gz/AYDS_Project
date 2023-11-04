@@ -48,18 +48,30 @@
     </a>
   </nav>
 
-      <label>SELECCION DE TEMA</label>
+  <img src="<%=url('/images/SUGMATH-logo.png')%>" alt="logo-app" id="logo">
+  <p id="p1">+</p> <p id="p2">-</p> <p id="p3">x</p> <p id="p4">%</p>
+
   <div id="main">
     <div>
       <div class="tema-list">
         <% @temas.each do |topic|  %>
-        <div class="tema-item">
+        <% if topic.nombre == 'Suma'%>
+        <div class="tema-item" id="s1">
+            <span><%= topic.descripcion %></span>
+        <% end %>
+        <% if topic.nombre == 'Resta'%>
+        <div class="tema-item2" id="s2">
+            <span><%= topic.descripcion %></span>
+        <% end %>
+        <% if topic.nombre == 'Multiplicacion'%>
+        <div class="tema-item3" id="s3">
+            <span><%= topic.descripcion %></span>
+        <% end %>
+        <% if topic.nombre == 'Division'%>
+        <div class="tema-item4" id="s4">
+            <span><%= topic.descripcion %></span>
+        <% end %>
           <a href="/niveles?tema=<%= topic.id %>" class="tema-button">
-          <div class="tema-content">
-            <img src="<%=topic.img%>" alt="Imagen del tema" style="width: 100px; margin-bottom: 10px; border: none;">
-            <h3><%= topic.nombre %></h3>
-            <p><%= topic.descripcion %></p>
-          </div>
           </a>
         </div>
         <% end %>
@@ -67,11 +79,6 @@
     </div>
 
     <script>
-      /** function darkModee() {
-      //   var element = document.body;
-      //   element.classList.toggle("dark-mode");
-      //   // document.getElementById("123").classList.toggle("dark-mode");
-       }*/
       function openNav() {
         document.getElementById("sideNavigation").style.width = "200px";
         document.getElementById("main").style.marginLeft = "200px";

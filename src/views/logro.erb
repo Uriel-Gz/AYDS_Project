@@ -18,7 +18,27 @@
   <% if @logros_usuario != nil %>
     <ul>
       <% @logros_usuario.each do |logro| %>
-        <li>
+      <% if logro.name == 'SUG-MATH'%>
+        <li id='l1'>
+      <% end %>
+      <% if logro.name == 'Primera Correcta'%>
+        <li id='l2'>
+      <% end %>
+      <% if logro.name == 'Bien jugado'%>
+        <li id='l3'>
+      <% end %>
+      <% if logro.name == 'Sobre Marcha'%>
+        <li id='l4'>
+      <% end %>
+      <% if logro.name == '3̵̠̟͇͑̿͘3̸̻̺̦͒͛̀3̴̺͑͊͜͜͝3̴̡̢̦̓͌͘3̴̡̠͚͋̐̕3̵̘͎̪̿̈́͋3̴͔͉͔͑̈́3̵̼̠̙́̈́̚3̵͔̦̒͒̕'%>
+        <li id='l5'>
+      <% end %>
+      <% if logro.name == 'Dominio de matematicas'%>
+        <li id='l6'>
+      <% end %>
+      <% if logro.name == 'Ya podes dar clases'%>
+        <li id='l7'>
+      <% end %>
           <h2><%= logro.name %></h2>
           <p><%= logro.description%><p>
           <progress value="<%= @user.total_score %>" max="<%= logro.point  %>"></progress>
@@ -27,11 +47,29 @@
       <% end %>
 
       <% @logrosNO_obtenidos.each do |logro| %>
-        <li class="locked" id="not">
+      <% if logro.name == 'Primera Correcta'%>
+        <li id='l2' class="locked">
+      <% end %>
+      <% if logro.name == 'Bien jugado'%>
+        <li id='l3' class="locked">
+      <% end %>
+      <% if logro.name == 'Sobre Marcha'%>
+        <li id='l4' class="locked">
+      <% end %>
+      <% if logro.name == '3̵̠̟͇͑̿͘3̸̻̺̦͒͛̀3̴̺͑͊͜͜͝3̴̡̢̦̓͌͘3̴̡̠͚͋̐̕3̵̘͎̪̿̈́͋3̴͔͉͔͑̈́3̵̼̠̙́̈́̚3̵͔̦̒͒̕'%>
+        <li id='l5' class="locked">
+      <% end %>
+      <% if logro.name == 'Dominio de matematicas'%>
+        <li id='l6' class="locked">
+      <% end %>
+      <% if logro.name == 'Ya podes dar clases'%>
+        <li id='l7' class="locked">
+      <% end %>
+
           <h2 class="locked-text"><%= logro.name %></h2>
           <p class="locked-text"><%= logro.description %></p>
           <progress value="<%= @user.total_score %>" max="<%= logro.point %>"></progress>
-          <p> Te faltan <%=logro.point - @user.total_score%> puntos </p>
+          <p class="falta"> Te faltan <%=logro.point - @user.total_score%> puntos </p>
         </li>
       <% end %>
 
