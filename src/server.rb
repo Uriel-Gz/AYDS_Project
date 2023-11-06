@@ -18,7 +18,6 @@ class App < Sinatra::Application
   # y almacene los datos de sesión en el servidor.
   enable :sessions
 
-
   before do
     # lista de rutas restringidas
     # Estas rutas requerirán que el usuario haya iniciado sesión para acceder a ellas.
@@ -54,11 +53,7 @@ class App < Sinatra::Application
     end
   end
 
-
   set :views, File.join(File.dirname(__FILE__), 'views')
   set :public_folder, File.join(File.dirname(__FILE__), 'styles')
   set :session_expire_after, 7200
-
-
-
 end

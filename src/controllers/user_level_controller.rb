@@ -4,8 +4,8 @@ class NivelUsuario < Sinatra::Application
   set :views, File.expand_path('../views', __dir__)
 
   before do
-    @momentDay = Time.now
-    @momentDay = @momentDay.hour - 3
+    @moment_day = Time.now
+    @moment_day = @moment_day.hour - 3
   end
 
   get '/ranking' do
@@ -26,10 +26,10 @@ class NivelUsuario < Sinatra::Application
 
   get '/logros' do
     @user = User.get_user(session[:user_id])
-    logrosObtenidos = @user.achievements.pluck(:id)
-    @logrosNO_obtenidos = Achievement.where.not(id: logrosObtenidos)
+    logros_obtenidos = @user.achievements.pluck(:id)
+    @logros_no_obtenidos = Achievement.where.not(id: logros_obtenidos)
 
-    @logrosNO_obtenidos.each do |logro|
+    @logros_no_obtenidos.each do |logro|
       @user.achievements << logro if @user.total_score >= logro.point
     end
 

@@ -70,6 +70,7 @@ GEM
     sqlite3 (1.6.2)
       mini_portile2 (~> 2.8.0)
     sqlite3 (1.6.2-arm64-darwin)
+    sqlite3 (1.6.2-x64-mingw32)
     tilt (2.1.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
@@ -77,6 +78,7 @@ GEM
 PLATFORMS
   arm64-darwin-21
   ruby
+  x64-mingw32
 
 DEPENDENCIES
   bcrypt

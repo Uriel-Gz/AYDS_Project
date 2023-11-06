@@ -1,9 +1,8 @@
 require 'rack/test'
 require 'sinatra/activerecord'
 require_relative '../server'
-require_relative '../models/init.rb'
-require_relative '../controllers/routes.rb'
-
+require_relative '../models/init'
+require_relative '../controllers/routes'
 
 RSpec.describe 'Sinatra App' do
   include Rack::Test::Methods
@@ -15,25 +14,25 @@ RSpec.describe 'Sinatra App' do
 
   context 'Routes without logging user' do
     # it 'not register ingresed' do
-      # get '/perfil'
-      # expect(last_response.status).to eq(302)
-      # follow_redirect!
-      # expect(last_request.path_info).to eq('/')
+    # get '/perfil'
+    # expect(last_response.status).to eq(302)
+    # follow_redirect!
+    # expect(last_request.path_info).to eq('/')
     # end
 
     it 'register correct' do
-     post '/register', { uname: 'Santiago', psw: 'pas1236', psw2: 'pas1236', email: 'santiagol010@gmail.com' }
-     expect(last_response.status).to eq(302)
-     follow_redirect!
-     expect(last_request.path_info).to eq('/')
-     Profile.destroy_all
-     Ranking.destroy_all
-     User.destroy_all
+      post '/register', { uname: 'Santiago', psw: 'pas1236', psw2: 'pas1236', email: 'santiagol010@gmail.com' }
+      expect(last_response.status).to eq(302)
+      follow_redirect!
+      expect(last_request.path_info).to eq('/')
+      Profile.destroy_all
+      Ranking.destroy_all
+      User.destroy_all
     end
 
     it 'register password not equal' do
-     post '/register', { uname: 'Santioo', psw: 'pas1234', psw2: 'pas12345', email: 'santiago010@gmail.com' }
-     expect(last_response.status).to eq(200)
+      post '/register', { uname: 'Santioo', psw: 'pas1234', psw2: 'pas12345', email: 'santiago010@gmail.com' }
+      expect(last_response.status).to eq(200)
     end
   end
 
@@ -109,7 +108,6 @@ RSpec.describe 'Sinatra App' do
       expect(last_response.status).to eq(200)
     end
 
-
     # COMO AL INGRESAR A / y ya hay un usuario registrado te lleva a /principal
     # it 'testing the login route with a logged in user' do
     #   get '/', {}, 'rack.session' => @session
@@ -137,7 +135,7 @@ RSpec.describe 'Sinatra App' do
       @user.destroy
     end
 
-    #it 'modifying profile not user register' do
+    # it 'modifying profile not user register' do
     #  @user1 = User.create(name: 'Santiiiiiiiii', email: 'santiago010@mail.com', password: 'pas1234', total_score: 5)
     #  @user2 = User.create(name: 'Santutu', email: 'santiago@mail.com', password: 'pas1234', total_score: 5)
     #  @session = { user_id: @user1.id }
@@ -148,7 +146,7 @@ RSpec.describe 'Sinatra App' do
     #  expect(last_request.path_info).to eq('/error_modificar')
     #  @user1.destroy
     #  @user2.destroy
-    #end
+    # end
   end
 
   context 'Testing routes with user verification' do
@@ -185,7 +183,6 @@ RSpec.describe 'Sinatra App' do
     end
   end
 
-
   context 'prob game' do
     before(:each) do
       @user = User.create(name: 'Santioooo', email: 'santiago010@mail.com', password: 'pas1234', total_score: 5)
@@ -207,7 +204,6 @@ RSpec.describe 'Sinatra App' do
       expect(last_response.status).to eq(200)
     end
   end
-
 
   context 'prob pract' do
     before(:each) do

@@ -12,7 +12,6 @@ describe Option do
     expect(option.valid?).to eq(false)
   end
 
-
   it 'is invalid without the identifier to the question that corresponds' do
     option = Option.new(description: '4', isCorrect: true)
     expect(option.valid?).to eq(false)

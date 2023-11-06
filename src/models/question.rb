@@ -8,7 +8,6 @@ class Question < ActiveRecord::Base
   # relacion de uno a muchos con options
   has_many :option
 
-
   # relacion de uno a uno con answer
   has_one :answer
 

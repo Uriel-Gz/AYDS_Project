@@ -47,14 +47,12 @@ context 'lol' do
   end
 end
 
-
 context 'lo22l' do
   after(:each) do
     @session = nil
     @user_one.destroy
     @user.destroy
   end
-
 
   it 'is invalid with a duplicate name' do
     @user_one = User.create(name: 'Luis', email: 'luis@gmail.com', password: 'pas1234')

@@ -3,11 +3,9 @@
 class Autentificacion < Sinatra::Application
   set :views, File.expand_path('../views', __dir__)
 
-
   get '/' do
     erb :login
   end
-
 
   post '/authenticate' do
     name = params[:uname]
@@ -28,13 +26,13 @@ class Autentificacion < Sinatra::Application
   post '/register' do
     name = params[:uname]
     password = params[:psw]
-    repPassword = params[:psw2]
+    rep_password = params[:psw2]
     email = params[:email]
 
-    @existUser = User.find_by(name: name)
-    @existEmail = User.find_by(email: email)
+    @exist_user = User.find_by(name: name)
+    @exist_email = User.find_by(email: email)
 
-    return erb :error if @existUser || @existEmail || (password != repPassword)
+    return erb :error if @exist_user || @exist_email || (password != rep_password)
 
     user = User.new(name: name, email: email, password: password)
     user.total_score = 0
@@ -45,8 +43,6 @@ class Autentificacion < Sinatra::Application
       redirect '/'
     end
   end
-
-
 
   post '/logout' do
     # Eliminamos el id del usuario para garantizar que esté cerro session

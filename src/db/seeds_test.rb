@@ -1,6 +1,6 @@
 require './server'
 
-guiaSum =
+guia_sum =
   "
 Definicion
 --DIVISION-- La suma es la acción de añadir, juntar o agregar elementos, cuando realizamos esta acción estamos uniendo cantidades o conjuntos y para ello siempre debe haber un mínimo de dos elementos.
@@ -10,8 +10,7 @@ Definicion
 
 # Creacion de tema para test
 Topic.create(nombre: 'Suma',
-             descripcion: 'La adición o suma es la operación matemática de composición que consiste en combinar o añadir dos números o más para obtener una cantidad final o total.', img: 'https://i.imgur.com/rMA2PnT.png', guia: guiaSum, video: 'https://www.youtube.com/embed/oF-rZLIShC8')
-
+             descripcion: 'La adición o suma es la operación matemática de composición que consiste en combinar o añadir dos números o más para obtener una cantidad final o total.', img: 'https://i.imgur.com/rMA2PnT.png', guia: guia_sum, video: 'https://www.youtube.com/embed/oF-rZLIShC8')
 
 # Creación de pregunta para test
 Question.create(value: 1, description: '¿2+2?', nivel_q: 1, topic_id: 1)

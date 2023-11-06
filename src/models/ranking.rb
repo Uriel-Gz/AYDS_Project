@@ -8,7 +8,6 @@ class Ranking < ActiveRecord::Base
 
   validates :user_id, presence: true
 
-
   def self.update_score(ranking, user)
     ranking.update_column(:score, user.total_score)
   end

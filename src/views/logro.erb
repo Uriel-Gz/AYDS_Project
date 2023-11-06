@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-  <% if @momentDay < 19%>
+  <% if @moment_day < 19%>
   <html class="light-mode-logro">
   <% else %>
   <html>
@@ -46,7 +46,7 @@
         </li>
       <% end %>
 
-      <% @logrosNO_obtenidos.each do |logro| %>
+      <% @logros_no_obtenidos.each do |logro| %>
       <% if logro.name == 'Primera Correcta'%>
         <li id='l2' class="locked">
       <% end %>

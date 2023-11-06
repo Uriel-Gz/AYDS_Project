@@ -2,18 +2,16 @@ ruby '2.7.5'
 
 source 'https://rubygems.org'
 
-gem 'multi_json'
 gem 'bcrypt'
+gem 'multi_json'
 gem 'rake'
 gem 'sinatra-activerecord'
 gem 'sqlite3'
-
 
 github 'sinatra/sinatra' do
   gem 'sinatra'
   gem 'sinatra-contrib'
 end
-
 
 group :test do
   gem 'rack-test', '2.1.0'

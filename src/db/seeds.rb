@@ -1,20 +1,20 @@
 require './server'
 
-guiaSum =
+guia_sum =
   "
 Definicion
 --DIVISION-- La suma es la acción de añadir, juntar o agregar elementos, cuando realizamos esta acción estamos uniendo cantidades o conjuntos y para ello siempre debe haber un mínimo de dos elementos.
 --PARTES-- Partes de la suma
 --DIVISION-- A los números que intervienen en una suma se les denomina sumandos, al resultado de la operación lo llamamos suma o resultado. Por ejemplo, en el caso de la operación 2+8 = 10 , el 2 y el 8 son sumandos y el 10 es la suma o resultado.
 "
-guiaRes =
+guia_res =
   'Definicion
 --DIVISION-- La resta o la sustracción es una operación aritmética que se representa con el signo "-" y representa la operación de eliminación de objetos de una colección.
 --PARTES-- Partes de la resta
 --DIVISION-- Los números que intervienen en la resta también reciben nombres para poderlos identificar. Al número que se le quita o se le sustrae es denominado minuendo, el número que resta o sustrae es llamado sustraendo y, finalmente, al resultado se le conoce como resta o diferencia de los números. En el caso de la resta:8-3 = 5 , el ocho es el minuendo, el tres es el sustraendo y la diferencia es cinco.
 '
 
-guiamult = "
+guia_mult = "
 Definicion:
 --DIVISION-- La multiplicación es aquella operación mediante la cual se suma un número por sí mismo tantas veces como lo señala otro número.
 --PARTES-- Partes:
@@ -31,7 +31,7 @@ Definicion:
 --DIVISION-- Multiplicar por diez: El producto de cualquier número n multiplicado por diez, o una potencia de diez, es igual a n más el número de ceros que posee el multiplicador a la derecha. En este sentido, si multiplico 4×100, el resultado será 4, más dos ceros a la derecha. Es decir, 400. De igual modo, 7×1.000 será igual a 7 más tres ceros a la derecha. Por tanto, 7.000.
 "
 
-guiaDiv = "
+guia_div = "
 Definicion
 --DIVISION-- Definimos la división como aquella operación matemática que consiste en separar una cantidad en partes iguales, es decir, se trata de realizar una distribución equitativa del objeto o cosa que se quiere repartir.
 --PARTES-- Partes de la división
@@ -49,16 +49,13 @@ Definicion
 
 # Creacion de temas
 Topic.create(nombre: 'Suma',
-             descripcion: 'La adición o suma es la operación matemática de composición que consiste en combinar o añadir dos números o más para obtener una cantidad final o total.', img: 'https://i.imgur.com/rMA2PnT.png', guia: guiaSum, video: 'https://www.youtube.com/embed/oF-rZLIShC8')
+             descripcion: 'La adición o suma es la operación matemática de composición que consiste en combinar o añadir dos números o más para obtener una cantidad final o total.', img: 'https://i.imgur.com/rMA2PnT.png', guia: guia_sum, video: 'https://www.youtube.com/embed/oF-rZLIShC8')
 Topic.create(nombre: 'Resta',
-             descripcion: 'La resta o sustracción es una operación matemática que consiste en sacar, quitar, reducir o separar algo de un todo.', img: 'https://i.imgur.com/vpFobkj.png', guia: guiaRes, video: 'https://www.youtube.com/embed/L6NOkLq6kHk')
+             descripcion: 'La resta o sustracción es una operación matemática que consiste en sacar, quitar, reducir o separar algo de un todo.', img: 'https://i.imgur.com/vpFobkj.png', guia: guia_res, video: 'https://www.youtube.com/embed/L6NOkLq6kHk')
 Topic.create(nombre: 'Multiplicacion',
-             descripcion: 'La multiplicación es la operación matemática que consiste en hallar el resultado de sumar un número tantas veces como indique otro.', img: 'https://i.imgur.com/9rrOc8V.png', guia: guiamult, video: 'https://www.youtube.com/embed/AE4B0hgnz0E')
+             descripcion: 'La multiplicación es la operación matemática que consiste en hallar el resultado de sumar un número tantas veces como indique otro.', img: 'https://i.imgur.com/9rrOc8V.png', guia: guia_mult, video: 'https://www.youtube.com/embed/AE4B0hgnz0E')
 Topic.create(nombre: 'Division',
-             descripcion: 'Operación matemática que consiste en separar una cantidad en partes iguales, es decir, se trata de realizar una distribución equitativa del objeto o cosa que se quiere repartir', img: 'https://i.imgur.com/Gq65i6z.png', guia: guiaDiv, video: 'https://www.youtube.com/embed/0D1wxxlBN-0')
-
-
-
+             descripcion: 'Operación matemática que consiste en separar una cantidad en partes iguales, es decir, se trata de realizar una distribución equitativa del objeto o cosa que se quiere repartir', img: 'https://i.imgur.com/Gq65i6z.png', guia: guia_div, video: 'https://www.youtube.com/embed/0D1wxxlBN-0')
 
 # Creación de preguntas de suma
 Question.create(value: 1, description: '¿Si tengo 🍎🍎 y me regalan otras 🍎🍎, cuántas manzanas tengo ahora?', nivel_q: 1,
@@ -71,7 +68,6 @@ Question.create(value: 1,
                 description: 'En una granja hay 15 🐣 y despues de una semana el granjero trae otros 9 🐣 más, ¿cuántos pollitos viven ahora en la granja?', nivel_q: 1, topic_id: 1)
 Question.create(value: 1,
                 description: 'En la escuela dos aulas que estan encargadas de un acto, unos alumnos acomodan 🪑 y los otros decoran 🎍🎊. Los que decoran son 27 y los que acomodan son 14, ¿cuántos alumnos 👨🏻‍🎓 estan a cargo del acto?', nivel_q: 1, topic_id: 1)
-
 
 # Nivel 1
 Option.create(description: '4', isCorrect: true, question_id: 1)
@@ -99,7 +95,6 @@ Option.create(description: '42', isCorrect: false, question_id: 5)
 Option.create(description: '39', isCorrect: false, question_id: 5)
 Option.create(description: '41', isCorrect: true, question_id: 5)
 
-
 ## nivel 2
 
 Question.create(value: 3, description: '¿Cuánto es 648 + 527?', nivel_q: 2, topic_id: 1)
@@ -108,18 +103,15 @@ Question.create(value: 3, description: '¿Cuánto es 15487 + 26934?', nivel_q: 2
 Question.create(value: 3, description: '¿Cuánto es 123 + 89?', nivel_q: 2, topic_id: 1)
 Question.create(value: 3, description: '¿Cuánto es 532 + 187?', nivel_q: 2, topic_id: 1)
 
-
 Option.create(description: '1175', isCorrect: true, question_id: 6)
 Option.create(description: '1170', isCorrect: false, question_id: 6)
 Option.create(description: '1100', isCorrect: false, question_id: 6)
 Option.create(description: '1180', isCorrect: false, question_id: 6)
 
-
 Option.create(description: '8201', isCorrect: true, question_id: 7)
 Option.create(description: '8202', isCorrect: false, question_id: 7)
 Option.create(description: '8203', isCorrect: false, question_id: 7)
 Option.create(description: '8200', isCorrect: false, question_id: 7)
-
 
 Option.create(description: '42421', isCorrect: true, question_id: 8)
 Option.create(description: '42400', isCorrect: false, question_id: 8)
@@ -144,7 +136,6 @@ Question.create(value: 5, description: '¿Cuánto es 489 + 726?', nivel_q: 3, to
 Question.create(value: 5, description: '¿Cuánto es 752 + 946?', nivel_q: 3, topic_id: 1)
 Question.create(value: 5, description: '¿Cuánto es 613 + 869?', nivel_q: 3, topic_id: 1)
 Question.create(value: 5, description: '¿Cuánto es 928 + 541?', nivel_q: 3, topic_id: 1)
-
 
 Option.create(description: '1352', isCorrect: false, question_id: 11)
 Option.create(description: '1349', isCorrect: true, question_id: 11)
@@ -225,7 +216,6 @@ Question.create(value: 3,
                 description: 'Si tenías 320 canciones en tu lista de reproducción y eliminaste 125, ¿cuántas canciones te quedan?', nivel_q: 2, topic_id: 2)
 Question.create(value: 3,
                 description: 'Si tenías 150 lápices en un estuche y perdiste 57, ¿cuántos lápices te quedan?', nivel_q: 2, topic_id: 2)
-
 
 Option.create(description: '285', isCorrect: true, question_id: 22)
 Option.create(description: '245', isCorrect: false, question_id: 22)
@@ -342,8 +332,6 @@ Option.create(description: '72', isCorrect: true, question_id: 39)
 Option.create(description: '81', isCorrect: false, question_id: 39)
 Option.create(description: '88', isCorrect: false, question_id: 39)
 
-
-
 ## Nivel 2
 
 Question.create(value: 3, description: '¿Cuánto es 27 multiplicado por 14?', nivel_q: 2, topic_id: 3)
@@ -390,7 +378,6 @@ Question.create(value: 5, description: '¿Cuánto es 921 multiplicado por 638?',
 Question.create(value: 5, description: '¿Cuánto es 456 multiplicado por 823?', nivel_q: 3, topic_id: 3)
 Question.create(value: 5, description: '¿Cuánto es 673 multiplicado por 954?', nivel_q: 3, topic_id: 3)
 Question.create(value: 5, description: '¿Cuánto es 837 multiplicado por 527?', nivel_q: 3, topic_id: 3)
-
 
 Option.create(description: '64864', isCorrect: false, question_id: 46)
 Option.create(description: '64934', isCorrect: false, question_id: 46)
@@ -462,7 +449,6 @@ Option.create(description: '8', isCorrect: true, question_id: 57)
 Option.create(description: '6', isCorrect: false, question_id: 57)
 Option.create(description: '7', isCorrect: false, question_id: 57)
 Option.create(description: '10', isCorrect: false, question_id: 57)
-
 
 ## Nivel 2
 
@@ -539,12 +525,6 @@ Option.create(description: '45,5', isCorrect: false, question_id: 69)
 Option.create(description: '46', isCorrect: false, question_id: 69)
 Option.create(description: '46,3', isCorrect: true, question_id: 69)
 Option.create(description: '46,9', isCorrect: false, question_id: 69)
-
-
-
-
-
-
 
 # Logros
 Achievement.create(name: 'SUG-MATH', description: 'Creaste una cuenta en SUG-MATH', point: 0)

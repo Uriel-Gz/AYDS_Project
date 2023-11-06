@@ -4,10 +4,9 @@ class JuegoYPractica < Sinatra::Application
   set :views, File.expand_path('../views', __dir__)
 
   before do
-    @momentDay = Time.now
-    @momentDay = @momentDay.hour - 3
+    @moment_day = Time.now
+    @moment_day = @moment_day.hour - 3
   end
-
 
   get '/niveles' do
     @tema, @user = get_tema_and_user(params, session)
@@ -17,7 +16,6 @@ class JuegoYPractica < Sinatra::Application
 
     erb :niveles
   end
-
 
   post '/game' do
     @tema, @user = get_tema_and_user(params, session)
@@ -38,7 +36,6 @@ class JuegoYPractica < Sinatra::Application
     end
   end
 
-
   post '/practica' do
     @tema, @user = get_tema_and_user(params, session)
     @nivel = params[:nivel]
@@ -51,7 +48,6 @@ class JuegoYPractica < Sinatra::Application
     erb :modopractica
   end
 
-
   def get_tema_and_user(params, session)
     tema = Topic.get_topic(params[:tema])
     user = User.get_user(session[:user_id])
@@ -59,22 +55,21 @@ class JuegoYPractica < Sinatra::Application
   end
 
   post '/verificarPract' do
-    respuestaID = params[:opcionElegida]
-    questionID = params[:question]
+    respuesta_id = params[:opcionElegida]
+    question_id = params[:question]
     @tema_id = params[:tema]
     @nivel = params[:nivel]
-    @respuesta = Option.find_by(id: respuestaID)
-    @question = Question.find_by(id: questionID)
+    @respuesta = Option.find_by(id: respuesta_id)
+    @question = Question.find_by(id: question_id)
     erb :respuestaPract
   end
 
-
   post '/verificar' do
-    respuestaID = params[:opcionElegida]
-    @respuesta = Option.find_by(id: respuestaID)
+    respuesta_id = params[:opcionElegida]
+    @respuesta = Option.find_by(id: respuesta_id)
 
-    questionID = params[:question]
-    @question = Question.find_by(id: questionID)
+    question_id = params[:question]
+    @question = Question.find_by(id: question_id)
 
     @tema_id = params[:tema]
     @nivel = params[:nivel]
@@ -83,7 +78,6 @@ class JuegoYPractica < Sinatra::Application
     verificar_respuesta(@respuesta, @question, user_id)
     erb :respuesta
   end
-
 
   def verificar_respuesta(respuesta, question, user_id)
     return unless respuesta && question && respuesta.isCorrect
@@ -95,7 +89,6 @@ class JuegoYPractica < Sinatra::Application
     ranking = Ranking.find_by(user_id: user.id)
     Ranking.update_score(ranking, user) if ranking
   end
-
 
   get '/guia' do
     @tema = Topic.get_topic(session[:tema_id])
