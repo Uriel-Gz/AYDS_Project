@@ -5,7 +5,6 @@ class CreateAchievement < ActiveRecord::Migration[7.0]
       t.string :name
       t.string :description
       t.integer :point
-
     end
   end
 end

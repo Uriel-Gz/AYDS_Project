@@ -19,7 +19,7 @@
 <body>
   <div class = "error_register">
     <h3>Ha Ocurrido un Error</h3>
-    <%if (@existUser && @existUser != nil) || (@existEmail && @existEmail != nil)%>
+    <%if (@exist_user && @exist_user != nil) || (@exist_email && @exist_email != nil)%>
         <p>El nombre de usuario o email ya ha sido usado</p>
         <%if @modify%>
           <a href="/modificar_perfil" class="boton">Volver a intentarlo</a>

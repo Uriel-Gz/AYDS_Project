@@ -7,13 +7,14 @@ html {
 }
 
 h1 {
-    color: rgb(5, 130, 227);
+    color: rgb(50, 158, 240);
     font-weight: bold;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 44px;
     text-align: center;
     margin-top: 20px;
     margin-bottom: 10px;
+    text-shadow: 0 4px 3px black;
 }
 
 /* Estilos generales */
@@ -38,27 +39,9 @@ li {
   width: 200px;
   margin: 20px;
   padding: 20px;
-  background-color: #0391b48a;
-  border-radius: 10px;
+  font-weight:bold;
+  text-shadow: 0 2px 2px black;
 }
-
-li:hover{
-  box-shadow: 0 2px 15px rgb(100, 255, 252);
-}
-
-/* Estilos para la medalla */
-li:before {
-  content: "";
-  display: block;
-  width: 60px;
-  height: 60px;
-  background-image: url("https://th.bing.com/th/id/R.e887698405e80a1cbd0d2bd1ba679235?rik=BviNZrmNi6NCuw&riu=http%3a%2f%2fclipart-library.com%2fimages_k%2fblue-check-mark-transparent-background%2fblue-check-mark-transparent-background-10.png&ehk=94OKd%2f0FLCWJOdK0pfhAsrF8q4jwad96Blo69CzcYvM%3d&risl=&pid=ImgRaw&r=0");
-  background-size: cover;
-  background-position: center;
-  /* border-radius: 0%; */
-  margin: -30px auto 10px;
-}
-
 
 /* Estilos para la descripción del logro */
 li p {
@@ -70,14 +53,10 @@ li p {
 
 /* Estilos para el texto de logros no desbloqueados */
 .locked-text {
-  opacity: 0.5;
+  opacity: 0.8;
   filter: blur(2px); /* Desenfoque */
   color: #999; /* Color de texto reducido */
   user-select: none; /*para que no seleccionen*/
-}
-
-#not::before{
-  background-image: url("https://th.bing.com/th/id/R.065afec553929a80438ac81a9a68232e?rik=hJo%2brf9Y4xTF1A&riu=http%3a%2f%2fhardybraincamp.com%2fwp-content%2fuploads%2f2017%2f03%2fcheck-mark-3-black.png&ehk=hY%2b0EFZ1KLcfKP3XC0G4WSoi7o5lDFjaePkQAdI5f50%3d&risl=&pid=ImgRaw&r=0");
 }
 
   li h2 {
@@ -86,7 +65,7 @@ li p {
     margin-bottom: 5px;
     border-radius: 5px;
     padding: 10px;
-    color: wheat;
+    color: rgb(243, 241, 239);
     /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
     display: block;
     text-align: center;
@@ -98,6 +77,8 @@ li p {
   }
 
   .boton{
+    position: relative;
+    left: 2%;
     display: inline-block;
     padding: 10px 20px;
     background-color: #10c9ad;
@@ -166,7 +147,7 @@ li p {
 
     background-size: 35px 20px, 100% 100%, 100% 100%;
     border-radius: 20px;
-    background-color: rgb(0, 255, 170);
+    background-color: rgb(0, 255, 247);
     /* Let's animate this */
     animation: animate-stripes 5s linear infinite;
     box-shadow: 0 0 10px rgb(89, 242, 247);
@@ -179,3 +160,58 @@ li p {
   }
 
 
+#l1{
+  background-image: url('images/Log.png');
+  filter: contrast(1.2);
+  background-size: 89%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+#l2{
+  background-image: url('images/Primera-ok.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+#l3{
+  background-image: url('images/Bien-jugado.png');
+  background-size: contain;
+  background-position: 100%;
+  background-repeat: no-repeat;
+}
+#l4{
+  background-image: url('images/En-marcha.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+#l5{
+  background-image: url('images/Genio.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+#l6{
+  background-image: url('images/Dominio.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+#l7{
+  background-image: url('images/Maestro.png');
+  background-size: contain;
+  background-position: center;
+  filter: blur(2);
+  background-repeat: no-repeat;
+}
+
+#l2:hover,
+#l3:hover,#l4:hover,
+#l5:hover,#l6:hover,
+#l7:hover {
+  filter: drop-shadow(0 0 5px rgb(135, 218, 235));
+}
+
+#l1:hover{
+  filter: contrast(1.2) drop-shadow(0 0 5px rgb(135, 218, 235));
+}

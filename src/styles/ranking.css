@@ -20,18 +20,22 @@ h1 {
 body {
     text-align: center;
     display: grid;
-    grid-template-columns: 40%;
+    grid-template-columns: 50%;
     justify-content: center;
     font-size: 1.5rem;
     height: 95%;
     row-gap: 20px;
     margin-left: 0;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 ol {
     display: grid;
-    grid-template-columns: 10% 50% 40%;
+    grid-template-columns: 100%;
+    grid-row-gap: 4%;
+    overflow: hidden;
     justify-content: center;
+    align-items: center;
     padding-right: 40px;
     margin-top: 1%;
     margin-bottom: 1%;
@@ -39,6 +43,22 @@ ol {
     margin-left: 2px;
     border-radius: 10px;
     box-shadow: 0 0 5px rgb(140, 247, 255);
+}
+
+ol > div{
+    display: flex;
+    justify-content:space-between;
+    height: 75%;
+    transition: ease 0.5s;
+    padding-left: 4%;
+    padding-right: 4%;
+    border-radius: 5px;
+}
+
+ol > div:hover{ 
+    scale: 1.1;
+    animation: pff 1s linear;
+    border-radius: 30px;
 }
 
 .boton {
@@ -67,16 +87,8 @@ ol {
 
 
 #yo {
-   border-left: 1px rgba(255, 255, 255, 0.566) solid;
-   border-top: 1px rgba(255, 255, 255, 0.566) solid;
-   border-bottom: 1px rgba(255, 255, 255, 0.566) solid;
-   box-shadow: -2.5px 0 3px rgb(243, 241, 166);
-}
-#io {
-   border-right: 1px rgba(255, 255, 255, 0.566) solid;
-   border-top: 1px rgba(255, 255, 255, 0.566) solid;
-   border-bottom: 1px rgba(255, 255, 255, 0.566) solid;
-   box-shadow: 2.5px 0 3px rgb(243, 241, 166);
+   border: 1px rgba(255, 255, 255, 0.566) solid;
+   box-shadow: 0px 3px 3px rgba(230, 225, 87, 0.564), 1px 4px 3px rgba(243, 240, 166, 0.628);
 }
 
 img{
@@ -88,4 +100,13 @@ img{
     border: solid 1px rgb(204, 199, 199);
     position: relative;
     box-shadow: 0 0 2px ;
+}
+
+@keyframes pff {
+    0%{
+        border: 1px groove rgba(255, 255, 255, 0.521);
+    }
+    100%{
+        border: 1px groove rgba(255, 255, 255, 0);
+    }
 }

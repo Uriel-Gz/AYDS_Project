@@ -6,5 +6,4 @@ class Achievement < ActiveRecord::Base
   validates :description, presence: true, uniqueness: true
 
   validates :point, presence: true, uniqueness: true, numericality: true
-
 end
