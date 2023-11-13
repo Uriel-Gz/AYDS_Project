@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-  <% if @momentDay < 19%>
+  <% if @moment_day < 19%>
   <html class="light-mode-perfil">
   <% else %>
   <html>
@@ -16,13 +16,13 @@
 <body>
 
 	<div class="card">
-		<img class="card-cover-image" src="https://img.freepik.com/vector-gratis/pizarra-matematicas_23-2148178219.jpg">
+		<img class="card-cover-image" src="<%= url('/images/fondo-per.jpg')%>">
 	  <div class="img">
 	    <img class="imagen" src="<%= @profile.picture %>">
 	  </div>
 	  <div class="content">
-	    <h2>Usuario: <%= @user.name %></h2>
-	    <p>Email: <%= @user.email %></p>
+	    <h2><%= @user.name %></h2>
+	    <p><%= @user.email %></p>
 	    <div class="box">
 	      <h1>Puntaje: <%= @user.total_score %></h1>
 	    </div>

@@ -11,6 +11,11 @@ class Topic < ActiveRecord::Base
 
   validates :video, presence: true, uniqueness: true
 
+  def self.get_topic(topic_id)
+    find_by(id: topic_id)
+  end
+
+  def self.question_levels_count(topic)
+    topic.questions.distinct.pluck(:nivel_q).count
+  end
 end
-
-

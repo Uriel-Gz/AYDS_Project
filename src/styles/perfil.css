@@ -36,7 +36,7 @@ a {
 }
 
 .boton {
-  background: -webkit-gradient(linear, 0 0, 0 100%, from(#3ffaea), to(#0567fa));
+  background: -webkit-gradient(linear, 0 0, 0 100%, from(#5efdf0), to(#0567fa));
   background: -moz-linear-gradient(top, #3ffaea, #0567fa);
   border-radius: 8px;
   color: #fff;
@@ -53,29 +53,25 @@ a {
   transform: scale(1.05);
 }
 
+body{
+  height: inherit;
+  display: grid;
+  grid-template-rows: 70% 5%;
+  align-content: center;
+  justify-content: center;
+}
 
 .card {
-  width: 900px;
-  height: 450px;
-  background: #00000056;
+  width: 250%;
+  height: 98%;
+  background: linear-gradient( rgb(191, 196, 196),rgb(1, 119, 183));
   border-radius: 10px;
   position: relative;
+  left: -72%;
   display: flex;
   cursor: pointer;
   justify-content: center;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.13);
-}
-
-.card::before {
-  content: "";
-  position: absolute;
-  top: 2%;
-  width: 95%;
-  height: 200px;
-  z-index: 1;
-  border-radius: 10px 10px 0 0;
-  background-color: #00ccff;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.021);
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.409);
 }
 
 .card-cover-image {
@@ -86,6 +82,7 @@ a {
   z-index: 2;
   border-radius: 10px 10px 0 0;
   object-fit: cover;
+  border: 2px inset rgba(128, 128, 128, 0.589);
 }
 
 .card .img{
@@ -95,23 +92,18 @@ a {
   transform: translateY(150px);
   position: relative;
   left: -70px;
-  /* border: 3px solid #252525; */
-  /* overflow: hidden; */
-  /* position: absolute; */
-  /* background: #fff; */
-  /* transition: transform 0.3s ease; */
-
 }
 
 .card .img img {
-  border: 3px solid #252525; /* Puedes ajustar el color y el grosor del borde según tus preferencias */
+  border: 4px groove #59525299; /* Puedes ajustar el color y el grosor del borde según tus preferencias */
   border-radius: 20%;
   width: 220px;
   height: 220px;
   object-fit: cover;
   margin-bottom: 10px;
   transition: transform 0.3s ease;
-  background-color: #00ccff57;
+  filter: contrast(1.05) brightness(0.98);
+  background: linear-gradient(rgba(4, 104, 104, 0.495), rgba(3, 206, 159, 0.445));
 }
 
 
@@ -126,9 +118,9 @@ a {
   height: 50%;
   transform: translateY(220px);
   position: relative;
-  flex-direction: column;
-  z-index: 20;
+  text-align: center;
   align-items: center;
+  justify-items: center;
 }
 .content p{
   font-size: 25px;
@@ -138,13 +130,9 @@ a {
   position: relative; /* Necesario para posicionar el subrayado correctamente */
 }
 
-.content h2::after {
-  content: ''; /* Agrega un elemento pseudo ::after para el subrayado */
-  position: absolute;
-  left: 0;
-  bottom: -3px; /* Ajusta la distancia del subrayado */
-  width: 100%;
-  border-bottom: 3px solid #ff9472; /* Ajusta el grosor y el color del subrayado */
+.content h2, h1, p{
+  text-shadow: 0 4px 3px black;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 .center{
@@ -158,21 +146,5 @@ a {
   border-radius: 10px;
 }
 
-.btn{
-  width: 95%;
-  padding: 10px;
-  border-radius: 10px;
-  outline: none;
-  border: none;
-  transform: translateY(10px);
-  background: #ff9472;
-  color: #fff;
-  font-weight: 600;
-  box-shadow: 0 0 20px rgba(0, 0,0, 0.13);
-  cursor: pointer;
-}
-.btn:hover{
-  background: rgb(255, 159, 130);
-}
 
 
